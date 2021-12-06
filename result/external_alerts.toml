@@ -1,0 +1,76 @@
+[metadata]
+creation_date = "2020/07/08"
+maturity = "production"
+updated_date = "2021/07/13"
+
+[rule]
+author = [ "Octodet" ]
+description = """
+Generates a detection alert for each external alert written to the configured indices. Enabling this rule allows you to
+immediately begin investigating external alerts in the app.
+"""
+index = [
+  "apm-*-transaction*-cipher*",
+  "traces-apm*-cipher*",
+  "auditbeat-*-cipher*",
+  "filebeat-*-cipher*",
+  "logs-*-cipher*",
+  "packetbeat-*-cipher*",
+  "winlogbeat-*-cipher*"
+]
+language = "kuery"
+license = "Elastic License v2"
+max_signals = 10_000
+name = "External Alerts"
+risk_score = 47
+rule_id = "eb079c62-4481-4d6e-9643-3ca499df7aaa"
+rule_name_override = "message"
+severity = "medium"
+tags = [
+  "Elastic",
+  "Network",
+  "Windows",
+  "APM",
+  "macOS",
+  "Linux",
+  "FileBeat",
+  "WinLogBeat",
+  "PacketBeat",
+  "AuditBeat",
+  "Elastic-Agent",
+  "Firewall"
+]
+timestamp_override = "event.ingested"
+type = "query"
+query = """
+event.kind:alert and not event.module:(endgame or endpoint)
+"""
+
+  [[rule.risk_score_mapping]]
+  field = "event.risk_score"
+  operator = "equals"
+  value = ""
+
+  [[rule.severity_mapping]]
+  field = "event.severity"
+  operator = "equals"
+  value = "21"
+  severity = "low"
+
+  [[rule.severity_mapping]]
+  field = "event.severity"
+  operator = "equals"
+  value = "47"
+  severity = "medium"
+
+  [[rule.severity_mapping]]
+  field = "event.severity"
+  operator = "equals"
+  value = "73"
+  severity = "high"
+
+  [[rule.severity_mapping]]
+  field = "event.severity"
+  operator = "equals"
+  value = "99"
+  severity = "critical"
