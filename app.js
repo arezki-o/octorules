@@ -88,12 +88,12 @@ recursive(directoryPath,["*.txt","*.md"], function (err, files) {
         
       //  console.log(parsed);
         
-        if(parsed.rule.index != undefined) {
-            for (var q = 0;q < parsed.rule.index.length;q++){
+       // if(parsed.rule.index != undefined) {
+         //   for (var q = 0;q < parsed.rule.index.length;q++){
 
-            parsed.rule.index[q] =  funcs.addNameConvention(parsed.rule.index[q],"cipher*");
-        }
-        }
+           // parsed.rule.index[q] =  funcs.addNameConvention(parsed.rule.index[q],"cipher*");
+        //}
+        //}
         
 
 
