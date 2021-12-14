@@ -16,11 +16,7 @@ false_positives = [
   "RDP connections may be made directly to Internet destinations in order to access Windows cloud server instances but\nsuch connections are usually made only by engineers. In such cases, only RDP gateways, bastions or jump servers may\nbe expected Internet destinations and can be exempted from this rule. RDP may be required by some work-flows such as\nremote access and support for specialized software products and servers. Such work-flows are usually known and not\n    unexpected. Usage that is unfamiliar to server or network owners can be unexpected and suspicious.\n    "
 ]
 from = "now-9m"
-index = [
-  "filebeat-*-cipher*",
-  "packetbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*"
-]
+index = [ "filebeat-*", "packetbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "RDP (Remote Desktop Protocol) to the Internet"

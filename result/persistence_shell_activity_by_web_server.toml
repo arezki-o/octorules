@@ -10,7 +10,7 @@ false_positives = [
   "Network monitoring or management products may have a web server component that runs shell commands as part of normal\nbehavior.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Potential Shell via Web Server"

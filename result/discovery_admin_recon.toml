@@ -10,11 +10,7 @@ Identifies instances of lower privilege accounts enumerating Administrator accou
 tools.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Enumeration of Administrator Accounts"

@@ -7,14 +7,14 @@ integration = "aws"
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when a user disabled or deleted an EventBridge rule. This activity can result in an unintended loss of
-visibility in applications or breaking the flow with other AWS services.
+Identifies when a user has disabled or deleted an EventBridge rule. This activity can result in an unintended loss of
+visibility in applications or a break in the flow with other AWS services.
 """
 false_positives = [
   "EventBridge Rules could be deleted or disabled by a system administrator. Verify whether the user identity, user agent, and/or \nhostname should be making changes in your environment. EventBridge Rules being deleted or disabled from unfamiliar users should \nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-20m"
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "AWS EventBridge Rule Disabled or Deleted"

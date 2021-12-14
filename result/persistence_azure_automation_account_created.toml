@@ -12,7 +12,7 @@ tasks and orchestrate actions across systems. An adversary may create an Automat
 persistence in their target's environment.
 """
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Automation Account Created"

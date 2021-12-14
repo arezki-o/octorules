@@ -13,7 +13,7 @@ adversaries can use this mechanism on their own malware to make sure they're abl
 future.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "lucene"
 license = "Elastic License v2"
 max_signals = 33

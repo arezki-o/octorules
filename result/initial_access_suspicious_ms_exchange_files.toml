@@ -14,11 +14,7 @@ false_positives = [
   "    This rule was tuned using the following baseline:\n    https://raw.githubusercontent.com/microsoft/CSS-Exchange/main/Security/Baselines/baseline_15.2.792.5.csv from\n    Microsoft. Depending on version, consult https://github.com/microsoft/CSS-Exchange/tree/main/Security/Baselines to\n    help determine normalcy.\n    "
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Microsoft Exchange Server UM Writing Suspicious Files"

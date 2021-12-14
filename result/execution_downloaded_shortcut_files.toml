@@ -11,11 +11,7 @@ Identifies .lnk shortcut file downloaded from outside the local network. These s
 phishing campaigns.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Downloaded Shortcut Files"

@@ -13,11 +13,7 @@ false_positives = [
   "Enumeration of files and directories may not be inherently malicious and noise may come from scripts, automation\ntools, or normal command line usage. It's important to baseline your environment to determine the amount of expected\nnoise and exclude any known FP's from the rule.\n"
 ]
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "File and Directory Discovery"

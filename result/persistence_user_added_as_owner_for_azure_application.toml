@@ -12,7 +12,7 @@ for an Azure application in order to grant additional permissions and modify the
 another account.
 """
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "User Added as Owner for Azure Application"

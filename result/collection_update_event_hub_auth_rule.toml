@@ -16,7 +16,7 @@ false_positives = [
   "Authorization rule additions or modifications may be done by a system or network administrator. Verify whether the\nusername, hostname, and/or resource name should be making changes in your environment. Authorization rule additions\nor modifications from unfamiliar users or hosts should be investigated. If known behavior is causing false\npositives, it can be exempted from the rule.\n    "
 ]
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Event Hub Authorization Rule Created or Updated"

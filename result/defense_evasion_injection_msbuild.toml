@@ -12,7 +12,7 @@ used to evade detection or elevate privileges.
 false_positives = [
   "The Build Engine is commonly used by Windows developers but use by non-engineers is unusual."
 ]
-index = [ "winlogbeat-*-cipher*", "logs-windows.*-cipher*" ]
+index = [ "winlogbeat-*", "logs-windows.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Process Injection by the Microsoft Build Engine"

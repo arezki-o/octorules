@@ -10,11 +10,7 @@ Identifies use of bcdedit.exe to delete boot configuration data. This tactic is 
 attacker as a destructive technique.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Modification of Boot Configuration"

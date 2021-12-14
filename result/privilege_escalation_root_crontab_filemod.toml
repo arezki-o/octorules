@@ -10,7 +10,7 @@ Identifies modifications to the root crontab file. Adversaries may overwrite thi
 privileges by exploiting privileged file write or move related vulnerabilities.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Privilege Escalation via Root Crontab File Modification"

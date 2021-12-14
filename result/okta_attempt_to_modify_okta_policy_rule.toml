@@ -13,7 +13,7 @@ to weaken an organization's security controls.
 false_positives = [
   "Consider adding exceptions to this rule to filter false positives if Okta MFA rules are regularly modified in your\norganization.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Modify an Okta Policy Rule"

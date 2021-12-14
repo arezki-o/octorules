@@ -14,7 +14,7 @@ or an administrator may inadvertently modify the permissions, which could lead t
 false_positives = [
   "Blob permissions may be modified by system administrators. Verify that the configuration change was\nexpected. Exceptions can be added to this rule to filter expected behavior.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Blob Permissions Modification"

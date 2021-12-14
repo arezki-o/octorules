@@ -11,7 +11,7 @@ this feature by adding a rogue Finder Plugin to repeatedly execute malicious pay
 """
 false_positives = [ "Trusted Finder Sync Plugins" ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Finder Sync Plugin Registered and Enabled"

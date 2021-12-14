@@ -14,7 +14,7 @@ organization's security controls. For example, an adversary may attempt to modif
 false_positives = [
   "Consider adding exceptions to this rule to filter false positives if Okta policies are regularly modified in your\norganization.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Modify an Okta Policy"

@@ -11,11 +11,7 @@ privilege escalation or persistence by placing a reference to a binary in the Wi
 executed by SYSTEM when the authentication packages are loaded.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential LSA Authentication Package Abuse"

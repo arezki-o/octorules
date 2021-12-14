@@ -14,7 +14,7 @@ false_positives = [
   "Netcat is a dual-use tool that can be used for benign or malicious activity. Netcat is included in some Linux\ndistributions so its presence is not necessarily suspicious. Some normal use of this program, while uncommon, may\noriginate from scripts, automation tools, and frameworks.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Netcat Network Activity"

@@ -10,11 +10,7 @@ Identifies unusual processes connecting to domains using known free SSL certific
 encryption algorithm to conceal command and control traffic.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Connection to Commonly Abused Free SSL Certificate Providers"

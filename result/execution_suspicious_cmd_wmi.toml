@@ -10,11 +10,7 @@ Identifies suspicious command execution (cmd) via Windows Management Instrumenta
 be indicative of adversary lateral movement.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious Cmd Execution via WMI"

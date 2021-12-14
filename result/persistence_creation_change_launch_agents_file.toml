@@ -11,7 +11,7 @@ launchctl to load a plist into the appropriate directories.
 """
 false_positives = [ "Trusted applications persisting via LaunchAgent" ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Launch Agent Creation or Modification and Immediate Loading"

@@ -13,7 +13,7 @@ false_positives = [
   "Custom organization-specific macOS packages that use .pkg files to run cURL could trigger this rule. If known\nbehavior is causing false positives, it can be excluded from the rule.\n"
 ]
 from = "now-9m"
-index = [ "logs-endpoint.events.*-cipher*" ]
+index = [ "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "macOS Installer Spawns Network Event"

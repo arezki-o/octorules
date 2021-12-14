@@ -14,7 +14,7 @@ false_positives = [
   "Sign-ins using PowerShell may be done by a system or network administrator. Verify whether the username, hostname,\nand/or resource name should be signing into your environment. Sign-ins from unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Active Directory PowerShell Sign-in"

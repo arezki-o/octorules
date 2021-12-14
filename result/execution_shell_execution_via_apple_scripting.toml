@@ -10,7 +10,7 @@ Identifies the execution of the shell process (sh) via scripting (JXA or AppleSc
 doShellScript functionality in JXA or do shell script in AppleScript to execute system commands.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Shell Execution via Apple Scripting"

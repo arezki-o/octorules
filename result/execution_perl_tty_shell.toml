@@ -10,7 +10,7 @@ Identifies when a terminal (tty) is spawned via Perl. Attackers may upgrade a si
 interactive tty after obtaining initial access to a host.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Interactive Terminal Spawned via Perl"

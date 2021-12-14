@@ -14,7 +14,7 @@ false_positives = [
   "Custom Google Workspace admin roles may be created by system administrators. Verify that the configuration change\nwas expected. Exceptions can be added to this rule to filter expected behavior.\n"
 ]
 from = "now-130m"
-index = [ "filebeat-*-cipher*", "logs-google_workspace*-cipher*" ]
+index = [ "filebeat-*", "logs-google_workspace*" ]
 interval = "10m"
 language = "kuery"
 license = "Elastic License v2"

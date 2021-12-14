@@ -7,13 +7,14 @@ integration = "o365"
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when Microsoft Cloud App Security reported when a user uploads files to the cloud that might be infected with ransomware.
+Identifies when Microsoft Cloud App Security reports that a user has uploaded files to the cloud that might be infected
+with ransomware.
 """
 false_positives = [
   "If Cloud App Security identifies, for example, a high rate of file uploads or file deletion activities it may represent an adverse\nencryption process.\n"
 ]
 from = "now-30m"
-index = [ "filebeat-*-cipher*", "logs-o365*-cipher*" ]
+index = [ "filebeat-*", "logs-o365*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Microsoft 365 Potential ransomware activity"

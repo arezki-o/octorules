@@ -13,11 +13,7 @@ false_positives = [
   "Changes to Windows services or a rarely executed child process."
 ]
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Unusual Service Host Child Process - Childless Service"

@@ -10,11 +10,7 @@ Identifies an unexpected executable file being created or modified by a Windows 
 indicate activity related to remote code execution or other forms of exploitation.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Unusual Executable File Creation by a System Critical Process"

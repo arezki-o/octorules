@@ -13,7 +13,7 @@ an Okta user account in order to weaken the authentication requirements for the 
 false_positives = [
   "If the behavior of deactivating MFA for Okta user accounts is expected, consider adding exceptions to this rule to\nfilter false positives.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Deactivate MFA for an Okta User Account"

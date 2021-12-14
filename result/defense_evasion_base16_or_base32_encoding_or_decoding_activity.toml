@@ -10,7 +10,7 @@ false_positives = [
   "Automated tools such as Jenkins may encode or decode files as part of their normal behavior. These events can be\nfiltered by the process executable or username values.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Base16 or Base32 Encoding/Decoding Activity"

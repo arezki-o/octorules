@@ -11,11 +11,7 @@ bindings that execute code when a defined event occurs. Adversaries may use the 
 event and execute arbitrary code when that event occurs, providing persistence on a system.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Persistence via WMI Event Subscription"

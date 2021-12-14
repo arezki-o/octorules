@@ -11,7 +11,7 @@ window is opened, closed, moved, or resized. Adversaries may abuse this feature 
 malicious script.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Persistence via Folder Action Script"

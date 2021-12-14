@@ -12,7 +12,7 @@ This is an example of how to detect an unwanted web client user agent. This sear
 false_positives = [
   "This rule does not indicate that a SQL injection attack occurred, only that the `sqlmap` tool was used. Security\nscans and tests may result in these errors. If the source is not an authorized security tester, this is generally\nsuspicious or malicious activity.\n"
 ]
-index = [ "apm-*-transaction*-cipher*", "traces-apm*-cipher*" ]
+index = [ "apm-*-transaction*", "traces-apm*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Web Application Suspicious Activity: sqlmap User Agent"

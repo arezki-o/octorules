@@ -12,7 +12,7 @@ Zoombombing refers to the unwanted, disruptive intrusion, generally by Internet 
 conference call. In a typical Zoombombing incident, a teleconferencing session is hijacked by the insertion of material
 that is lewd, obscene, racist, or antisemitic in nature, typically resulting of the shutdown of the session.
 """
-index = [ "filebeat-*-cipher*" ]
+index = [ "filebeat-*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Zoom Meeting with no Passcode"

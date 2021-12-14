@@ -10,7 +10,7 @@ Adversaries may attempt to clear or disable the Bash command-line history in an 
 investigations.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Tampering of Bash Command-Line History"

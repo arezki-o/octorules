@@ -14,7 +14,7 @@ false_positives = [
   "Certain tools or automated software may enumerate hardware information. These tools can be exempted via user name or\nprocess arguments to eliminate potential noise.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Virtual Machine Fingerprinting"

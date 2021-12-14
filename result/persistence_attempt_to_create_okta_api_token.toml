@@ -14,7 +14,7 @@ techniques such as creating user accounts or disabling security rules or policie
 false_positives = [
   "If the behavior of creating Okta API tokens is expected, consider adding exceptions to this rule to filter false\npositives.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Create Okta API Token"

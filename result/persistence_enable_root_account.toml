@@ -10,7 +10,7 @@ Identifies attempts to enable the root account using the dsenableroot command. T
 for persistence, as the root account is disabled by default.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Enable the Root Account"

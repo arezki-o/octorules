@@ -13,11 +13,7 @@ false_positives = [
   "Custom Windows error reporting debugger or applications restarted by WerFault after a crash."
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious WerFault Child Process"

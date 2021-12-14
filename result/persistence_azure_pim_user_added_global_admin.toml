@@ -15,7 +15,7 @@ your Azure AD organization.
 false_positives = [
   "Global administrator additions may be done by a system or network administrator. Verify whether the username,\nhostname, and/or resource name should be making changes in your environment. Global administrator additions from\nunfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted\nfrom the rule.\n    "
 ]
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Global Administrator Role Addition to PIM User"

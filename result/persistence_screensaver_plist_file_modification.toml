@@ -11,7 +11,7 @@ a macOS endpoint by creating a malicious screensaver (.saver) file and configuri
 code each time the screensaver is activated.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Screensaver Plist File Modified by Unexpected Process"

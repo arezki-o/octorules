@@ -10,11 +10,7 @@ Identifies suspicious Image Loading of the Remote Desktop Services ActiveX Clien
 presence of RDP lateral movement capability.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious RDP ActiveX Client Loaded"

@@ -12,7 +12,7 @@ of these files can occur during an intrusion, or as part of a post-intrusion pro
 footprint.
 """
 from = "now-9m"
-index = [ "logs-endpoint.events.*-cipher*" ]
+index = [ "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Process Termination followed by Deletion"

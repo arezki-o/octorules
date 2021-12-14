@@ -13,7 +13,7 @@ delete the sign on policy for an Okta application in order to remove or weaken a
 false_positives = [
   "Consider adding exceptions to this rule to filter false positives if sign on policies for Okta applications are\nregularly modified or deleted in your organization.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Modification or Removal of an Okta Application Sign-On Policy"

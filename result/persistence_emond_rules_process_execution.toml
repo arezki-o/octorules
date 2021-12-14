@@ -11,7 +11,7 @@ service by writing a rule to execute commands when a defined event occurs, such 
 authentication.
 """
 from = "now-9m"
-index = [ "logs-endpoint.events.*-cipher*" ]
+index = [ "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious Emond Child Process"

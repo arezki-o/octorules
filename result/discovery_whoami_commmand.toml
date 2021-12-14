@@ -14,7 +14,7 @@ false_positives = [
   "Security testing tools and frameworks may run this command. Some normal use of this command may originate from\nautomation tools and frameworks.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "User Discovery via Whoami"

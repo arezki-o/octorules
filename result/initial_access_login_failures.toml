@@ -6,7 +6,7 @@ updated_date = "2021/03/03"
 [rule]
 author = [ "Octodet" ]
 description = "Identifies that the maximum number of failed login attempts has been reached for a user."
-index = [ "auditbeat-*-cipher*" ]
+index = [ "auditbeat-*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Auditd Max Failed Login Attempts"

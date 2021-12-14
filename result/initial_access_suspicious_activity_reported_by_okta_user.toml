@@ -13,7 +13,7 @@ help security teams identify when an adversary is attempting to gain access to t
 false_positives = [
   "A user may report suspicious activity on their Okta account in error."
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Suspicious Activity Reported by Okta User"

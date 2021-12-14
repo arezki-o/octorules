@@ -13,7 +13,7 @@ with the setgid bit to get code running in a different user’s context. Additio
 on their own malware to make sure they're able to execute in elevated contexts in the future.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "lucene"
 license = "Elastic License"
 max_signals = 33

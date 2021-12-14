@@ -10,11 +10,7 @@ Identifies use of wmic.exe for shadow copy deletion on endpoints. This commonly 
 other destructive attacks.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Volume Shadow Copy Deletion via WMIC"

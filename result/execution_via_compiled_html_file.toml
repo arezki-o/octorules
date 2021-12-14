@@ -14,11 +14,7 @@ false_positives = [
   "The HTML Help executable program (hh.exe) runs whenever a user clicks a compiled help (.chm) file or menu item that\nopens the help file inside the Help Viewer. This is not always malicious, but adversaries may abuse this technology\nto conceal malicious code.\n"
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Process Activity via Compiled HTML File"

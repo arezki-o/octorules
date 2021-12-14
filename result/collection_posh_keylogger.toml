@@ -10,7 +10,7 @@ Detects the use of Win32 API Functions that can be used to capture user Keystrok
 Attackers use this technique to capture user input, looking for credentials and/or other valuable data.
 """
 from = "now-9m"
-index = [ "winlogbeat-*-cipher*", "logs-windows.*-cipher*" ]
+index = [ "winlogbeat-*", "logs-windows.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "PowerShell Keylogging Script"

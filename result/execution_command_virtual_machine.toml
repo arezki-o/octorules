@@ -16,7 +16,7 @@ false_positives = [
   "Command execution on a virtual machine may be done by a system or network administrator. Verify whether the\nusername, hostname, and/or resource name should be making changes in your environment. Command execution from\nunfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted\nfrom the rule.\n    "
 ]
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Command Execution on Virtual Machine"

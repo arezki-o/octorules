@@ -16,11 +16,7 @@ false_positives = [
   "Some network security policies allow SSH directly from the Internet but usage that is unfamiliar to server or\nnetwork owners can be unexpected and suspicious. SSH services may be exposed directly to the Internet in some\nnetworks such as cloud environments. In such cases, only SSH gateways, bastions or jump servers may be expected\nexpose SSH directly to the Internet and can be exempted from this rule. SSH may be required by some work-flows such\n    as remote access and support for specialized software products and servers. Such work-flows are usually known and\n    not unexpected.\n    "
 ]
 from = "now-9m"
-index = [
-  "filebeat-*-cipher*",
-  "packetbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*"
-]
+index = [ "filebeat-*", "packetbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "SSH (Secure Shell) from the Internet"

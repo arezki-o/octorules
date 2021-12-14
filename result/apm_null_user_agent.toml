@@ -9,7 +9,7 @@ description = "A request to a web application server contained no identifying us
 false_positives = [
   "Some normal applications and scripts may contain no user agent. Most legitimate web requests from the Internet\ncontain a user agent string. Requests from web browsers almost always contain a user agent string. If the source is\nunexpected, the user unauthorized, or the request unusual, these may indicate suspicious or malicious activity.\n"
 ]
-index = [ "apm-*-transaction*-cipher*", "traces-apm*-cipher*" ]
+index = [ "apm-*-transaction*", "traces-apm*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Web Application Suspicious Activity: No User Agent"

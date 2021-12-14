@@ -10,11 +10,7 @@ Detects when the Console Window Host (conhost.exe) process is spawned by a suspi
 indicative of code injection.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Conhost Spawned By Suspicious Parent Process"

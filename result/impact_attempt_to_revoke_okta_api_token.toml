@@ -13,7 +13,7 @@ disrupt an organization's business operations.
 false_positives = [
   "If the behavior of revoking Okta API tokens is expected, consider adding exceptions to this rule to filter false\npositives.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Revoke Okta API Token"

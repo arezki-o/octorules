@@ -11,7 +11,7 @@ a network and how. Adversaries may remove these files over the course of an intr
 remove them at the end as part of the post-intrusion cleanup process.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "File Deletion via Shred"

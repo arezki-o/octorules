@@ -13,11 +13,7 @@ false_positives = [
   "Windows Firewall can be disabled may be performed by a system administrator. Verify whether the user identity, \nuser agent, and/or hostname should be making changes in your environment. Windows Profile being disabled from\nunfamiliar users should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Windows Firewall Disabled via PowerShell"

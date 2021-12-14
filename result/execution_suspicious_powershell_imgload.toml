@@ -12,11 +12,7 @@ Identifies the PowerShell engine being invoked by unexpected processes. Rather t
 with powershell.exe, some attackers do this to operate more stealthily.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious PowerShell Engine ImageLoad"

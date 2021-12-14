@@ -15,7 +15,7 @@ false_positives = [
   "Changes to the Shell Profile tend to be noisy, a tuning per your environment will be required."
 ]
 from = "now-9m"
-index = [ "logs-endpoint.events.*-cipher*", "auditbeat-*-cipher*" ]
+index = [ "logs-endpoint.events.*", "auditbeat-*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Bash Shell Profile Modification"

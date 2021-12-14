@@ -10,11 +10,7 @@ Identifies processes executed via Windows Management Instrumentation (WMI) on a 
 adversary lateral movement, but could be noisy if administrators use WMI to remotely manage hosts.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "WMI Incoming Lateral Movement"

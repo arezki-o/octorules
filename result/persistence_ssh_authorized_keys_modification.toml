@@ -10,7 +10,7 @@ The Secure Shell (SSH) authorized_keys file specifies which users are allowed to
 authentication. Adversaries may modify it to maintain persistence on a victim host by adding their own public key(s).
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "SSH Authorized Keys File Modification"

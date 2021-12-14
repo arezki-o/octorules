@@ -13,7 +13,7 @@ bindings and cluster-bindings in the cluster can create a binding to the cluster
 roles. 
 """
 from = "now-20m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Kubernetes Rolebindings Created"

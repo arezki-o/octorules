@@ -13,11 +13,7 @@ false_positives = [
   "Some normal use of this program, at varying levels of frequency, may originate from scripts, automation tools and\nframeworks. Usage by non-engineers and ordinary users is unusual.\n"
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Whoami Process Activity"

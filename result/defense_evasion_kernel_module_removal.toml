@@ -14,7 +14,7 @@ false_positives = [
   "There is usually no reason to remove modules, but some buggy modules require it. These can be exempted by username.\nNote that some Linux distributions are not built to support the removal of modules at all.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Kernel Module Removal"

@@ -13,7 +13,7 @@ application in order to weaken an organization's security controls or disrupt th
 false_positives = [
   "Consider adding exceptions to this rule to filter false positives if your organization's Okta applications are\nregularly deleted and the behavior is expected.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Delete an Okta Application"

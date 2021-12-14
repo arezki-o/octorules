@@ -10,7 +10,7 @@ Timestomping is an anti-forensics technique which is used to modify the timestam
 are in the same folder.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 max_signals = 33

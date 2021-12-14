@@ -10,11 +10,7 @@ This rule identifies a high number (10) of process terminations (stop, delete, o
 short time period.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "High Number of Process and/or Service Terminations"

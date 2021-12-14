@@ -13,7 +13,7 @@ false_positives = [
   "SAML Provider could be updated by a system administrator. Verify whether the user identity, user agent, and/or \nhostname should be making changes in your environment. SAML Provider being updated from unfamiliar users should \nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "AWS SAML Activity"

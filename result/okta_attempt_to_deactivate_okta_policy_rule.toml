@@ -13,7 +13,7 @@ Okta policy in order to remove or weaken an organization's security controls.
 false_positives = [
   "Consider adding exceptions to this rule to filter false positives if Okta MFA rules are regularly deactivated in\nyour organization.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Deactivate an Okta Policy Rule"

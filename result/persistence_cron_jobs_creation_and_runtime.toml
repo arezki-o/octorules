@@ -14,7 +14,7 @@ false_positives = [
   "Legitimate software or scripts using cron jobs for recurring tasks."
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Potential Persistence via Cron Job"

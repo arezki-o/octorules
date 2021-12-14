@@ -6,15 +6,11 @@ updated_date = "2021/10/15"
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when a user enables DNS-over-HTTPS. This can be used to hide internet activity or be used to hide
-the process of exfiltrating data. With this enabled organization will lose visibility into data such as query type, response
-and originating IP that are used to determine bad actors."""
+Identifies when a user enables DNS-over-HTTPS. This can be used to hide internet activity or
+the process of exfiltrating data. With this enabled, an organization will lose visibility into data such as query type,
+response, and originating IP, which are used to determine bad actors."""
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "DNS-over-HTTPS Enabled via Registry"

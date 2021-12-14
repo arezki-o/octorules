@@ -10,7 +10,7 @@ Identifies when a process is created and immediately accessed from an unknown me
 process. This may indicate a code injection or hollowing attempt.
 """
 from = "now-9m"
-index = [ "winlogbeat-*-cipher*", "logs-windows.*-cipher*" ]
+index = [ "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious Process Creation CallTrace"

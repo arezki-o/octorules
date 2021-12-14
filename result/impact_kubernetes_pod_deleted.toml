@@ -7,13 +7,14 @@ integration = "azure"
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies the deletion of Azure Kubernetes Pods. Adversary may delete a kubernetes pod to disrupt the normal behavior of the environment.
+Identifies the deletion of Azure Kubernetes Pods. Adversaries may delete a Kubernetes pod to disrupt the normal behavior
+of the environment.
 """
 false_positives = [
   "Pods may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname\nshould be making changes in your environment. Pods deletions from unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Kubernetes Pods Deleted"

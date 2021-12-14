@@ -12,7 +12,7 @@ Remote Code Execution (RCE) or a Denial of Service (DoS) from crashing the servi
 false_positives = [
   "Environments that leverage DNS responses over 60k bytes will result in false positives - if this traffic is\npredictable and expected, it should be filtered out. Additionally, this detection rule could be triggered by an\nauthorized vulnerability scan or compromise assessment.\n"
 ]
-index = [ "packetbeat-*-cipher*", "filebeat-*-cipher*" ]
+index = [ "packetbeat-*", "filebeat-*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Abnormally Large DNS Response"

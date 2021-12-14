@@ -10,11 +10,7 @@ Identifies Component Object Model (COM) hijacking via registry modification. Adv
 executing malicious content triggered by hijacked references to COM objects.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Component Object Model Hijacking"

@@ -10,11 +10,7 @@ Identifies use of the netsh.exe to disable or weaken the local firewall. Attacke
 disable the firewall during troubleshooting or to enable network mobility.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Disable Windows Firewall Rules via Netsh"

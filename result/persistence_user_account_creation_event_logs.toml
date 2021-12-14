@@ -12,7 +12,7 @@ domain.
 false_positives = [
   "Legitimate local user creations may be done by a system or network administrator. Verify whether this is known\nbehavior in your environment. Local user creations from unfamiliar users or hosts should be investigated. If known\nbehavior is causing false positives, it can be exempted from the rule.\n"
 ]
-index = [ "winlogbeat-*-cipher*", "logs-windows.*-cipher*" ]
+index = [ "winlogbeat-*", "logs-windows.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Creation of a local user account"

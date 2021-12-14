@@ -12,11 +12,7 @@ network which allows the adversary to blend into legitimate traffic. activity. T
 targeted since they have most likely been used before a compromise and allow adversaries to blend in the network.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Connection to Commonly Abused Web Services"

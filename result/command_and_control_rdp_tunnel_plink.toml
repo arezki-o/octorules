@@ -10,11 +10,7 @@ Identifies potential use of an SSH utility to establish RDP over a reverse SSH T
 enable routing of network packets that would otherwise not reach their intended destination.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Remote Desktop Tunneling Detected"

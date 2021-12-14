@@ -16,10 +16,10 @@ false_positives = [
 ]
 from = "now-9m"
 index = [
-  "auditbeat-*-cipher*",
-  "filebeat-*-cipher*",
-  "packetbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*"
+  "auditbeat-*",
+  "filebeat-*",
+  "packetbeat-*",
+  "logs-endpoint.events.*"
 ]
 language = "kuery"
 license = "Elastic License v2"

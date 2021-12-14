@@ -13,10 +13,10 @@ RHEL) and macOS systems.
 """
 from = "now-9m"
 index = [
-  "auditbeat-*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
+  "auditbeat-*",
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*"
 ]
 language = "eql"
 license = "Elastic License v2"

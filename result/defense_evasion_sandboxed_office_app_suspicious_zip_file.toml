@@ -11,7 +11,7 @@ applications on macOS are allowed to write files that start with special charact
 AutoStart location to achieve sandbox evasion.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Potential Microsoft Office Sandbox Evasion"

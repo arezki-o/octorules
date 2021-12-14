@@ -7,11 +7,7 @@ updated_date = "2021/04/14"
 author = [ "Octodet" ]
 description = "Identifies a suspicious parent child process relationship with cmd.exe descending from svchost.exe"
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Svchost spawning Cmd"

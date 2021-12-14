@@ -11,11 +11,7 @@ move laterally or persist locally. The AT command has been deprecated since Wind
 exists for backwards compatibility.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Scheduled Tasks AT Command Enabled"

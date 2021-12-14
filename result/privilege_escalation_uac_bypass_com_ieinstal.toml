@@ -10,11 +10,7 @@ Identifies User Account Control (UAC) bypass attempts by abusing an elevated COM
 program. Attackers may attempt to bypass UAC to stealthily execute code with elevated permissions.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "UAC Bypass Attempt via Elevated COM Internet Explorer Add-On Installer"

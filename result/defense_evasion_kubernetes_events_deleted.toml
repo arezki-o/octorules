@@ -7,7 +7,7 @@ integration = "azure"
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when Events are deleted in Azure Kubernetes. Kubernetes events are objects that log any state changes. 
+Identifies when events are deleted in Azure Kubernetes. Kubernetes events are objects that log any state changes.
 Example events are a container creation, an image pull, or a pod scheduling on a node.  An adversary may delete events
 in Azure Kubernetes in an attempt to evade detection.
 """
@@ -15,7 +15,7 @@ false_positives = [
   "Events deletions may be done by a system or network administrator. Verify whether the username, hostname, and/or\nresource name should be making changes in your environment. Events deletions from unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Kubernetes Events Deleted"

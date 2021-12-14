@@ -10,11 +10,7 @@ Identifies Service Control (sc.exe) spawning from script interpreter processes t
 This could be indicative of adversary lateral movement but will be noisy if commonly done by admins.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Service Control Spawned via Script Interpreter"

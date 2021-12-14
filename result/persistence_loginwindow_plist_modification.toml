@@ -10,7 +10,7 @@ Identifies the creation or modification of the login window property list (plist
 run a program during system boot or user login for persistence.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Potential Persistence via Login Hook"

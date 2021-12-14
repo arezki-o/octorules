@@ -16,7 +16,7 @@ false_positives = [
   "This is meant to run only on datasources using agents v7.14+ since versions prior to that will be missing the\nnecessary field, resulting in false positives.\n"
 ]
 from = "now-9m"
-index = [ "logs-*-cipher*", "metrics-*-cipher*", "traces-*-cipher*" ]
+index = [ "logs-*", "metrics-*", "traces-*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Agent Spoofing - Multiple Hosts Using Same Agent"

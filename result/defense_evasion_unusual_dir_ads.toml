@@ -10,11 +10,7 @@ Identifies processes running from an Alternate Data Stream. This is uncommon for
 by adversaries to hide malware.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Unusual Process Execution Path - Alternate Data Stream"

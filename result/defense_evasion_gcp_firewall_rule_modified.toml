@@ -14,7 +14,7 @@ firewall rule in order to weaken their target's security controls.
 false_positives = [
   "Firewall rules may be modified by system administrators. Verify that the firewall configuration change was expected.\nExceptions can be added to this rule to filter expected behavior.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-gcp*-cipher*" ]
+index = [ "filebeat-*", "logs-gcp*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "GCP Firewall Rule Modification"

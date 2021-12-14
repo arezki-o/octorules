@@ -12,7 +12,7 @@ impossible travel.
 """
 false_positives = [ "User using a VPN may lead to false positives." ]
 from = "now-30m"
-index = [ "filebeat-*-cipher*", "logs-o365*-cipher*" ]
+index = [ "filebeat-*", "logs-o365*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Microsoft 365 Impossible travel activity"

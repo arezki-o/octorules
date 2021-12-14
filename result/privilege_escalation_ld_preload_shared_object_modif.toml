@@ -10,7 +10,7 @@ Identifies modification of the dynamic linker preload shared object (ld.so.prelo
 payloads by hijacking the dynamic linker used to load libraries.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Modification of Dynamic Linker Preload Shared Object"

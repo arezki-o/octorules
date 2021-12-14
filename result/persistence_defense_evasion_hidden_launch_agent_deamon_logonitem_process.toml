@@ -10,7 +10,7 @@ Identifies the execution of a launchd child process with a hidden file. An adver
 installing a new logon item, launch agent, or daemon that executes upon login.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Suspicious Hidden Child Process of Launchd"

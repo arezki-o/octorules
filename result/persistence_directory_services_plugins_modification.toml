@@ -11,7 +11,7 @@ on each system boot and automatically reloads after crash. It scans and executes
 DirectoryServices PlugIns folder and can be abused by adversaries to maintain persistence.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Persistence via DirectoryService Plugin Modification"

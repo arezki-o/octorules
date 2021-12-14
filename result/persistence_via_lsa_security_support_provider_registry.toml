@@ -10,11 +10,7 @@ Identifies registry modifications related to the Windows Security Support Provid
 abuse this to establish persistence in an environment.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Installation of Security Support Provider"

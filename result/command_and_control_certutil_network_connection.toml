@@ -10,11 +10,7 @@ Identifies certutil.exe making a network connection. Adversaries could abuse cer
 malware, from a remote URL.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Network Connection via Certutil"

@@ -14,7 +14,7 @@ false_positives = [
   "Some organizations allow login with the root user without MFA, however, this is not considered best practice by AWS\nand increases the risk of compromised credentials.\n"
 ]
 from = "now-60m"
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 interval = "10m"
 language = "kuery"
 license = "Elastic License v2"

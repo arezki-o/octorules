@@ -10,7 +10,7 @@ Adversaries may create or modify the Sublime application plugins or scripts to e
 Sublime application is started.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Sublime Plugin or Application Script Modification"

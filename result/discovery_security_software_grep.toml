@@ -13,7 +13,7 @@ false_positives = [
   "Endpoint Security installers, updaters and post installation verification scripts."
 ]
 from = "now-9m"
-index = [ "logs-endpoint.events.*-cipher*", "auditbeat-*-cipher*" ]
+index = [ "logs-endpoint.events.*", "auditbeat-*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Security Software Discovery via Grep"

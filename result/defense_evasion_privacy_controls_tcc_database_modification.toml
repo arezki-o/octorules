@@ -11,7 +11,7 @@ indicate an attempt to bypass macOS privacy controls, including access to sensit
 microphone, address book, and calendar.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Privacy Control Bypass via TCCDB Modification"

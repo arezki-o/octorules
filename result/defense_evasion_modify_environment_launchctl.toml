@@ -11,7 +11,7 @@ own malicious payloads by hijacking certain environment variables to load arbitr
 restrictions.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Modification of Environment Variable via Launchctl"

@@ -7,11 +7,11 @@ integration = "o365"
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when Microsoft Cloud App Security reported when a single user performs more than 50 downloads within 1 minute.
+Identifies when Microsoft Cloud App Security reports that a single user performs more than 50 downloads within 1 minute.
 """
 false_positives = [ "Unknown" ]
 from = "now-30m"
-index = [ "filebeat-*-cipher*", "logs-o365*-cipher*" ]
+index = [ "filebeat-*", "logs-o365*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Microsoft 365 Mass download by a single user"

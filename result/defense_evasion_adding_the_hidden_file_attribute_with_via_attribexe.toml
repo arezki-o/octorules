@@ -7,11 +7,7 @@ updated_date = "2021/04/14"
 author = [ "Octodet" ]
 description = "Adversaries can add the 'hidden' attribute to files to hide them from the user in an attempt to evade detection."
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Adding Hidden File Attribute via Attrib"

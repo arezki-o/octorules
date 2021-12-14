@@ -13,7 +13,7 @@ false_positives = [
   "Telnet can be used for both benign or malicious purposes. Telnet is included by default in some Linux distributions,\nso its presence is not inherently suspicious. The use of Telnet to manage devices remotely has declined in recent\nyears in favor of more secure protocols such as SSH. Telnet usage by non-automated tools or frameworks may be\nsuspicious.\n    "
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Connection to Internal Network via Telnet"

@@ -10,11 +10,7 @@ Identifies the creation or change of a Windows executable file over network shar
 other files between systems in a compromised environment.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Lateral Tool Transfer"

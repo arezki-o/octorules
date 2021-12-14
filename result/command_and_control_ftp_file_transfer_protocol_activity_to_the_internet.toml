@@ -18,11 +18,7 @@ false_positives = [
   "FTP servers should be excluded from this rule as this is expected behavior. Some business workflows may use FTP for\ndata exchange. These workflows often have expected characteristics such as users, sources, and destinations. FTP\nactivity involving an unusual source or destination may be more suspicious. FTP activity involving a production\nserver that has no known associated FTP workflow or business requirement is often suspicious.\n    "
 ]
 from = "now-9m"
-index = [
-  "filebeat-*-cipher*",
-  "packetbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*"
-]
+index = [ "filebeat-*", "packetbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "FTP (File Transfer Protocol) Activity to the Internet"

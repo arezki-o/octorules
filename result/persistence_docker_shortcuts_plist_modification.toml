@@ -10,7 +10,7 @@ An adversary can establish persistence by modifying an existing macOS dock prope
 application instead of the intended one when invoked.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Persistence via Docker Shortcut Modification"

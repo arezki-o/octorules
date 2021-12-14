@@ -13,7 +13,7 @@ false_positives = [
   "Some normal use of this command may originate from security engineers and network or server administrators, but this\nis usually not routine or unannounced. Use of `Nping` by non-engineers or ordinary users is uncommon.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Nping Process Activity"

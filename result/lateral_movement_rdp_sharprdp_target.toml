@@ -10,11 +10,7 @@ Identifies potential behavior of SharpRDP, which is a tool that can be used to p
 against a remote target via Remote Desktop Protocol (RDP) for the purposes of lateral movement.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential SharpRDP Behavior"

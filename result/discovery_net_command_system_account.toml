@@ -10,11 +10,7 @@ Identifies the SYSTEM account using an account discovery utility. This could be 
 adversary has achieved privilege escalation.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Net command via SYSTEM account"

@@ -10,7 +10,7 @@ Identifies attempts to create a local account that will be hidden from the macOS
 attempt to evade user attention while maintaining persistence using a separate local account.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Potential Hidden Local User Account Creation"

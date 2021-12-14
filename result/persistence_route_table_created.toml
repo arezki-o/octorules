@@ -11,7 +11,7 @@ false_positives = [
   "Route Table being created may be done by a system or network administrator. Verify whether the user identity, user \nagent, and/or hostname should be making changes in your environment. Route Table being created from unfamiliar users or \nhosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n\nAutomated processes that uses Terraform may lead to false positives.\n    "
 ]
 from = "now-60m"
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 interval = "10m"
 language = "kuery"
 license = "Elastic License v2"

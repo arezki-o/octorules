@@ -10,11 +10,7 @@ false_positives = [
   "Trusted SolarWinds child processes, verify process details such as network connections and file writes."
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious SolarWinds Child Process"

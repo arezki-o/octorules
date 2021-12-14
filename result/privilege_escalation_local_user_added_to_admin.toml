@@ -10,7 +10,7 @@ Identifies attempts to add an account to the admin group via the command line. T
 escalation activity.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Potential Admin Group Account Addition"

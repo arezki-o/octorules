@@ -14,11 +14,7 @@ false_positives = [
   "Some networks may utilize PPTP protocols but this is uncommon as more modern VPN technologies are available. Usage\nthat is unfamiliar to local network administrators can be unexpected and suspicious. Torrenting applications may use\nthis port. Because this port is in the ephemeral range, this rule may false under certain conditions, such as when\nan application server replies to a client that used this port by coincidence. This is uncommon but such servers can\n    be excluded.\n    "
 ]
 from = "now-9m"
-index = [
-  "filebeat-*-cipher*",
-  "packetbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*"
-]
+index = [ "filebeat-*", "packetbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "PPTP (Point to Point Tunneling Protocol) Activity"

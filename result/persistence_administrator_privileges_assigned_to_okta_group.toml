@@ -14,7 +14,7 @@ to their target organization.
 false_positives = [
   "Administrator roles may be assigned to Okta users by a Super Admin user. Verify that the behavior was expected.\nExceptions can be added to this rule to filter expected behavior.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Administrator Privileges Assigned to an Okta Group"

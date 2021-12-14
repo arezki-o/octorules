@@ -13,7 +13,7 @@ escalate privileges.
 false_positives = [
   "GetSessionToken may be done by a system or network administrator. Verify whether the user identity, user \nagent, and/or hostname should be making changes in your environment. GetSessionToken from unfamiliar users or \nhosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "AWS STS GetSessionToken Abuse"

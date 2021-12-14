@@ -13,11 +13,7 @@ false_positives = [
   "Legitimate processes may be spawned from the Microsoft Exchange Server Unified Messaging (UM) service. If known\nprocesses are causing false positives, they can be exempted from the rule.\n"
 ]
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Microsoft Exchange Server UM Spawning Suspicious Processes"

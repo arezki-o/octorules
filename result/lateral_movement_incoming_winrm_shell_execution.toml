@@ -13,11 +13,7 @@ false_positives = [
   "WinRM is a dual-use protocol that can be used for benign or malicious activity. It's important to baseline your\nenvironment to determine the amount of noise to expect from this tool.\n"
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Incoming Execution via WinRM Remote Shell"

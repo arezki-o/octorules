@@ -10,11 +10,7 @@ Detects the successful hijack of Microsoft Compatibility Appraiser scheduled tas
 integrity level of system.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Persistence via TelemetryController Scheduled Task Hijack"

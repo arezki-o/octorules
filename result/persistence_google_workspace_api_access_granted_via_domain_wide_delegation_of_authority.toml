@@ -15,7 +15,7 @@ false_positives = [
   "Domain-wide delegation of authority may be granted to service accounts by system administrators. Verify that the\nconfiguration change was expected. Exceptions can be added to this rule to filter expected behavior.\n"
 ]
 from = "now-130m"
-index = [ "filebeat-*-cipher*", "logs-google_workspace*-cipher*" ]
+index = [ "filebeat-*", "logs-google_workspace*" ]
 interval = "10m"
 language = "kuery"
 license = "Elastic License v2"

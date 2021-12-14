@@ -10,11 +10,7 @@ Identifies attempts to disable EventLog via the logman Windows utility, PowerShe
 attackers in an attempt to evade detection on a system.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Disable Windows Event and Security Logs Using Built-in Tools"

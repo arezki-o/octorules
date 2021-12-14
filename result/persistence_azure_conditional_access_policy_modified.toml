@@ -13,7 +13,7 @@ such as using multi-factor authentication to access it. An adversary may modify 
 weaken their target's security controls.
 """
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Conditional Access Policy Modified"

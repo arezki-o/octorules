@@ -10,11 +10,7 @@ Detects attempts to exploit privilege escalation vulnerabilities related to the 
 CVE-2020-1048 and CVE-2020-1337. .
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious PrintSpooler SPL File Created"

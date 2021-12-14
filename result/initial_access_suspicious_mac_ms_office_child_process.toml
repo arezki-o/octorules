@@ -11,7 +11,7 @@ Excel). These child processes are often launched during exploitation of Office a
 malicious macros.
 """
 from = "now-9m"
-index = [ "logs-endpoint.events.*-cipher*" ]
+index = [ "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious macOS MS Office Child Process"

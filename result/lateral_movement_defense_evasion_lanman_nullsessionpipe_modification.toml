@@ -10,11 +10,7 @@ Identifies NullSessionPipe registry modifications that specify which pipes can b
 be indicative of adversary lateral movement preparation by making the added pipe available to everyone.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "NullSessionPipe Registry Modification"

@@ -7,7 +7,7 @@ integration = "okta"
 [rule]
 author = [ "Octodet", "Austin Songer" ]
 description = "Identifies when an unauthorized access attempt is made by a user for an Okta application."
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Unauthorized Access to an Okta Application"

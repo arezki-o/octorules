@@ -10,13 +10,13 @@ Generates a detection alert for each external alert written to the configured in
 immediately begin investigating external alerts in the app.
 """
 index = [
-  "apm-*-transaction*-cipher*",
-  "traces-apm*-cipher*",
-  "auditbeat-*-cipher*",
-  "filebeat-*-cipher*",
-  "logs-*-cipher*",
-  "packetbeat-*-cipher*",
-  "winlogbeat-*-cipher*"
+  "apm-*-transaction*",
+  "traces-apm*",
+  "auditbeat-*",
+  "filebeat-*",
+  "logs-*",
+  "packetbeat-*",
+  "winlogbeat-*"
 ]
 language = "kuery"
 license = "Elastic License v2"

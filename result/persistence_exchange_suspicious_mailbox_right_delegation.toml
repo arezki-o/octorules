@@ -12,7 +12,7 @@ to send messages to other accounts in the network of the target business while c
 evade spam/phishing detection mechanisms.
 """
 false_positives = [ "Assignment of rights to a service account." ]
-index = [ "filebeat-*-cipher*", "logs-o365*-cipher*" ]
+index = [ "filebeat-*", "logs-o365*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "O365 Exchange Suspicious Mailbox Right Delegation"

@@ -10,7 +10,7 @@ Detects attempts to disable Gatekeeper on macOS. Gatekeeper is a security featur
 trusted software is run. Adversaries may attempt to disable Gatekeeper before executing malicious code.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Attempt to Disable Gatekeeper"

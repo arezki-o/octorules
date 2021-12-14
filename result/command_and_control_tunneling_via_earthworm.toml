@@ -10,7 +10,7 @@ Identifies the execution of the EarthWorm tunneler. Adversaries may tunnel netwo
 system within a separate protocol to avoid detection and network filtering, or to enable access to otherwise unreachable systems.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Protocol Tunneling via EarthWorm"

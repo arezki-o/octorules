@@ -11,7 +11,7 @@ Adversaries may drop a custom workflow template that hosts malicious JavaScript 
 alternative to using osascript.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious Automator Workflows Execution"

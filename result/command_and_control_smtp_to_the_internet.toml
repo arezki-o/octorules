@@ -15,11 +15,7 @@ false_positives = [
   "NATed servers that process email traffic may false and should be excluded from this rule as this is expected\nbehavior for them. Consumer and personal devices may send email traffic to remote Internet destinations. In this\ncase, such devices or networks can be excluded from this rule if this is expected behavior.\n"
 ]
 from = "now-9m"
-index = [
-  "filebeat-*-cipher*",
-  "packetbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*"
-]
+index = [ "filebeat-*", "packetbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "SMTP to the Internet"

@@ -10,11 +10,7 @@ Identifies a suspicious Windows explorer child process. Explorer.exe can be abus
 executables from a trusted parent process.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious Explorer Child Process"

@@ -13,7 +13,7 @@ false_positives = [
   "Strace is a dual-use tool that can be used for benign or malicious activity. Some normal use of this command may\noriginate from developers or SREs engaged in debugging or system call tracing.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Strace Process Activity"

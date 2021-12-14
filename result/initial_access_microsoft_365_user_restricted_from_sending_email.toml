@@ -13,7 +13,7 @@ false_positives = [
   "A user sending emails using personal distribution folders may trigger the event."
 ]
 from = "now-30m"
-index = [ "filebeat-*-cipher*", "logs-o365*-cipher*" ]
+index = [ "filebeat-*", "logs-o365*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Microsoft 365 User Restricted from Sending Email"

@@ -11,7 +11,7 @@ false_positives = [
   "Security tools and device drivers may run these programs in order to load legitimate kernel modules. Use of these\nprograms by ordinary users is uncommon.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Persistence via Kernel Module Modification"

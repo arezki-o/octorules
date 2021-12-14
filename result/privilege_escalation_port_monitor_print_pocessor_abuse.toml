@@ -11,11 +11,7 @@ processors to run malicious DLLs during system boot that will be executed as SYS
 persistence, if permissions allow writing a fully-qualified pathname for that DLL.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Port Monitor or Print Processor Registration Abuse"

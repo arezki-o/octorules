@@ -14,7 +14,7 @@ false_positives = [
   "A domain transfer lock may be disabled by a system or network administrator. Verify whether the user identity, user\nagent, and/or hostname should be making changes in your environment. Activity from unfamiliar users or hosts should\nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 interval = "10m"
 language = "kuery"
 license = "Elastic License v2"

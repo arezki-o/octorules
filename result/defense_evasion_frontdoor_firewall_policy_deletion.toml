@@ -14,7 +14,7 @@ false_positives = [
   "Azure Front Web Application Firewall (WAF) Policy deletions may be done by a system or network administrator. Verify whether the username, \nhostname, and/or resource name should be making changes in your environment. Azure Front Web Application Firewall (WAF) Policy deletions from \nunfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Frontdoor Web Application Firewall (WAF) Policy Deleted"

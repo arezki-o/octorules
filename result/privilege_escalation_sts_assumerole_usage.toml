@@ -13,7 +13,7 @@ AWS resources. An adversary could use those credentials to move laterally and es
 false_positives = [
   "Automated processes that uses Terraform may lead to false positives.\n"
 ]
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "AWS Security Token Service (STS) AssumeRole Usage"

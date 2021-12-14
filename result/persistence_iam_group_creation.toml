@@ -14,7 +14,7 @@ false_positives = [
   "A group may be created by a system or network administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. Group creations from unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 interval = "10m"
 language = "kuery"
 license = "Elastic License v2"

@@ -15,7 +15,7 @@ false_positives = [
   "File System or Mount being deleted may be performed by a system administrator. Verify whether the user identity,\nuser agent, and/or hostname should be making changes in your environment. File System Mount deleted from unfamiliar\nusers should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
-index = [ "filebeat-*-cipher*", "logs-aws*-cipher*" ]
+index = [ "filebeat-*", "logs-aws*" ]
 interval = "10m"
 language = "kuery"
 license = "Elastic License v2"

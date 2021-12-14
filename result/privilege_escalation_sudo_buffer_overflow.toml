@@ -13,7 +13,7 @@ false_positives = [
   "This rule could generate false positives if the process arguments leveraged by the exploit are shared by custom\nscripts using the Sudo or Sudoedit binaries. Only Sudo versions 1.8.2 through 1.8.31p2 and 1.9.0 through 1.9.5p1 are\naffected; if those versions are not present on the endpoint, this could be a false positive.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Sudo Heap-Based Buffer Overflow Attempt"

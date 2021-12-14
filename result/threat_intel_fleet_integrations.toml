@@ -12,12 +12,12 @@ This rule is triggered when indicators from the Threat Intel integrations has a 
 """
 from = "now-65m"
 index = [
-  "auditbeat-*-cipher*",
-  "endgame-*-cipher*",
-  "filebeat-*-cipher*",
-  "logs-*-cipher*",
-  "packetbeat-*-cipher*",
-  "winlogbeat-*-cipher*"
+  "auditbeat-*",
+  "endgame-*",
+  "filebeat-*",
+  "logs-*",
+  "packetbeat-*",
+  "winlogbeat-*"
 ]
 interval = "1h"
 language = "kuery"

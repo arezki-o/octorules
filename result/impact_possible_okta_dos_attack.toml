@@ -10,7 +10,7 @@ description = """
 Detects possible Denial of Service (DoS) attacks against an Okta organization. An adversary may attempt to disrupt an
 organization's business operations by performing a DoS attack against its Okta service.
 """
-index = [ "filebeat-*-cipher*", "logs-okta*-cipher*" ]
+index = [ "filebeat-*", "logs-okta*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Possible Okta DoS Attack"

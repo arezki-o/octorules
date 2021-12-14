@@ -10,11 +10,7 @@ Identifies User Account Control (UAC) bypass via sdclt.exe. Attackers bypass UAC
 elevated permissions.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Bypass UAC via Sdclt"

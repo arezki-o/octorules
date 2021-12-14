@@ -11,11 +11,7 @@ indicative of an active RDP shadowing session. An adversary may abuse the RDP Sh
 RDP sessions.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Remote Desktop Shadowing Activity"

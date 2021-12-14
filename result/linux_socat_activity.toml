@@ -14,7 +14,7 @@ false_positives = [
   "Socat is a dual-use tool that can be used for benign or malicious activity. Some normal use of this program, at\nvarying levels of frequency, may originate from scripts, automation tools, and frameworks. Usage by web servers is\nmore likely to be suspicious.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Socat Process Activity"

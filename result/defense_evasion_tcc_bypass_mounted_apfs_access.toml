@@ -11,7 +11,7 @@ as read-only and with the noowners flag set. This action enables the adversary t
 system, including all user data and files protected by Apple’s privacy framework (TCC).
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "TCC Bypass via Mounted APFS Snapshot Access"

@@ -11,7 +11,7 @@ support access control policies. Adversaries may disable security tools to avoid
 activities.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Potential Disabling of SELinux"

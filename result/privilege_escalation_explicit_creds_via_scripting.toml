@@ -11,7 +11,7 @@ AuthorizationExecute-WithPrivileges from the Security.framework to run another p
 not be run by itself, as this is a sign of execution with explicit logon credentials.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Execution with Explicit Credentials via Scripting"

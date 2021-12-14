@@ -14,7 +14,7 @@ false_positives = [
   "Firewall policy deletions may be done by a system or network administrator. Verify whether the username, hostname,\nand/or resource name should be making changes in your environment. Firewall policy deletions from unfamiliar users\nor hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
-index = [ "filebeat-*-cipher*", "logs-azure*-cipher*" ]
+index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Azure Firewall Policy Deletion"

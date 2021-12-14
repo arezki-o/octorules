@@ -10,7 +10,7 @@ Identifies attempts to execute a child process from within the context of an Ele
 child_process Node.js module. Adversaries may abuse this technique to inherit permissions from parent processes.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Execution via Electron Child Process Node.js Module"

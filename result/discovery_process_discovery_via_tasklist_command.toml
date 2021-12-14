@@ -11,11 +11,7 @@ false_positives = [
   "Administrators may use the tasklist command to display a list of currently running processes. By itself, it does not\nindicate malicious activity. After obtaining a foothold, it's possible adversaries may use discovery commands like\ntasklist to get information about running processes.\n"
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Process Discovery via Tasklist"

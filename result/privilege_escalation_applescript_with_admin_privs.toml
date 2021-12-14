@@ -10,7 +10,7 @@ Identifies execution of the Apple script interpreter (osascript) without a passw
 privileges.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Apple Scripting Execution with Administrator Privileges"

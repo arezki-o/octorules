@@ -10,11 +10,7 @@ Identifies process execution followed by a file overwrite of an executable by th
 an evasion attempt to execute malicious code in a stealthy way.
 """
 from = "now-9m"
-index = [
-  "logs-endpoint.events.*-cipher*",
-  "winlogbeat-*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Process Herpaderping Attempt"

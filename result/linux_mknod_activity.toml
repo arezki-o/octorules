@@ -14,7 +14,7 @@ false_positives = [
   "Mknod is a Linux system program. Some normal use of this program, at varying levels of frequency, may originate from\nscripts, automation tools, and frameworks. Usage by web servers is more likely to be suspicious.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Mknod Process Activity"

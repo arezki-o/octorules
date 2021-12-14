@@ -7,17 +7,13 @@ updated_date = "2021/10/01"
 author = [ "Octodet" ]
 description = """
 Identifies the deletion of backup files, saved using third-party software, by a process outside of the backup suite.
-Adversaries may delete Backup files to ensure that recovery from a Ransomware attack is less likely.
+Adversaries may delete Backup files to ensure that recovery from a ransomware attack is less likely.
 """
 false_positives = [
   "Certain utilities that delete files for disk cleanup or Administrators manually removing backup files."
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Third-party Backup Files Deleted via Unexpected Process"

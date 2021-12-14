@@ -10,11 +10,7 @@ Identifies execution via MSSQL xp_cmdshell stored procedure. Malicious users may
 using xp_cmdshell, which is disabled by default, thus, it's important to review the context of it's use.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Execution via MSSQL xp_cmdshell Stored Procedure"

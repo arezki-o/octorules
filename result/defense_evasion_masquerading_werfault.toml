@@ -14,11 +14,7 @@ false_positives = [
   "Legit Application Crash with rare Werfault commandline value"
 ]
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Windows Error Manager Masquerading"

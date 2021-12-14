@@ -11,7 +11,7 @@ an attempt to disable security updates.
 """
 false_positives = [ "Authorized SoftwareUpdate Settings Changes" ]
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "SoftwareUpdate Preferences Modification"

@@ -10,7 +10,7 @@ A sudoers file specifies the commands users or groups can run and from which ter
 of these configurations to execute commands as other users or spawn processes with higher privileges.
 """
 from = "now-9m"
-index = [ "auditbeat-*-cipher*", "logs-endpoint.events.*-cipher*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Potential Privilege Escalation via Sudoers File Modification"

@@ -10,11 +10,7 @@ Identifies when Internet Information Services (IIS) HTTP Logging is disabled on 
 access via a webshell or other mechanism can disable HTTP Logging as an effective anti-forensics measure.
 """
 from = "now-9m"
-index = [
-  "winlogbeat-*-cipher*",
-  "logs-endpoint.events.*-cipher*",
-  "logs-windows.*-cipher*"
-]
+index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 max_signals = 33
