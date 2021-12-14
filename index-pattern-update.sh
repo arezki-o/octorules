@@ -1,4 +1,4 @@
-for rule in result/*.toml; do
+for rule in *.toml; do
         
         match=`grep $1 $rule`
         
