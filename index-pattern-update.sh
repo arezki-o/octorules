@@ -14,7 +14,7 @@ for rule in $(pwd)/*.toml; do
                 sed -i'.original' "${lineindex}s/\*/&$1*/g" $rule
                 
                 if diff "$rule" "$rule.original";then
-                    sed -i '/^index =/,/\]/{/^index =/n;/\]/!{s/\*/&$1*/g}}' $rule 
+                    sed -i "/^index =/,/\]/{/^index =/n;/\]/!{s/\*/&$1*/g}}" $rule 
                 fi
 
                 if [ ! -z "$linethreatindex" ]
