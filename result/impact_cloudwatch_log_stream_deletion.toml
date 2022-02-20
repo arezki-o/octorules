@@ -11,7 +11,7 @@ Identifies the deletion of an AWS CloudWatch log stream, which permanently delet
 with the stream.
 """
 false_positives = [
-  "A log stream may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname\nshould be making changes in your environment. Log stream deletions from unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "A log stream may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname\nshould be making changes in your environment. Log stream deletions by unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]

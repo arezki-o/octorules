@@ -1,17 +1,17 @@
 [metadata]
 creation_date = "2020/08/12"
 maturity = "production"
-updated_date = "2020/08/12"
+updated_date = "2021/12/30"
 integration = "azure"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when a virtual network device is being modified or deleted. This can be a network virtual 
+Identifies when a virtual network device is modified or deleted. This can be a network virtual
 appliance, virtual hub, or virtual router.
 """
 false_positives = [
-  "Virtual Network Device being modified or deleted may be performed by a system administrator. Verify \nwhether the user identity, user agent, and/or hostname should be making changes in your environment. \nVirtual Network Device modified or deleted from unfamiliar users should be investigated. If known \nbehavior is causing false positives, it can be exempted from the rule.\n    "
+  "Virtual Network Device modification or deletion may be performed by a system administrator. Verify\nwhether the user identity, user agent, and/or hostname should be making changes in your environment. \nVirtual Network Device modification or deletion by unfamiliar users should be investigated. If known\nbehavior is causing false positives, it can be exempted from the rule.\n    "
 ]
 from = "now-25m"
 index = [ "filebeat-*", "logs-azure*" ]
@@ -43,7 +43,7 @@ type = "query"
 query = """
 event.dataset:azure.activitylogs and azure.activitylogs.operation_name:("MICROSOFT.NETWORK/NETWORKINTERFACES/TAPCONFIGURATIONS/WRITE" or
 "MICROSOFT.NETWORK/NETWORKINTERFACES/TAPCONFIGURATIONS/DELETE" or "MICROSOFT.NETWORK/NETWORKINTERFACES/WRITE" or
-"MICROSOFT.NETWORK/NETWORKINTERFACES/JOIN/ACTION" or "MICROSOFT.NETWORK/NETWORKINTERFACES/DELETE"or
+"MICROSOFT.NETWORK/NETWORKINTERFACES/JOIN/ACTION" or "MICROSOFT.NETWORK/NETWORKINTERFACES/DELETE" or
 "MICROSOFT.NETWORK/NETWORKVIRTUALAPPLIANCES/DELETE" or "MICROSOFT.NETWORK/NETWORKVIRTUALAPPLIANCES/WRITE" or
 "MICROSOFT.NETWORK/VIRTUALHUBS/DELETE" or "MICROSOFT.NETWORK/VIRTUALHUBS/WRITE" or
 "MICROSOFT.NETWORK/VIRTUALROUTERS/WRITE" or "MICROSOFT.NETWORK/VIRTUALROUTERS/DELETE") and 

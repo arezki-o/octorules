@@ -11,7 +11,7 @@ Identifies the creation of a new Amazon Relational Database Service (RDS) Aurora
 across multiple regions.
 """
 false_positives = [
-  "Valid clusters may be created by a system or network administrator. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Cluster creations from unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Valid clusters may be created by a system or network administrator. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Cluster creations by unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]

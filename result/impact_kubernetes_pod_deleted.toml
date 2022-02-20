@@ -11,7 +11,7 @@ Identifies the deletion of Azure Kubernetes Pods. Adversaries may delete a Kuber
 of the environment.
 """
 false_positives = [
-  "Pods may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname\nshould be making changes in your environment. Pods deletions from unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Pods may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname\nshould be making changes in your environment. Pods deletions by unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
 index = [ "filebeat-*", "logs-azure*" ]

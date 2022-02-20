@@ -8,7 +8,7 @@ integration = "aws"
 author = [ "Octodet" ]
 description = "Identifies the deletion of a specified AWS Web Application Firewall (WAF) access control list."
 false_positives = [
-  "Firewall ACL's may be deleted by a system or network administrator. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Web ACL deletions from unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Firewall ACL's may be deleted by a system or network administrator. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Web ACL deletions by unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]

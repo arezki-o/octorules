@@ -11,7 +11,7 @@ Identifies the deletion of an Amazon Relational Database Service (RDS) Aurora da
 cluster.
 """
 false_positives = [
-  "Clusters may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname\nshould be making changes in your environment. Cluster deletions from unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Clusters may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname\nshould be making changes in your environment. Cluster deletions by unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]

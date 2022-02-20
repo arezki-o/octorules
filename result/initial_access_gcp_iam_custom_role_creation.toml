@@ -12,7 +12,7 @@ user-defined, and allow for the bundling of one or more supported permissions to
 not be updated automatically and could lead to privilege creep if not carefully scrutinized.
 """
 false_positives = [
-  "Custom role creations may be done by a system or network administrator. Verify whether the user email, resource\nname, and/or hostname should be making changes in your environment. Role creations from unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Custom role creations may be done by a system or network administrator. Verify whether the user email, resource\nname, and/or hostname should be making changes in your environment. Role creations by unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 index = [ "filebeat-*", "logs-gcp*" ]
 language = "kuery"

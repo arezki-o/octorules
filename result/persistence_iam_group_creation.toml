@@ -11,7 +11,7 @@ Identifies the creation of a group in AWS Identity and Access Management (IAM). 
 users. Any user in a group automatically has the permissions that are assigned to the group.
 """
 false_positives = [
-  "A group may be created by a system or network administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. Group creations from unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "A group may be created by a system or network administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. Group creations by unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]

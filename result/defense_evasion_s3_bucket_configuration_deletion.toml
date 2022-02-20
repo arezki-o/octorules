@@ -8,7 +8,7 @@ integration = "aws"
 author = [ "Octodet" ]
 description = "Identifies the deletion of various Amazon Simple Storage Service (S3) bucket configuration components."
 false_positives = [
-  "Bucket components may be deleted by a system or network administrator. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Bucket component deletions from unfamiliar users or\nhosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Bucket components may be deleted by a system or network administrator. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Bucket component deletions by unfamiliar users or\nhosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]

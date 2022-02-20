@@ -14,7 +14,7 @@ or the filter for the sinks can be modified to stop routing logs to the deleted 
 bucket to evade detection.
 """
 false_positives = [
-  "Logging bucket deletions may be done by a system or network administrator. Verify whether the user email, resource\nname, and/or hostname should be making changes in your environment. Logging bucket deletions from unfamiliar users\nor hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Logging bucket deletions may be done by a system or network administrator. Verify whether the user email, resource\nname, and/or hostname should be making changes in your environment. Logging bucket deletions by unfamiliar users\nor hosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 index = [ "filebeat-*", "logs-gcp*" ]
 language = "kuery"

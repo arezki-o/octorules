@@ -8,7 +8,7 @@ integration = "aws"
 author = [ "Octodet" ]
 description = "Identifies the deletion of an AWS CloudWatch alarm. An adversary may delete alarms in an attempt to evade defenses."
 false_positives = [
-  "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. Alarm\ndeletions from unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it\ncan be exempted from the rule.\n"
+  "Verify whether the user identity, user agent, and/or hostname should be making changes in your environment. Alarm\ndeletions by unfamiliar users or hosts should be investigated. If known behavior is causing false positives, it\ncan be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]

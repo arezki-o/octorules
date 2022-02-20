@@ -11,7 +11,7 @@ Identifies an Event Hub deletion in Azure. An Event Hub is an event processing s
 volumes of events and data. An adversary may delete an Event Hub in an attempt to evade detection.
 """
 false_positives = [
-  "Event Hub deletions may be done by a system or network administrator. Verify whether the username, hostname, and/or\nresource name should be making changes in your environment. Event Hub deletions from unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Event Hub deletions may be done by a system or network administrator. Verify whether the username, hostname, and/or\nresource name should be making changes in your environment. Event Hub deletions by unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
 index = [ "filebeat-*", "logs-azure*" ]
