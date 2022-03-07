@@ -10,7 +10,7 @@ for rule in $(pwd)/*.toml; do
        then
                 number=`grep -n '^index = \[$' $rule | awk -F: '{print $1}'`
                 appendn=$(($number +1))
-                sed "${appendn}s/$/\n\"logs-syslog*\",/" $rule 
+                sed -i'.original' "${appendn}s/$/\n\"logs-syslog*\",/" $rule 
                 
 
                 lineindex=`grep -n "^index =" $rule | awk -F: '{print $1}'`
