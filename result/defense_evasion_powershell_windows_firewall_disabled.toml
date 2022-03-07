@@ -6,7 +6,7 @@ updated_date = "2022/02/16"
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when the Windows Firewall is disabled using PowerShell cmdlets, which attackers do to evade network
+Identifies when the Windows Firewall is disabled using PowerShell cmdlets, which can help attackers evade network
 constraints, like internet and network lateral communication restrictions.
 """
 false_positives = [
