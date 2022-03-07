@@ -8,6 +8,11 @@ for rule in $(pwd)/*.toml; do
        grep -iq $1 $rule   
        if [ $? == 1 ]
        then
+                number=`grep -n '^index = \[$' $rule | awk -F: '{print $1}'`
+                appendn=$(($number +1))
+                sed "${appendn}s/$/\n\"logs-syslog*\",/" $rule 
+                
+
                 lineindex=`grep -n "^index =" $rule | awk -F: '{print $1}'`
                 linethreatindex=`grep -n "^threat_index =" $rule | awk -F: '{print $1}'`
 
