@@ -54,3 +54,4 @@ file where process.name : "spoolsv.exe" and
     id = "TA0004"
     reference = "https://attack.mitre.org/tactics/TA0004/"
     name = "Privilege Escalation"
+  name = "Privilege Escalation"
