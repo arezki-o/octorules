@@ -1,15 +1,13 @@
 [metadata]
 creation_date = "2021/08/24"
 maturity = "production"
-updated_date = "2021/10/17"
+updated_date = "2022/03/31"
 
 [rule]
 author = [ "Octodet" ]
-description = """
-Identifies suspicious commands executed via a web server, which may suggest a vulnerability and remote shell access.
-"""
+description = "Identifies suspicious commands executed via a web server, which may suggest a vulnerability and remote shell access."
 false_positives = [
-  "Security audits, maintenance, and network administrative scripts may trigger this alert when run under web processes.\n"
+  "Security audits, maintenance, and network administrative scripts may trigger this alert when run under web\nprocesses.\n"
 ]
 from = "now-9m"
 index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
@@ -19,7 +17,12 @@ name = "Webshell Detection: Script Process Child of Common Web Processes"
 note = """
 ## Triage and analysis
 
-Detections should be investigated to identify if the activity corresponds to legitimate activity. As this rule detects post-exploitation process activity, investigations into this should be prioritized."""
+Detections should be investigated to identify if the activity corresponds to legitimate activity. As this rule detects post-exploitation process activity, investigations into this should be prioritized.
+
+## Config
+
+If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
+"""
 references = [
   "https://www.microsoft.com/security/blog/2020/02/04/ghost-in-the-shell-investigating-web-shell-attacks/"
 ]

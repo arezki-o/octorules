@@ -1,13 +1,15 @@
 [metadata]
 creation_date = "2020/02/18"
 maturity = "production"
-updated_date = "2021/10/15"
+updated_date = "2022/03/31"
+min_stack_comments = "Comprehensive timeline templates only available in 8.2+"
+min_stack_version = "8.2"
 
 [rule]
 author = [ "Octodet", "Austin Songer" ]
 description = """
-Identifies suspicious commands being used with certutil.exe. CertUtil is a native Windows component which is part of 
-Certificate Services. CertUtil is often abused by attackers to live off the land for stealthier command and control or 
+Identifies suspicious commands being used with certutil.exe. CertUtil is a native Windows component which is part of
+Certificate Services. CertUtil is often abused by attackers to live off the land for stealthier command and control or
 data exfiltration.
 """
 from = "now-9m"
@@ -15,6 +17,11 @@ index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious CertUtil Commands"
+note = """
+## Config
+
+If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
+"""
 references = [
   "https://twitter.com/Moriarty_Meng/status/984380793383370752",
   "https://twitter.com/egre55/status/1087685529016193025",
@@ -34,6 +41,8 @@ tags = [
   "Elastic-Agent",
   "Endpoint Security"
 ]
+timeline_id = "e70679c2-6cde-4510-9764-4823df18f7db"
+timeline_title = "Comprehensive Process Timeline"
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
@@ -47,10 +56,10 @@ process where event.type == "start" and
 
     [[rule.threat.technique]]
     id = "T1140"
-    reference = "https://attack.mitre.org/techniques/T1140/"
     name = "Deobfuscate/Decode Files or Information"
+    reference = "https://attack.mitre.org/techniques/T1140/"
 
     [rule.threat.tactic]
     id = "TA0005"
-    reference = "https://attack.mitre.org/tactics/TA0005/"
     name = "Defense Evasion"
+    reference = "https://attack.mitre.org/tactics/TA0005/"

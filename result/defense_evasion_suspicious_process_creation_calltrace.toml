@@ -1,7 +1,7 @@
 [metadata]
 creation_date = "2021/10/24"
 maturity = "production"
-updated_date = "2021/10/24"
+updated_date = "2022/03/31"
 
 [rule]
 author = [ "Octodet" ]
@@ -26,7 +26,6 @@ tags = [
   "WinLogBeat",
   "Elastic-Agent"
 ]
-timestamp_override = "event.ingested"
 type = "eql"
 query = """
 sequence by host.id with maxspan=1m

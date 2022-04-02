@@ -1,20 +1,25 @@
 [metadata]
 creation_date = "2021/04/12"
 maturity = "production"
-updated_date = "2021/04/12"
+updated_date = "2022/03/31"
 
 [rule]
 author = [ "Octodet" ]
 description = """
 Identifies the modification of the Remote Desktop Protocol (RDP) Shadow registry or the execution of processes
-indicative of an active RDP shadowing session. An adversary may abuse the RDP Shadowing feature to spy on or control other users active
-RDP sessions.
+indicative of an active RDP shadowing session. An adversary may abuse the RDP Shadowing feature to spy on or control
+other users active RDP sessions.
 """
 from = "now-9m"
 index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Remote Desktop Shadowing Activity"
+note = """
+## Config
+
+If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
+"""
 references = [
   "https://bitsadm.in/blog/spying-on-users-using-rdp-shadowing",
   "https://swarm.ptsecurity.com/remote-desktop-services-shadowing/"

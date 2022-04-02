@@ -1,7 +1,7 @@
 [metadata]
 creation_date = "2021/12/10"
 maturity = "production"
-updated_date = "2021/12/10"
+updated_date = "2022/03/31"
 
 [rule]
 author = [ "Octodet" ]
@@ -33,7 +33,6 @@ tags = [
   "Elastic-Agent",
   "Endpoint Security"
 ]
-timestamp_override = "event.ingested"
 type = "eql"
 query = """
 sequence by host.id with maxspan=1m
