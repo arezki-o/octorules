@@ -3,14 +3,13 @@ stages:
 rules-job:
      stage: deploy
      tags: ["sync"]
-     only:
-       changes:
-        - result/*   
      rules:
       - changes:
         - ".gitlab-ci.yml"
         when: never
       - when: always
+      - changes:
+        - result/*
       #   - if  ! grep "\.ndjson$" <(git diff --name-only HEAD~1); then exit; fi; 
      script:
          - cat $input
