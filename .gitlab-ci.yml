@@ -20,4 +20,5 @@ rules-job:
          - cd ${CI_PROJECT_DIR}/rules/_deprecated/
          - for rule in *.toml;do ls $rule >> deprecatedrules;done
          - cp -p deprecatedrules /home/gitlab-runner/sync-rules/
-         - bash script.sh
+         - cp /home/gitlab-runner/sync-rules/script.sh cd ${CI_PROJECT_DIR}/rules/_deprecated/
+         - bash ${CI_PROJECT_DIR}/rules/_deprecated/script.sh
