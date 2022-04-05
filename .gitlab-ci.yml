@@ -1,0 +1,18 @@
+stages:
+     - deploy   
+rules-job:
+     stage: deploy
+     tags: ["sync"]
+     only:
+       changes:
+        - result/*   
+     rules:
+      - changes:
+        - ".gitlab-ci.yml"
+        when: never
+      - when: always
+      #   - if  ! grep "\.ndjson$" <(git diff --name-only HEAD~1); then exit; fi; 
+     script:
+         - cat $input
+         - echo "${CI_COMMIT_SHA}"
+         - pwd 
