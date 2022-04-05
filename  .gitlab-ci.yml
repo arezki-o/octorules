@@ -3,6 +3,9 @@ stages:
 rules-job:
      stage: deploy
      tags: ["sync"]
+     only:
+       changes:
+        - result/*   
      rules:
       - changes:
         - ".gitlab-ci.yml"
