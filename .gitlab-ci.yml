@@ -16,3 +16,4 @@ rules-job:
          - echo "${CI_COMMIT_SHA}"
          - pwd 
          - echo "${CI_PROJECT_DIR}"
+         - ls -l ${CI_PROJECT_DIR}
