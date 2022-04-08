@@ -15,10 +15,21 @@ rules-job:
          - cat $input
          - echo "${CI_COMMIT_SHA}"
          - pwd 
-         - echo "${CI_PROJECT_DIR}"
-         - ls -l ${CI_PROJECT_DIR}/rules/_deprecated/
+         - rule=`git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`
+         - echo $rule
+         - mrule="$(echo $rule | tr ' ' '_')"
+         - mv "$rule" "$mrule"
+         - echo "$mrule"
+         - directory=$(cat "$mrule"  | jq .rule_id | head -n 1| sed -e 's/"//g' )
+         - mkdir -p /home/gitlab-runner/sync-rules/$directory 
+         - mv "$mrule" /home/gitlab-runner/sync-rules/$directory/
+         - cd /home/gitlab-runner/sync-rules/$directory/
+         - mv "$mrule" rule.toml
+         - cp ../last-toml.yml .
+         - ansible-playbook /home/gitlab-runner/sync-rules/$directory/last-toml.yml --vault-password-file $input 
+         - bash /home/gitlab-runner/sync-rules/script.sh `git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA |  tr ' ' '_' `
+
          - cd ${CI_PROJECT_DIR}/rules/_deprecated/
          - for rule in *.toml;do ls $rule >> deprecatedrules;done
-         - cp -p deprecatedrules /home/gitlab-runner/sync-rules/
-         - cp /home/gitlab-runner/sync-rules/script.sh  ${CI_PROJECT_DIR}/rules/_deprecated/
-         - bash ${CI_PROJECT_DIR}/rules/_deprecated/script.sh
+         - if cmp --silent -- deprecatedrules /home/gitlab-runner/sync-rules/deprecatedrules; then ans=1 ;else ans=2 && grep -F -x -v -f /home/gitlab-runner/sync-rules/deprecatedrules deprecatedrules >> /home/gitlab-runner/sync-rules/newdeprecatedrules && cp -p deprecatedrules /home/gitlab-runner/sync-rules/ ; fi
+         - bash /home/gitlab-runner/sync-rules/script_dep.sh $ans
