@@ -4,7 +4,7 @@ maturity = "development"
 updated_date = "2021/10/13"
 
 [rule]
-author = [ "Octode" ]
+author = [ "Octodet" ]
 description = """
 Identifies MsXsl.exe making outbound network connections. This may indicate adversarial activity as MsXsl is often
 leveraged by adversaries to execute malicious scripts and evade detection.
