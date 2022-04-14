@@ -17,14 +17,11 @@ rules-job:
          - pwd 
          - rule=`git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`
          - echo $rule
-         - mrule="$(echo $rule | tr ' ' '_')"
-         - mv "$rule" "$mrule"
-         - echo "$mrule"
-         - directory=$(cat "$mrule"  | jq .rule_id | head -n 1| sed -e 's/"//g' )
+         - directory=$(cat "$rule"  | jq .rule_id | head -n 1| sed -e 's/"//g' )
          - mkdir -p /home/gitlab-runner/sync-rules/$directory 
-         - mv "$mrule" /home/gitlab-runner/sync-rules/$directory/
+         - mv "$rule" /home/gitlab-runner/sync-rules/$directory/
          - cd /home/gitlab-runner/sync-rules/$directory/
-         - mv "$mrule" rule.toml
+         - mv "$rule" rule.toml
          - cp ../last-toml.yml .
          - ansible-playbook /home/gitlab-runner/sync-rules/$directory/last-toml.yml --vault-password-file $input 
          - bash /home/gitlab-runner/sync-rules/to.sh `git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA |  tr ' ' '_' `
