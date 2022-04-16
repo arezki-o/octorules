@@ -29,7 +29,7 @@ rules-job:
          - cp ../last-toml.yml .
          - ansible-playbook /home/gitlab-runner/sync-rules/$directory/last-toml.yml --vault-password-file $input 
          - cd $loc
-         - bash /home/gitlab-runner/sync-rules/to.sh `git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA |  tr ' ' '_' `
+         - bash /home/gitlab-runner/sync-rules/to.sh `git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA |  tr ' ' '_' | awk -F/ '{print $2}' `
 
          - cd ${CI_PROJECT_DIR}/rules/_deprecated/
          - for rule in *.toml;do ls $rule >> deprecatedrules;done
