@@ -32,7 +32,7 @@ rules-job:
          - echo $ena
          - cd $loc
          - echo $ena
-         - bash /home/gitlab-runner/sync-rules/rulesync.sh `git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA` `echo $ena`
+         - bash /home/gitlab-runner/sync-rules/rulesync.sh `git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA | awk -F/ '{print $2}'` `echo $ena`
 
          - cd ${CI_PROJECT_DIR}/rules/_deprecated/
          - for rule in *.toml;do ls $rule >> deprecatedrules;done
