@@ -1,7 +1,7 @@
 [metadata]
 creation_date = "2021/01/04"
 maturity = "development"
-updated_date = "2021/09/23"
+updated_date = "2022/04/13"
 
 [rule]
 author = [ "Octodet" ]
@@ -12,7 +12,7 @@ domain.
 false_positives = [
   "Legitimate local user creations may be done by a system or network administrator. Verify whether this is known\nbehavior in your environment. Local user creations by unfamiliar users or hosts should be investigated. If known\nbehavior is causing false positives, it can be exempted from the rule.\n"
 ]
-index = [ "winlogbeat-*", "logs-windows.*" ]
+index = [ "winlogbeat-*", "logs-system.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Creation of a local user account"
