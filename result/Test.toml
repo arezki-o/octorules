@@ -24,8 +24,7 @@ tags = [
   "Threat Detection",
   "Defense Evasion",
   "WinLogBeat",
-  "Elastic-Agent",
-  "Endpoint Security"
+  "Elastic-Agent"
 ]
 type = "eql"
 query = """
