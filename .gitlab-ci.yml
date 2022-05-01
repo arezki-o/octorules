@@ -28,7 +28,7 @@ rules-job:
          - mv $r rule.ndjson
          - cp ../last-toml.yml .
          - ansible-playbook /home/gitlab-runner/sync-rules/$directory/last-toml.yml --vault-password-file $input 
-         - if grep -q "Endpoint Security" rule.ndjson; then ena=1 else ena=0 ;fi
+         - if grep -q "Endpoint Security" rule.ndjson; then ena=1; else ena=0 ;fi
          - echo $ena
          - cd $loc
          - echo $ena
