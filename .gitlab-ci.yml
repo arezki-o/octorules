@@ -21,7 +21,7 @@ rules-job:
          - cd /home/gitlab-runner/octorules
          - cp ../sync-rules/handler.sh .
          - bash handler.sh $input
-         - cd .. && rm -rf octorules
+
 
          - cd ${CI_PROJECT_DIR}/rules/_deprecated/
          - for rule in *.toml;do ls $rule >> deprecatedrules;done
