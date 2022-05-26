@@ -16,13 +16,12 @@ rules-job:
          - echo "${CI_COMMIT_SHA}"
          - loc=$(pwd)
          - rule=`git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`
-         - echo $rule
-         - cat $rule
          - echo $rule | tr " " "\n" | grep result > resultrules
          - cp -r ${CI_PROJECT_DIR} /home/gitlab-runner/
          - cd /home/gitlab-runner/octorules
          - cp ../sync-rules/handler.sh .
          - bash handler.sh $input
+         - cd .. && rm -rf octorules
 
          - cd ${CI_PROJECT_DIR}/rules/_deprecated/
          - for rule in *.toml;do ls $rule >> deprecatedrules;done
