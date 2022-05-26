@@ -19,22 +19,8 @@ rules-job:
          - echo $rule
          - cat $rule
          - echo $rule | tr " " "\n" | grep result > resultrules
-         - for r in `cat resultrules`;do 
-            cat $r | tomlq '.' | cat > ${r%.*}.json
-            ls -l
-            cat ${r%.*}.json  | jq -c '.[]' > ${r%.*}.ndjson
-            directory=$(cat "${r%.*}.ndjson"  | jq .rule_id | head -n 1| sed -e 's/"//g' )
-            mkdir -p /home/gitlab-runner/sync-rules/$directory 
-            mv "${r%.*}.ndjson" /home/gitlab-runner/sync-rules/$directory/
-            cd /home/gitlab-runner/sync-rules/$directory/
-            ru=`echo ${r%.*}.ndjson | awk -F/ '{print $2}'`
-            mv $ru rule.ndjson
-            cp ../last-toml.yml .
-            ansible-playbook /home/gitlab-runner/sync-rules/$directory/last-toml.yml --vault-password-file $input 
-            bash /home/gitlab-runner/sync-rules/rulesync.sh `echo $ru` `echo $ena`
-           done  
-          
-
+         - cp -r ${CI_PROJECT_DIR} /home/gitlab-runner/test
+         
          - cd ${CI_PROJECT_DIR}/rules/_deprecated/
          - for rule in *.toml;do ls $rule >> deprecatedrules;done
          - if cmp --silent -- deprecatedrules /home/gitlab-runner/sync-rules/deprecatedrules; then ans=1 ;else ans=2 && grep -F -x -v -f /home/gitlab-runner/sync-rules/deprecatedrules deprecatedrules >> /home/gitlab-runner/sync-rules/newdeprecatedrules && cp -p deprecatedrules /home/gitlab-runner/sync-rules/ ; fi
