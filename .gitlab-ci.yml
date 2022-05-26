@@ -17,6 +17,7 @@ rules-job:
          - loc=$(pwd)
          - rule=`git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`
          - echo $rule
+         - cat $rule
          - cat $rule | tr " " "\n" | grep result > resultrules
          - for r in `cat resultrules`;do \ 
             cat $r | tomlq '.' | cat > ${r%.*}.json
