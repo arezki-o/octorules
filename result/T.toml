@@ -22,7 +22,7 @@ index = [
 ]
 language = "eql"
 license = "Elastic License v2"
-name = "TestHost"
+name = "TestHostF"
 note = """
 ## Config
 
