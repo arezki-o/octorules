@@ -55,3 +55,4 @@ process where event.type == "start" and process.name : ("bash", "sh", "dash") an
     id = "TA0002"
     name = "Execution"
     reference = "https://attack.mitre.org/tactics/TA0002/"
+https://attack.mitre.org/tactics/TA0002/"

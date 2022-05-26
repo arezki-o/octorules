@@ -53,3 +53,4 @@ process where event.type == "start" and process.parent.name == "crash" and proce
     id = "TA0002"
     name = "Execution"
     reference = "https://attack.mitre.org/tactics/TA0002/"
+ack.mitre.org/tactics/TA0002/"

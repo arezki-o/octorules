@@ -24,16 +24,18 @@ MIN_LOCK_VERSION_DEFAULT = Version("7.13.0")
 
 
 @dataclass(frozen=True)
-class VersionLockFileEntry(MarshmallowDataclassMixin):
-    """Schema for a rule entry in the version lock."""
+class BaseEntry:
     rule_name: definitions.RuleName
     sha256: definitions.Sha256
     type: definitions.RuleType
     version: definitions.PositiveInteger
-    min_stack_version: Optional[definitions.SemVer]
 
-    # TODO: need to exclude nested 'previous'
-    previous: Optional[Dict[definitions.SemVer, 'VersionLockFileEntry']]
+
+@dataclass(frozen=True)
+class VersionLockFileEntry(MarshmallowDataclassMixin, BaseEntry):
+    """Schema for a rule entry in the version lock."""
+    min_stack_version: Optional[definitions.SemVer]
+    previous: Optional[Dict[definitions.SemVer, BaseEntry]]
 
 
 @dataclass(frozen=True)
@@ -56,7 +58,7 @@ class VersionLockFile(LockDataclassMixin):
 @dataclass(frozen=True)
 class DeprecatedRulesEntry(MarshmallowDataclassMixin):
     """Schema for rule entry in the deprecated rules file."""
-    deprecation_date: definitions.Date
+    deprecation_date: Union[definitions.Date, definitions.KNOWN_BAD_DEPRECATED_DATES]
     rule_name: definitions.RuleName
     stack_version: definitions.SemVer
 
@@ -92,6 +94,27 @@ def load_versions() -> dict:
     return version_lock_file.to_dict()
 
 
+# for tagged branches which existed before the types were added and validation enforced, we will need to manually add
+# them to allow them to pass validation. These will only ever currently be loaded via the RuleCollection.load_git_tag
+# method, which is primarily for generating diffs across releases, so there is no risk to versioning
+def add_rule_types_to_lock(lock_contents: dict, rule_map: Dict[str, dict]):
+    """Add the rule type to entries in the lock file,if missing."""
+    for rule_id, lock in lock_contents.items():
+        rule = rule_map.get(rule_id, {})
+
+        # this defaults to query if the rule is not found - it is just for validation so should not impact
+        rule_type = rule.get('rule', {}).get('type', 'query')
+
+        # the type is a bit less important than the structure to pass validation
+        lock['type'] = rule_type
+
+        if 'previous' in lock:
+            for _, prev_lock in lock['previous'].items():
+                prev_lock['type'] = rule_type
+
+    return lock_contents
+
+
 class VersionLock:
     """Version handling for rule files and collections."""
 
@@ -108,12 +131,12 @@ class VersionLock:
         if version_lock_file:
             self.version_lock = VersionLockFile.load_from_file(version_lock_file)
         else:
-            self.version_lock = VersionLockFile.from_dict(version_lock)
+            self.version_lock = VersionLockFile.from_dict(dict(data=version_lock))
 
         if deprecated_lock_file:
             self.deprecated_lock = DeprecatedRulesFile.load_from_file(deprecated_lock_file)
         else:
-            self.deprecated_lock = DeprecatedRulesFile.from_dict(deprecated_lock)
+            self.deprecated_lock = DeprecatedRulesFile.from_dict(dict(data=deprecated_lock))
 
     @staticmethod
     def save_file(path: Path, lock_file: Union[VersionLockFile, DeprecatedRulesFile]):

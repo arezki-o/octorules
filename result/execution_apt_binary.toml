@@ -59,3 +59,4 @@ process where event.type == "start" and process.name == "sensible-pager" and
     id = "TA0002"
     name = "Execution"
     reference = "https://attack.mitre.org/tactics/TA0002/"
+tack.mitre.org/tactics/TA0002/"

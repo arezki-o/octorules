@@ -53,3 +53,4 @@ process where event.type == "start" and process.parent.name == "flock" and proce
     id = "TA0002"
     name = "Execution"
     reference = "https://attack.mitre.org/tactics/TA0002/"
+attack.mitre.org/tactics/TA0002/"

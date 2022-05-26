@@ -53,3 +53,4 @@ process where event.type == "start" and process.name == "busybox" and process.ar
     id = "TA0002"
     name = "Execution"
     reference = "https://attack.mitre.org/tactics/TA0002/"
+tack.mitre.org/tactics/TA0002/"
