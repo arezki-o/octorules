@@ -1,7 +1,8 @@
 [metadata]
 creation_date = "2022/02/24"
-maturity = "production"
-updated_date = "2022/03/31"
+deprecation_date = "2022/05/09"
+maturity = "deprecated"
+updated_date = "2022/05/09"
 
 [rule]
 author = [ "Octodet" ]
@@ -59,4 +60,3 @@ process where event.type == "start" and process.name == "sensible-pager" and
     id = "TA0002"
     name = "Execution"
     reference = "https://attack.mitre.org/tactics/TA0002/"
-tack.mitre.org/tactics/TA0002/"
