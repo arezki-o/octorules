@@ -1,16 +1,15 @@
 [metadata]
 creation_date = "2022/03/21"
-deprecation_date = "2022/05/09"
-maturity = "deprecated"
-updated_date = "2022/05/09"
+maturity = "production"
+updated_date = "2022/03/31"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies Linux binary crash abuse to break out from restricted environments by spawning an interactive system shell.
-The crash utility helps analyze Linux crash dump data or a live system and the activity of spawning a shell is not a
-standard use of this binary by a user or system administrator. It indicates a potentially malicious actor attempting to
-improve the capabilities or stability of their access.
+Identifies Linux binary crash abuse to break out from restricted environments by spawning an interactive system
+shell.The crash utility helps to analyze Linux crash dump data or a live system and the activity of spawing a shell is
+not a standard use of this binary by a user or system administrator. It indicates a potentially malicious actor
+attempting to improve the capabilities or stability of their access.
 """
 from = "now-9m"
 index = [ "logs-endpoint.events.*" ]
@@ -54,3 +53,4 @@ process where event.type == "start" and process.parent.name == "crash" and proce
     id = "TA0002"
     name = "Execution"
     reference = "https://attack.mitre.org/tactics/TA0002/"
+ack.mitre.org/tactics/TA0002/"

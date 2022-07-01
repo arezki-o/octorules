@@ -1,8 +1,7 @@
 [metadata]
 creation_date = "2022/03/17"
-deprecation_date = "2022/05/09"
-maturity = "deprecated"
-updated_date = "2022/05/09"
+maturity = "production"
+updated_date = "2022/03/31"
 
 [rule]
 author = [ "Octodet" ]
@@ -10,8 +9,8 @@ description = """
 Identifies Linux binary cpulimit abuse to break out from restricted environments by spawning an interactive system
 shell. The cpulimit utility is used to restrict the CPU usage of a process in cases of CPU or system load exceeding the
 defined threshold and the activity of spawning a shell is not a standard use of this binary by a user or system
-administrator. This can potentially indicate a malicious actor attempting to improve the capabilities or stability of
-their access.
+administrator. This can potentially indicate a malicious actor attempting to improve the capabilities or stability of their
+access.
 """
 from = "now-9m"
 index = [ "logs-endpoint.events.*" ]
@@ -57,3 +56,4 @@ process where event.type == "start" and process.name in ("bash", "sh", "dash") a
     id = "TA0002"
     name = "Execution"
     reference = "https://attack.mitre.org/tactics/TA0002/"
+tack.mitre.org/tactics/TA0002/"

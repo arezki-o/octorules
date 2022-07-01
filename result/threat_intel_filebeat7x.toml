@@ -1,12 +1,14 @@
 [metadata]
 creation_date = "2021/04/21"
-maturity = "production"
-updated_date = "2021/10/29"
+deprecation_date = "2022/01/12"
+maturity = "deprecated"
+updated_date = "2022/01/12"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-This rule is triggered when indicators from the Threat Intel Filebeat module (v7.x) has a match against local file or network observations.
+This rule is triggered when indicators from the Threat Intel Filebeat module (v7.x) has a match against local file or
+network observations.
 """
 from = "now-65m"
 index = [
@@ -85,17 +87,17 @@ tags = [
   "Elastic-Agent",
   "Firewall"
 ]
-timeline_id = "495ad7a7-316e-4544-8a0f-9c098daee76e"
-timeline_title = "Generic Threat Match Timeline"
-type = "threat_match"
 threat_index = [ "filebeat-*" ]
 threat_indicator_path = "threatintel.indicator"
 threat_language = "kuery"
 threat_query = """
-@timestamp >= "now-30d" and event.module:threatintel and
-  (threatintel.indicator.file.hash.*:* or threatintel.indicator.file.pe.imphash:* or threatintel.indicator.ip:* or
-     threatintel.indicator.registry.path:* or threatintel.indicator.url.full:*)
+@timestamp >= "now-30d" and event.module:threatintel and (threatintel.indicator.file.hash.*:* or
+threatintel.indicator.file.pe.imphash:* or threatintel.indicator.ip:* or threatintel.indicator.registry.path:* or
+threatintel.indicator.url.full:*)
 """
+timeline_id = "495ad7a7-316e-4544-8a0f-9c098daee76e"
+timeline_title = "Generic Threat Match Timeline"
+type = "threat_match"
 query = """
 file.hash.*:* or file.pe.imphash:* or source.ip:* or destination.ip:* or url.full:* or registry.path:*
 """
@@ -166,50 +168,48 @@ key = "event.type"
 
   [[rule.threat_mapping]]
 [[rule.threat_mapping.entries]]
+value = "threatintel.indicator.file.hash.md5"
 field = "file.hash.md5"
 type = "mapping"
-value = "threatintel.indicator.file.hash.md5"
 
   [[rule.threat_mapping]]
 [[rule.threat_mapping.entries]]
+value = "threatintel.indicator.file.hash.sha1"
 field = "file.hash.sha1"
 type = "mapping"
-value = "threatintel.indicator.file.hash.sha1"
 
   [[rule.threat_mapping]]
 [[rule.threat_mapping.entries]]
+value = "threatintel.indicator.file.hash.sha256"
 field = "file.hash.sha256"
 type = "mapping"
-value = "threatintel.indicator.file.hash.sha256"
 
   [[rule.threat_mapping]]
 [[rule.threat_mapping.entries]]
+value = "threatintel.indicator.file.pe.imphash"
 field = "file.pe.imphash"
 type = "mapping"
-value = "threatintel.indicator.file.pe.imphash"
 
   [[rule.threat_mapping]]
 [[rule.threat_mapping.entries]]
+value = "threatintel.indicator.ip"
 field = "source.ip"
 type = "mapping"
-value = "threatintel.indicator.ip"
 
   [[rule.threat_mapping]]
 [[rule.threat_mapping.entries]]
+value = "threatintel.indicator.ip"
 field = "destination.ip"
 type = "mapping"
-value = "threatintel.indicator.ip"
 
   [[rule.threat_mapping]]
 [[rule.threat_mapping.entries]]
+value = "threatintel.indicator.url.full"
 field = "url.full"
 type = "mapping"
-value = "threatintel.indicator.url.full"
 
   [[rule.threat_mapping]]
 [[rule.threat_mapping.entries]]
-field = "registry.path"
-type = "mapping"
 value = "threatintel.indicator.registry.path"
-y.path"
+field = "registry.path"
 type = "mapping"
