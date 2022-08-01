@@ -17,6 +17,7 @@ rules-job:
          - loc=$(pwd)
          - rule=`git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`
          - echo $rule | tr " " "\n" | grep result > resultrules
+         - cat resultrules
          - cp -r ${CI_PROJECT_DIR} /home/gitlab-runner/
          - cd /home/gitlab-runner/octorules
          - cp ../sync-rules/handler.sh .
