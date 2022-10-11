@@ -18,13 +18,8 @@ rules-job:
          - rule=`git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`
          - echo $rule | tr " " "\n" | grep result > resultrules
          - cat resultrules
-         - cp -r ${CI_PROJECT_DIR} /home/gitlab-runner/
-         - cd /home/gitlab-runner/octorules
-         - cp ../sync-rules/handler.sh .
+         - if [ ! -d /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")" ]; then mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")";fi
+         - cp -r ${CI_PROJECT_DIR} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
+         - cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
+         - cp ../../handler.sh .
          - bash handler.sh $input
-
-
-         - cd ${CI_PROJECT_DIR}/rules/_deprecated/
-         - for rule in *.toml;do ls $rule >> deprecatedrules;done
-         - if cmp --silent -- deprecatedrules /home/gitlab-runner/sync-rules/deprecatedrules; then ans=1 ;else ans=2 && grep -F -x -v -f /home/gitlab-runner/sync-rules/deprecatedrules deprecatedrules >> /home/gitlab-runner/sync-rules/newdeprecatedrules && cp -p deprecatedrules /home/gitlab-runner/sync-rules/ ; fi
-         - bash /home/gitlab-runner/sync-rules/depsync.sh $ans
