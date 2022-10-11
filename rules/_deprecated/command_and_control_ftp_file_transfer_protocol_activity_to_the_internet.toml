@@ -7,7 +7,7 @@ updated_date = "2021/04/15"
 [rule]
 author = ["Elastic"]
 description = """
-This rule detects events that may indicate the use of FTP network connections to the Internet. The File Transfer
+This rule detects events t hat may indicate the use of FTP network connections to the Internet. The File Transfer
 Protocol (FTP) has been around in its curren t form since the 1980s. It can be a common and efficient procedure on your
 network to send and rece ive file s. Because of this, adversaries will also often use this protocol to exfiltrate data
 from your network or download new tools. Additionally, FTP is a plain-text protocol which, if intercepted, may expose
