@@ -23,6 +23,7 @@ rules-job:
          - cp -r ${CI_PROJECT_DIR} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
          - cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
          - cp ../../deprecated.sh .
+         - if [ -e deprecated]; then rm deprecated;fi
          - for rule in ./rules/_deprecated/*toml; do grep -m 1 "^name =" $rule | awk -F\" '{print $2}'>> deprecated;done
          - bash deprecated.sh deprecated
          - cp ../../handler.sh .
