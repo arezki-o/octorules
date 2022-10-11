@@ -16,6 +16,7 @@ rules-job:
          - echo "${CI_COMMIT_SHA}"
          - loc=$(pwd)
          - rule=`git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`
+         - echo $rule
          - echo $rule | tr " " "\n" | grep result > resultrules
          - cat resultrules
          - if [ ! -d /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")" ]; then mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")";fi
