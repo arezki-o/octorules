@@ -17,8 +17,8 @@ rules-job:
          - loc=$(pwd)
          - rule=`git diff-tree --no-commit-id --name-only -r $CI_COMMIT_SHA`
          - echo $rule
-         #- echo $rule | tr " " "\n" | grep result > resultrules
-         #- cat resultrules
+         - if echo $rule | grep -q result; then echo $rule | tr " " "\n" | grep result > resultrules;fi
+         - cat resultrules
          - if [ ! -d /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")" ]; then mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")";fi
          - cp -r ${CI_PROJECT_DIR} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
          - cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
