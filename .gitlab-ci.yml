@@ -26,4 +26,3 @@ rules-job:
          - bash deprecated.sh deprecated
          - cp ../../handler.sh .
          - bash handler.sh $input
-         - 
