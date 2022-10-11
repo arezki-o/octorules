@@ -10,7 +10,7 @@ description = """
 This rule detects events t hat may indicate the use of FTP network connections to the Internet. The File Transfer
 Protocol (FTP) has been around in its curren t form since the 1980s. It can be a common and efficient procedure on your
 network to send and rece ive file s. Because of this, adversaries will also often use this protocol to exfiltrate data
-from your network or download new tools. Additionally, FTP is a plain-text protocol which, if intercepted, may expose
+from your network or do wnload new tools. Additionally, FTP is a plain-text protocol which, if intercepted, may expose
 usernames and passwords. FTP activity involving servers subject to regulations or compliance standards may be
 unauthorized.
 """
