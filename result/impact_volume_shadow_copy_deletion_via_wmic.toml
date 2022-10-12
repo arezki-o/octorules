@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/02/18"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/20"
 
 [rule]
 author = [ "Octodet" ]
@@ -41,7 +43,7 @@ This rule monitors the execution of `wmic.exe` to interact with VSS via the `sha
       - Attempts to contact external domains and addresses.
       - File and registry access, modification, and creation activities.
       - Service creation and launch activities.
-      - Scheduled tasks creation.
+      - Scheduled task creation.
   - Use the PowerShell Get-FileHash cmdlet to get the files' SHA-256 hash values.
     - Search for the existence and reputation of the hashes in resources like VirusTotal, Hybrid-Analysis, CISCO Talos, Any.run, etc.
 - Use process name, command line, and file hash to search for occurrences in other hosts.
@@ -82,7 +84,7 @@ malware components.
 mean time to respond (MTTR).
 
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -95,6 +97,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Impact",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -102,7 +105,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type in ("start", "process_started") and
+process where event.type == "start" and
   (process.name : "WMIC.exe" or process.pe.original_file_name == "wmic.exe") and
   process.args : "delete" and process.args : "shadowcopy"
 """

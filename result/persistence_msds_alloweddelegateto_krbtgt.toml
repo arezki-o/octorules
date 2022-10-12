@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2022/01/27"
 maturity = "production"
-updated_date = "2022/04/13"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 
 [rule]
 author = [ "Octodet" ]
@@ -15,19 +17,19 @@ language = "kuery"
 license = "Elastic License v2"
 name = "KRBTGT Delegation Backdoor"
 note = """
-## Config
+## Setup
 
 The 'Audit User Account Management' logging policy must be configured for (Success, Failure).
 Steps to implement the logging policy with Advanced Audit Configuration:
 
 ```
-Computer Configuration > 
-Policies > 
-Windows Settings > 
-Security Settings > 
-Advanced Audit Policies Configuration > 
-Audit Policies > 
-Account Management > 
+Computer Configuration >
+Policies >
+Windows Settings >
+Security Settings >
+Advanced Audit Policies Configuration >
+Audit Policies >
+Account Management >
 Audit User Account Management (Success,Failure)
 ```
 """

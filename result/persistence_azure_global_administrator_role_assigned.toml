@@ -2,7 +2,9 @@
 creation_date = "2022/01/06"
 integration = "azure"
 maturity = "production"
-updated_date = "2022/02/28"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 
 [rule]
 author = [ "Octodet" ]
@@ -19,7 +21,7 @@ language = "kuery"
 license = "Elastic License v2"
 name = "Azure AD Global Administrator Role Assigned"
 note = """
-## Config
+## Setup
 
 The Azure Fleet integration, Filebeat module, or similarly structured data is required to be compatible with this rule."""
 references = [
@@ -56,7 +58,7 @@ azure.auditlogs.properties.target_resources.0.modified_properties.1.new_value:"\
 
       [[rule.threat.technique.subtechnique]]
       reference = "https://attack.mitre.org/techniques/T1098/003/"
-      name = "Add Office 365 Global Administrator Role"
+      name = "Additional Cloud Roles"
       id = "T1098.003"
 
     [rule.threat.tactic]

@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2021/05/17"
 maturity = "production"
-updated_date = "2022/01/31"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 integration = "o365"
 
 [rule]
@@ -17,7 +19,7 @@ language = "kuery"
 license = "Elastic License v2"
 name = "O365 Exchange Suspicious Mailbox Right Delegation"
 note = """
-## Config
+## Setup
 
 The Office 365 Logs Fleet integration, Filebeat module, or similarly structured data is required to be compatible with this rule."""
 risk_score = 21
@@ -36,7 +38,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "query"
 query = """
-event.dataset:o365.audit and event.provider:Exchange and event.action:Add-MailboxPermission and 
+event.dataset:o365.audit and event.provider:Exchange and event.action:Add-MailboxPermission and
 o365.audit.Parameters.AccessRights:(FullAccess or SendAs or SendOnBehalf) and event.outcome:success and
 not user.id : "NT AUTHORITY\\SYSTEM (Microsoft.Exchange.Servicehost)"
 """
@@ -51,7 +53,7 @@ not user.id : "NT AUTHORITY\\SYSTEM (Microsoft.Exchange.Servicehost)"
 
       [[rule.threat.technique.subtechnique]]
       reference = "https://attack.mitre.org/techniques/T1098/002/"
-      name = "Exchange Email Delegate Permissions"
+      name = "Additional Email Delegate Permissions"
       id = "T1098.002"
 
     [rule.threat.tactic]

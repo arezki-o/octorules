@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2021/10/15"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/20"
 
 [rule]
 author = [ "Octodet" ]
@@ -51,7 +53,7 @@ prevalence, whether they are located in expected locations, and if they are sign
       - Attempts to contact external domains and addresses.
       - File and registry access, modification, and creation activities.
       - Service creation and launch activities.
-      - Scheduled tasks creation.
+      - Scheduled task creation.
   - Use the PowerShell Get-FileHash cmdlet to get the files' SHA-256 hash values.
     - Search for the existence and reputation of the hashes in resources like VirusTotal, Hybrid-Analysis, CISCO Talos, Any.run, etc.
 
@@ -87,16 +89,16 @@ malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 The 'PowerShell Script Block Logging' logging policy must be configured (Enable).
 
 Steps to implement the logging policy with with Advanced Audit Configuration:
 
 ```
-Computer Configuration > 
-Administrative Templates > 
-Windows PowerShell > 
+Computer Configuration >
+Administrative Templates >
+Windows PowerShell >
 Turn on PowerShell Script Block Logging (Enable)
 ```
 
@@ -119,13 +121,14 @@ tags = [
   "Windows",
   "Threat Detection",
   "Execution",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent"
 ]
 timestamp_override = "event.ingested"
 type = "query"
 query = """
-event.category:process and 
+event.category:process and
   powershell.file.script_block_text:(
     "New-InMemoryModule" or
     "Add-Win32Type" or

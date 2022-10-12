@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2021/07/20"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/20"
 
 [rule]
 author = [ "Octodet" ]
@@ -23,7 +25,7 @@ Microsoft Windows Defender is an antivirus product built into Microsoft Windows.
 used to prevent and stop malware, it's important to monitor what specific exclusions are made to the product's configuration
 settings. These can often be signs of an adversary or malware trying to bypass Windows Defender's capabilities. One of
 the more notable [examples](https://www.cyberbit.com/blog/endpoint-security/latest-trickbot-variant-has-new-tricks-up-its-sleeve/)
-was observed in 2018 where Trickbot incorporated mechanisms to disable Windows Defender to avoid detection. 
+was observed in 2018 where Trickbot incorporated mechanisms to disable Windows Defender to avoid detection.
 
 #### Possible investigation steps
 
@@ -39,7 +41,7 @@ for prevalence, whether they are located in expected locations, and if they are 
       - Attempts to contact external domains and addresses.
       - File and registry access, modification, and creation activities.
       - Service creation and launch activities.
-      - Scheduled tasks creation.
+      - Scheduled task creation.
   - Use the PowerShell Get-FileHash cmdlet to get the files' SHA-256 hash values.
     - Search for the existence and reputation of the hashes in resources like VirusTotal, Hybrid-Analysis, CISCO Talos, Any.run, etc.
 
@@ -72,7 +74,7 @@ malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -88,6 +90,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"

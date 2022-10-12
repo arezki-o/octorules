@@ -1,9 +1,9 @@
 [metadata]
 creation_date = "2020/10/13"
 maturity = "production"
-updated_date = "2022/03/31"
-min_stack_comments = "Comprehensive timeline templates only available in 8.2+"
-min_stack_version = "8.2"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/15"
 
 [rule]
 author = [ "Octodet" ]
@@ -17,7 +17,7 @@ language = "eql"
 license = "Elastic License v2"
 name = "ImageLoad via Windows Update Auto Update Client"
 note = """
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -40,7 +40,7 @@ timeline_title = "Comprehensive Process Timeline"
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type in ("start", "process_started") and
+process where event.type == "start" and
   (process.pe.original_file_name == "wuauclt.exe" or process.name : "wuauclt.exe") and
    /* necessary windows update client args to load a dll */
    process.args : "/RunHandlerComServer" and process.args : "/UpdateDeploymentProvider" and
@@ -53,7 +53,7 @@ process where event.type in ("start", "process_started") and
 
     [[rule.threat.technique]]
     id = "T1218"
-    name = "Signed Binary Proxy Execution"
+    name = "System Binary Proxy Execution"
     reference = "https://attack.mitre.org/techniques/T1218/"
 
     [rule.threat.tactic]

@@ -50,3 +50,4 @@ event.category:process and event.type:(start or process_started) and process.nam
     id = "TA0004"
     name = "Privilege Escalation"
     reference = "https://attack.mitre.org/tactics/TA0004/"
+tack.mitre.org/tactics/TA0004/"

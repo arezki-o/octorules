@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/09/22"
 maturity = "production"
-updated_date = "2021/07/20"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 integration = "gcp"
 
 [rule]
@@ -18,7 +20,7 @@ language = "kuery"
 license = "Elastic License v2"
 name = "GCP Storage Bucket Configuration Modification"
 note = """
-## Config
+## Setup
 
 The GCP Fleet integration, Filebeat module, or similarly structured data is required to be compatible with this rule."""
 references = [ "https://cloud.google.com/storage/docs/key-terms#buckets" ]
@@ -32,11 +34,25 @@ tags = [
   "Continuous Monitoring",
   "SecOps",
   "Identity and Access",
+  "Defense Evasion",
   "FileBeat",
   "Elastic-Agent"
 ]
 timestamp_override = "event.ingested"
 type = "query"
 query = """
-event.dataset:(googlecloud.audit or gcp.audit) and event.action:"storage.buckets.update" and event.outcome:success
+event.dataset:gcp.audit and event.action:"storage.buckets.update" and event.outcome:success
 """
+
+  [[rule.threat]]
+  framework = "MITRE ATT&CK"
+
+    [[rule.threat.technique]]
+    id = "T1578"
+    name = "Modify Cloud Compute Infrastructure"
+    reference = "https://attack.mitre.org/techniques/T1578/"
+
+    [rule.threat.tactic]
+    id = "TA0005"
+    name = "Defense Evasion"
+    reference = "https://attack.mitre.org/tactics/TA0005/"

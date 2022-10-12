@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2022/02/22"
 maturity = "production"
-updated_date = "2022/05/23"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/13"
 
 [rule]
 author = [ "Octodet" ]
@@ -73,6 +75,7 @@ tags = [
   "Threat Detection",
   "Persistence",
   "Active Directory",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent"
 ]

@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/12/23"
 maturity = "production"
-updated_date = "2022/05/21"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/13"
 
 [rule]
 author = [ "Octodet" ]
@@ -33,7 +35,7 @@ software installations.
 - Identify the user account that performed the action and whether it should perform this kind of action.
 - Contact the account owner and confirm whether they are aware of this activity.
 - Investigate other alerts associated with the user/host during the past 48 hours.
-- Check if this operation is done under change management and approved according to the organization's policy.
+- Check if this operation was approved and performed according to the organization's change management policy.
 
 ### False positive analysis
 
@@ -61,7 +63,7 @@ malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -75,6 +77,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -92,7 +95,12 @@ registry where event.type in ("creation", "change") and
       registry.path:"HKLM\\\\System\\\\*ControlSet*\\\\Services\\\\WinDefend\\\\Start" and
       registry.data.strings in ("3", "4", "0x00000003", "0x00000004")
    )
-  )
+  ) and
+
+  not process.executable :
+           ("?:\\\\WINDOWS\\\\system32\\\\services.exe",
+            "?:\\\\Windows\\\\System32\\\\svchost.exe",
+            "?:\\\\Program Files (x86)\\\\Trend Micro\\\\Security Agent\\\\NTRmv.exe")
 """
 
   [[rule.threat]]

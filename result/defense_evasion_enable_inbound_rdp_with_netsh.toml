@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/10/13"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/15"
 
 [rule]
 author = [ "Octodet" ]
@@ -57,7 +59,7 @@ of it, whether RDP should be open, and whether the action exposes the environmen
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -70,6 +72,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -77,7 +80,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type in ("start", "process_started") and
+process where event.type == "start" and
  (process.name : "netsh.exe" or process.pe.original_file_name == "netsh.exe") and
  process.args : ("localport=3389", "RemoteDesktop", "group=\\"remote desktop\\"") and
  process.args : ("action=allow", "enable=Yes", "enable")

@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/08/12"
 maturity = "production"
-updated_date = "2021/12/30"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 integration = "azure"
 
 [rule]
@@ -11,7 +13,7 @@ Identifies when a virtual network device is modified or deleted. This can be a n
 appliance, virtual hub, or virtual router.
 """
 false_positives = [
-  "Virtual Network Device modification or deletion may be performed by a system administrator. Verify\nwhether the user identity, user agent, and/or hostname should be making changes in your environment. \nVirtual Network Device modification or deletion by unfamiliar users should be investigated. If known\nbehavior is causing false positives, it can be exempted from the rule.\n    "
+  "Virtual Network Device modification or deletion may be performed by a system administrator. Verify\nwhether the user identity, user agent, and/or hostname should be making changes in your environment.\nVirtual Network Device modification or deletion by unfamiliar users should be investigated. If known\nbehavior is causing false positives, it can be exempted from the rule.\n    "
 ]
 from = "now-25m"
 index = [ "filebeat-*", "logs-azure*" ]
@@ -19,7 +21,7 @@ language = "kuery"
 license = "Elastic License v2"
 name = "Azure Virtual Network Device Modified or Deleted"
 note = """
-## Config
+## Setup
 
 The Azure Fleet integration, Filebeat module, or similarly structured data is required to be compatible with this rule."""
 references = [
@@ -35,6 +37,7 @@ tags = [
   "Continuous Monitoring",
   "SecOps",
   "Network Security",
+  "Impact",
   "FileBeat",
   "Elastic-Agent"
 ]
@@ -46,7 +49,7 @@ event.dataset:azure.activitylogs and azure.activitylogs.operation_name:("MICROSO
 "MICROSOFT.NETWORK/NETWORKINTERFACES/JOIN/ACTION" or "MICROSOFT.NETWORK/NETWORKINTERFACES/DELETE" or
 "MICROSOFT.NETWORK/NETWORKVIRTUALAPPLIANCES/DELETE" or "MICROSOFT.NETWORK/NETWORKVIRTUALAPPLIANCES/WRITE" or
 "MICROSOFT.NETWORK/VIRTUALHUBS/DELETE" or "MICROSOFT.NETWORK/VIRTUALHUBS/WRITE" or
-"MICROSOFT.NETWORK/VIRTUALROUTERS/WRITE" or "MICROSOFT.NETWORK/VIRTUALROUTERS/DELETE") and 
+"MICROSOFT.NETWORK/VIRTUALROUTERS/WRITE" or "MICROSOFT.NETWORK/VIRTUALROUTERS/DELETE") and
 event.outcome:(Success or success)
 """
 

@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/10/14"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/15"
 
 [rule]
 author = [ "Octodet" ]
@@ -60,7 +62,7 @@ malware components.
 mean time to respond (MTTR).
 
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -76,6 +78,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Command and Control",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -83,7 +86,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type in ("start", "process_started") and
+process where event.type == "start" and
   /* RDP port and usual SSH tunneling related switches in command line */
   process.args : "*:3389" and
   process.args : ("-L", "-P", "-R", "-pw", "-ssh")

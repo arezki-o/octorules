@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/02/18"
 maturity = "production"
-updated_date = "2022/05/23"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/15"
 
 [rule]
 author = [ "Octodet" ]
@@ -57,7 +59,7 @@ malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -70,6 +72,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -77,10 +80,15 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type in ("process_started", "start") and
-  (process.name : "wevtutil.exe" or process.pe.original_file_name == "wevtutil.exe") and
-    process.args : ("/e:false", "cl", "clear-log") or
-  process.name : ("powershell.exe", "pwsh.exe", "powershell_ise.exe") and process.args : "Clear-EventLog"
+process where event.type == "start" and
+  (
+    (process.name : "wevtutil.exe" or process.pe.original_file_name == "wevtutil.exe") and
+    process.args : ("/e:false", "cl", "clear-log")
+  ) or
+  (
+    process.name : ("powershell.exe", "pwsh.exe", "powershell_ise.exe") and
+    process.args : "Clear-EventLog"
+  )
 """
 
   [[rule.threat]]

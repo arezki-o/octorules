@@ -1,9 +1,9 @@
 [metadata]
 creation_date = "2021/11/25"
 maturity = "production"
-min_stack_comments = "EQL optional fields syntax was not introduced until 7.16"
-min_stack_version = "7.16.0"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/20"
 
 [rule]
 author = [ "Octodet" ]
@@ -41,7 +41,7 @@ for prevalence, whether they are located in expected locations, and if they are 
       - Attempts to contact external domains and addresses.
       - File and registry access, modification, and creation activities.
       - Service creation and launch activities.
-      - Scheduled tasks creation.
+      - Scheduled task creation.
   - Use the PowerShell Get-FileHash cmdlet to get the files' SHA-256 hash values.
     - Search for the existence and reputation of the hashes in resources like VirusTotal, Hybrid-Analysis, CISCO Talos, Any.run, etc.
 
@@ -73,7 +73,7 @@ systems, and web services.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -87,6 +87,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Privilege Escalation",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -96,15 +97,15 @@ type = "eql"
 query = """
 /* This rule is compatible with both Sysmon and Elastic Endpoint */
 
-process where event.type == "start" and 
+process where event.type == "start" and
     (?process.Ext.token.integrity_level_name : "System" or
     ?winlog.event_data.IntegrityLevel : "System") and
     (
-      (process.name : "elevation_service.exe" and 
+      (process.name : "elevation_service.exe" and
        not process.pe.original_file_name == "elevation_service.exe") or
 
-      (process.parent.name : "elevation_service.exe" and 
-       process.name : ("rundll32.exe", "cmd.exe", "powershell.exe")) 
+      (process.parent.name : "elevation_service.exe" and
+       process.name : ("rundll32.exe", "cmd.exe", "powershell.exe"))
     )
 """
 

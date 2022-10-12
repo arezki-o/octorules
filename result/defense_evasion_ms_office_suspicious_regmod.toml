@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2022/01/12"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/20"
 
 [rule]
 author = [ "Octodet" ]
@@ -54,7 +56,7 @@ for prevalence, whether they are located in expected locations, and if they are 
       - Attempts to contact external domains and addresses.
       - File and registry access, modification, and creation activities.
       - Service creation and launch activities.
-      - Scheduled tasks creation.
+      - Scheduled task creation.
   - Use the PowerShell Get-FileHash cmdlet to get the files' SHA-256 hash values.
     - Search for the existence and reputation of the hashes in resources like VirusTotal, Hybrid-Analysis, CISCO Talos, Any.run, etc.
 
@@ -79,7 +81,7 @@ malware components.
 mean time to respond (MTTR).
 
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -92,6 +94,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent"
 ]
@@ -102,7 +105,7 @@ registry where event.type == "change" and
     registry.path : (
         "HKU\\\\S-1-5-21-*\\\\SOFTWARE\\\\Microsoft\\\\Office\\\\*\\\\Security\\\\AccessVBOM",
         "HKU\\\\S-1-5-21-*\\\\SOFTWARE\\\\Microsoft\\\\Office\\\\*\\\\Security\\\\VbaWarnings"
-        ) and 
+        ) and
     registry.data.strings == "0x00000001" and
     process.name : ("cscript.exe", "wscript.exe", "mshta.exe", "mshta.exe", "winword.exe", "excel.exe")
 """

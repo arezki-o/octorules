@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2022/02/24"
 maturity = "production"
-updated_date = "2022/06/03"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/13"
 
 [rule]
 author = ["Elastic"]
@@ -65,13 +67,13 @@ should be mapped and reviewed by the security team for alternatives as this weak
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 The 'Audit Directory Service Changes' logging policy must be configured for (Success).
 Steps to implement the logging policy with Advanced Audit Configuration:
 
 ```
-Computer Configuration > 
+Computer Configuration >
 Policies >
 Windows Settings >
 Security Settings >
@@ -90,7 +92,7 @@ references = [
 risk_score = 73
 rule_id = "61d29caf-6c15-4d1e-9ccb-7ad12ccc0bc7"
 severity = "high"
-tags = ["Elastic", "Host", "Windows", "Threat Detection", "Persistence", "Active Directory"]
+tags = ["Elastic", "Host", "Windows", "Threat Detection", "Persistence", "Active Directory", "has_guide"]
 timestamp_override = "event.ingested"
 type = "eql"
 

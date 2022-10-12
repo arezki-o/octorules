@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/11/20"
 maturity = "production"
-updated_date = "2022/04/06"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/13"
 
 [rule]
 author = [ "Octodet" ]
@@ -60,6 +62,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Lateral Movement",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"

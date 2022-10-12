@@ -1,9 +1,9 @@
 [metadata]
 creation_date = "2020/02/18"
 maturity = "production"
-min_stack_comments = "EQL optional fields syntax was not introduced until 7.16"
-min_stack_version = "7.16.0"
-updated_date = "2022/04/04"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 
 [rule]
 author = [ "Octodet" ]
@@ -66,7 +66,7 @@ sequence by process.entity_id
 
     [[rule.threat.technique]]
     id = "T1218"
-    name = "Signed Binary Proxy Execution"
+    name = "System Binary Proxy Execution"
     reference = "https://attack.mitre.org/techniques/T1218/"
 
       [[rule.threat.technique.subtechnique]]

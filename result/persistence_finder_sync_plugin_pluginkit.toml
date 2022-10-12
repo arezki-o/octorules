@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/12/18"
 maturity = "production"
-updated_date = "2021/08/25"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 
 [rule]
 author = [ "Octodet" ]
@@ -31,23 +33,24 @@ tags = [
   "Elastic-Agent",
   "Endpoint Security"
 ]
+timestamp_override = "event.ingested"
 type = "eql"
 query = """
-sequence by host.id, user.id with maxspan = 5s
-  [process where event.type in ("start", "process_started") and process.name : "pluginkit" and process.args : "-a"]
-  [process where event.type in ("start", "process_started") and process.name : "pluginkit" and
-    process.args : "-e" and process.args : "use" and process.args : "-i" and
-    not process.args :
-    (
-      "com.google.GoogleDrive.FinderSyncAPIExtension",
-      "com.google.drivefs.findersync",
-      "com.boxcryptor.osx.Rednif",
-      "com.adobe.accmac.ACCFinderSync",
-      "com.microsoft.OneDrive.FinderSync",
-      "com.insynchq.Insync.Insync-Finder-Integration",
-      "com.box.desktop.findersyncext"
-    )
-  ]
+process where event.type in ("start", "process_started") and process.name : "pluginkit" and
+  process.args : "-e" and process.args : "use" and process.args : "-i" and
+  not process.args :
+  (
+    "com.google.GoogleDrive.FinderSyncAPIExtension",
+    "com.google.drivefs.findersync",
+    "com.boxcryptor.osx.Rednif",
+    "com.adobe.accmac.ACCFinderSync",
+    "com.microsoft.OneDrive.FinderSync",
+    "com.insynchq.Insync.Insync-Finder-Integration",
+    "com.box.desktop.findersyncext"
+  ) and
+  not process.parent.executable : (
+    "/Library/Application Support/IDriveforMac/IDriveHelperTools/FinderPluginApp.app/Contents/MacOS/FinderPluginApp"
+  )
 """
 
   [[rule.threat]]

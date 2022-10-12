@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2021/11/08"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/13"
 
 [rule]
 author = [ "Octodet" ]
@@ -51,19 +53,19 @@ potentially malicious commands or binaries.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 The 'Audit Detailed File Share' audit policy must be configured (Success Failure).
 Steps to implement the logging policy with with Advanced Audit Configuration:
 
 ```
-Computer Configuration > 
-Policies > 
-Windows Settings > 
-Security Settings > 
-Advanced Audit Policies Configuration > 
-Audit Policies > 
-Object Access > 
+Computer Configuration >
+Policies >
+Windows Settings >
+Security Settings >
+Advanced Audit Policies Configuration >
+Audit Policies >
+Object Access >
 Audit Detailed File Share (Success,Failure)
 ```
 
@@ -71,13 +73,13 @@ The 'Audit Directory Service Changes' audit policy must be configured (Success F
 Steps to implement the logging policy with with Advanced Audit Configuration:
 
 ```
-Computer Configuration > 
-Policies > 
-Windows Settings > 
-Security Settings > 
-Advanced Audit Policies Configuration > 
-Audit Policies > 
-DS Access > 
+Computer Configuration >
+Policies >
+Windows Settings >
+Security Settings >
+Advanced Audit Policies Configuration >
+Audit Policies >
+DS Access >
 Audit Directory Service Changes (Success,Failure)
 ```
 """
@@ -96,6 +98,7 @@ tags = [
   "Threat Detection",
   "Privilege Escalation",
   "Active Directory",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent"
 ]

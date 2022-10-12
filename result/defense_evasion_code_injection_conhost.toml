@@ -110,3 +110,4 @@ process where event.type in ("start", "process_started") and
     id = "TA0005"
     name = "Defense Evasion"
     reference = "https://attack.mitre.org/tactics/TA0005/"
+ack.mitre.org/tactics/TA0005/"

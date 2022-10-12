@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2022/01/31"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/13"
 
 [rule]
 author = ["Elastic"]
@@ -59,16 +61,16 @@ malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 The 'PowerShell Script Block Logging' logging policy must be configured (Enable).
 
 Steps to implement the logging policy with with Advanced Audit Configuration:
 
 ```
-Computer Configuration > 
-Administrative Templates > 
-Windows PowerShell > 
+Computer Configuration >
+Administrative Templates >
+Windows PowerShell >
 Turn on PowerShell Script Block Logging (Enable)
 ```
 
@@ -86,13 +88,13 @@ references = [
 risk_score = 47
 rule_id = "818e23e6-2094-4f0e-8c01-22d30f3506c6"
 severity = "medium"
-tags = ["Elastic", "Host", "Windows", "Threat Detection", "Defense Evasion"]
+tags = ["Elastic", "Host", "Windows", "Threat Detection", "Defense Evasion", "has_guide"]
 timestamp_override = "event.ingested"
 type = "eql"
 
 query = '''
 registry where event.type == "change" and
-    registry.path : 
+    registry.path :
         "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\PowerShell\\ScriptBlockLogging\\EnableScriptBlockLogging"
     and registry.data.strings : ("0", "0x00000000")
 '''

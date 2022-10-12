@@ -56,3 +56,4 @@ event.category:process and event.type:(start or process_started) and
     id = "TA0005"
     name = "Defense Evasion"
     reference = "https://attack.mitre.org/tactics/TA0005/"
+tack.mitre.org/tactics/TA0005/"

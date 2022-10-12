@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/03/30"
 maturity = "production"
-updated_date = "2022/05/21"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/20"
 
 [rule]
 author = [ "Octodet" ]
@@ -38,7 +40,7 @@ are not limited to, the Downloads and Document folders and the folder configured
       - Attempts to contact external domains and addresses.
       - File and registry access, modification, and creation activities.
       - Service creation and launch activities.
-      - Scheduled tasks creation.
+      - Scheduled task creation.
   - Use the PowerShell `Get-FileHash` cmdlet to get the files' SHA-256 hash values.
     - Search for the existence and reputation of the hashes in resources like VirusTotal, Hybrid-Analysis, CISCO Talos, Any.run, etc.
 
@@ -63,7 +65,7 @@ systems, and web services.
 - Remove and block malicious artifacts identified during triage.
 - Run a full scan using the antimalware tool in place. This scan can reveal additional artifacts left in the system,
 persistence mechanisms, and malware components.
-- Determine the initial vector abused by the attacker and take action to prevent reinfection through the same vector. 
+- Determine the initial vector abused by the attacker and take action to prevent reinfection through the same vector.
   - If the malicious file was delivered via phishing:
     - Block the email sender from sending future emails.
     - Block the malicious web pages.
@@ -72,7 +74,7 @@ persistence mechanisms, and malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -85,6 +87,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Execution",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -92,7 +95,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type in ("start", "process_started") and
+process where event.type == "start" and
   process.parent.name : ("AcroRd32.exe",
                          "Acrobat.exe",
                          "FoxitPhantomPDF.exe",

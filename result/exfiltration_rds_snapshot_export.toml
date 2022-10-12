@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2021/06/06"
 maturity = "production"
-updated_date = "2021/09/30"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 integration = "aws"
 
 [rule]
@@ -17,7 +19,7 @@ language = "kuery"
 license = "Elastic License v2"
 name = "AWS RDS Snapshot Export"
 note = """
-## Config
+## Setup
 
 The AWS Fleet integration, Filebeat module, or similarly structured data is required to be compatible with this rule."""
 references = [
@@ -33,6 +35,7 @@ tags = [
   "Continuous Monitoring",
   "SecOps",
   "Asset Visibility",
+  "Exfiltration",
   "FileBeat",
   "Elastic-Agent"
 ]
@@ -49,4 +52,3 @@ event.dataset:aws.cloudtrail and event.provider:rds.amazonaws.com and event.acti
     name = "Exfiltration"
     id = "TA0010"
     reference = "https://attack.mitre.org/tactics/TA0010/"
-actics/TA0010/"

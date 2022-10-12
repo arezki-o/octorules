@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/09/23"
 maturity = "production"
-updated_date = "2021/07/20"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 integration = "gcp"
 
 [rule]
@@ -12,14 +14,14 @@ Identifies the creation of a topic in Google Cloud Platform (GCP). In GCP, the p
 used to forward messages from publishers to subscribers.
 """
 false_positives = [
-  "Topic creations may be done by a system or network administrator.  Verify whether the user email, resource name,\nand/or hostname should be making changes in your environment. Topic creations by unfamiliar users or hosts should\nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Topic creations may be done by a system or network administrator. Verify whether the user email, resource name,\nand/or hostname should be making changes in your environment. Topic creations by unfamiliar users or hosts should\nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 index = [ "filebeat-*", "logs-gcp*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "GCP Pub/Sub Topic Creation"
 note = """
-## Config
+## Setup
 
 The GCP Fleet integration, Filebeat module, or similarly structured data is required to be compatible with this rule."""
 references = [ "https://cloud.google.com/pubsub/docs/admin" ]
@@ -39,7 +41,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "query"
 query = """
-event.dataset:(googlecloud.audit or gcp.audit) and event.action:google.pubsub.v*.Publisher.CreateTopic and event.outcome:success
+event.dataset:gcp.audit and event.action:google.pubsub.v*.Publisher.CreateTopic and event.outcome:success
 """
 
   [[rule.threat]]

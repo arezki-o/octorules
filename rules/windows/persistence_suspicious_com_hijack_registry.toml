@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2020/11/18"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/20"
 
 [rule]
 author = ["Elastic"]
@@ -33,7 +35,7 @@ for prevalence, whether they are located in expected locations, and if they are 
       - Attempts to contact external domains and addresses.
       - File and registry access, modification, and creation activities.
       - Service creation and launch activities.
-      - Scheduled tasks creation.
+      - Scheduled task creation.
   - Use the PowerShell Get-FileHash cmdlet to get the files' SHA-256 hash values.
     - Search for the existence and reputation of the hashes in resources like VirusTotal, Hybrid-Analysis, CISCO Talos, Any.run, etc.
 
@@ -62,7 +64,7 @@ malware components.
 mean time to respond (MTTR).
 
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -72,20 +74,20 @@ references = [
 risk_score = 47
 rule_id = "16a52c14-7883-47af-8745-9357803f0d4c"
 severity = "medium"
-tags = ["Elastic", "Host", "Windows", "Threat Detection", "Persistence"]
+tags = ["Elastic", "Host", "Windows", "Threat Detection", "Persistence", "has_guide"]
 timestamp_override = "event.ingested"
 type = "eql"
 
 query = '''
 registry where
  (registry.path : "HK*}\\InprocServer32\\" and registry.data.strings: ("scrobj.dll", "C:\\*\\scrobj.dll") and
- not registry.path : "*\\{06290BD*-48AA-11D2-8432-006008C3FBFC}\\*") 
+ not registry.path : "*\\{06290BD*-48AA-11D2-8432-006008C3FBFC}\\*")
  or
  /* in general COM Registry changes on Users Hive is less noisy and worth alerting */
  (registry.path : ("HKEY_USERS\\*Classes\\*\\InprocServer32\\",
                    "HKEY_USERS\\*Classes\\*\\LocalServer32\\",
-                   "HKEY_USERS\\*Classes\\*\\DelegateExecute\\", 
-                   "HKEY_USERS\\*Classes\\*\\TreatAs\\", 
+                   "HKEY_USERS\\*Classes\\*\\DelegateExecute\\",
+                   "HKEY_USERS\\*Classes\\*\\TreatAs\\",
                    "HKEY_USERS\\*Classes\\CLSID\\*\\ScriptletURL\\") and
  not (process.executable : "?:\\Program Files*\\Veeam\\Backup and Replication\\Console\\veeam.backup.shell.exe" and
       registry.path : "HKEY_USERS\\S-1-5-21-*_Classes\\CLSID\\*\\LocalServer32\\") and

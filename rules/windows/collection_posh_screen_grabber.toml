@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2021/10/19"
 maturity = "production"
-updated_date = "2022/05/09"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/13"
 
 [rule]
 author = ["Elastic"]
@@ -60,15 +62,15 @@ malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 The 'PowerShell Script Block Logging' logging policy must be enabled.
 Steps to implement the logging policy with with Advanced Audit Configuration:
 
 ```
-Computer Configuration > 
-Administrative Templates > 
-Windows PowerShell > 
+Computer Configuration >
+Administrative Templates >
+Windows PowerShell >
 Turn on PowerShell Script Block Logging (Enable)
 ```
 
@@ -82,12 +84,12 @@ references = ["https://docs.microsoft.com/en-us/dotnet/api/system.drawing.graphi
 risk_score = 47
 rule_id = "959a7353-1129-4aa7-9084-30746b256a70"
 severity = "medium"
-tags = ["Elastic", "Host", "Windows", "Threat Detection", "Collection"]
+tags = ["Elastic", "Host", "Windows", "Threat Detection", "Collection", "has_guide"]
 timestamp_override = "event.ingested"
 type = "query"
 
 query = '''
-event.category:process and 
+event.category:process and
   powershell.file.script_block_text : (
     CopyFromScreen and
     ("System.Drawing.Bitmap" or "Drawing.Bitmap")

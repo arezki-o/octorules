@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2021/05/06"
 maturity = "production"
-updated_date = "2022/05/23"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/15"
 
 [rule]
 author = [ "Octodet", "Ivan Ninichuck", "Austin Songer" ]
@@ -52,7 +54,7 @@ malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -69,6 +71,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "has_guide",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -76,7 +79,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type in ("start", "process_started") and
+process where event.type == "start" and
 
   ((process.name:"logman.exe" or process.pe.original_file_name == "Logman.exe") and
       process.args : "EventLog-*" and process.args : ("stop", "delete")) or
@@ -84,7 +87,7 @@ process where event.type in ("start", "process_started") and
   ((process.name : ("pwsh.exe", "powershell.exe", "powershell_ise.exe") or process.pe.original_file_name in
       ("pwsh.exe", "powershell.exe", "powershell_ise.exe")) and
 \tprocess.args : "Set-Service" and process.args: "EventLog" and process.args : "Disabled")  or
-\t
+
   ((process.name:"auditpol.exe" or process.pe.original_file_name == "AUDITPOL.EXE") and process.args : "/success:disable")
 """
 

@@ -1,14 +1,16 @@
 [metadata]
 creation_date = "2022/04/12"
 maturity = "production"
-updated_date = "2022/04/12"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/08/24"
 integration = "aws"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies the creation of an Amazon Redshift cluster. Unexpected creation of this cluster by a non-administrative user 
-may indicate a permission or role issue with current users. If unexpected, the resource may not properly be configured 
+Identifies the creation of an Amazon Redshift cluster. Unexpected creation of this cluster by a non-administrative user
+may indicate a permission or role issue with current users. If unexpected, the resource may not properly be configured
 and could introduce security vulnerabilities.
 """
 false_positives = [
@@ -21,7 +23,7 @@ language = "kuery"
 license = "Elastic License v2"
 name = "AWS Redshift Cluster Creation"
 note = """
-## Config
+## Setup
 
 The AWS Fleet integration, Filebeat module, or similarly structured data is required to be compatible with this rule."""
 references = [
@@ -38,6 +40,7 @@ tags = [
   "Continuous Monitoring",
   "SecOps",
   "Asset Visibility",
+  "Persistence",
   "FileBeat",
   "Elastic-Agent"
 ]

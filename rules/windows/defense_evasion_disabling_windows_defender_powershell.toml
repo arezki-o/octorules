@@ -1,7 +1,9 @@
 [metadata]
 creation_date = "2021/07/07"
 maturity = "production"
-updated_date = "2022/05/21"
+min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_version = "8.3.0"
+updated_date = "2022/09/13"
 
 [rule]
 author = ["Elastic"]
@@ -59,7 +61,7 @@ malware components.
 - Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
 mean time to respond (MTTR).
 
-## Config
+## Setup
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -69,7 +71,7 @@ references = [
 risk_score = 47
 rule_id = "c8cccb06-faf2-4cd5-886e-2c9636cfcb87"
 severity = "medium"
-tags = ["Elastic", "Host", "Windows", "Threat Detection", "Defense Evasion"]
+tags = ["Elastic", "Host", "Windows", "Threat Detection", "Defense Evasion", "has_guide"]
 timestamp_override = "event.ingested"
 type = "eql"
 
