@@ -12,8 +12,8 @@ TEST WITH SHARED EXCEPTION INCLUDED = Identifies the use of a compression utilit
 and system configurations.
 """
 from = "now-9m"
-exceptions_list = [{"id": "14a323a0-bce2-11ed-8a25-3346d70cd48f","list_id": "924bf4d1-eb07-4722-9f1b-f006c988a433", "namespace_type": "single",
-"type": "rule_default"}]
+exceptions_list = [""id": "14a323a0-bce2-11ed-8a25-3346d70cd48f","list_id": "924bf4d1-eb07-4722-9f1b-f006c988a433", "namespace_type": "single",
+"type": "rule_default""]
 index = ["auditbeat-*", "logs-endpoint.events.*"]
 language = "kuery"
 license = "Elastic License v2"
