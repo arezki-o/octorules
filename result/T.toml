@@ -8,7 +8,7 @@ updated_date = "2022/08/24"
 [rule]
 author = ["Elastic"]
 description = """
-ATTEMPT 2ND -- TEST WITH SHARED EXCEPTION INCLUDED  = Identifies the use of a compression utility to collect known files containing sensitive information, such as credentials
+ATTEMPT 2ND --  TEST WITH SHARED EXCEPTION INCLUDED  = Identifies the use of a compression utility to collect known files containing sensitive information, such as credentials
 and system configurations.
 """
 from = "now-9m"
