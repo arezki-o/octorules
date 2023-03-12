@@ -9,7 +9,7 @@ updated_date = "2022/12/14"
 [rule]
 author = [ "Arezkii" ]
 description = """
-MYDESC: A request to a web application returned a 405 response, which indicates the web application declined to process the
+MYDESC AGAIN: A request to a web application returned a 405 response, which indicates the web application declined to process the
 request because the HTTP method is not allowed for the resource.
 """
 false_positives = [
