@@ -19,6 +19,14 @@ jobs:
         run: echo "${{github.sha}}"
       - name: echo pwd & init
         run: pwd && git init
+      - name: Get committed files
+        id: get-committed-files
+        run: |
+          git fetch --unshallow || true
+          files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          echo "::set-output name=files::$files"  
+      - name: cat 
+        run:  echo ${{ steps.get-committed-files.outputs.files }}
       - name: Filter result files
         run: |
           get-modified-files=$(git diff-tree --no-commit-id --name-only -r ${{github.sha}})
