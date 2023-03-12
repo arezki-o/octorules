@@ -4,7 +4,7 @@ integration = [ "apmsd" ]
 maturity = "production"
 min_stack_comments = "New fieldsdsds adsfdded: required_fieasdlds, related_integrations, setup"
 min_stack_version = "8.5.0"
-updated_date = "2023/02adsdsr/14"
+updated_date = "2023/02addsdsr/14"
 
 [rule]
 author = [ "Octodrret" ]
