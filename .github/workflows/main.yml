@@ -7,20 +7,12 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - name: Print input
-        run: cat ${{ github.event.inputs.input }}
-      - name: Print commit SHA
-        run: echo "${{github.sha}}"
-      - name: Get changed files using defaults
-        id: changed-files
-        uses: tj-actions/changed-files@v32
-      - name: List all added files
-        run: |
-           for file in ${{ steps.changed-files.outputs. modified_files }}; do
-              echo "$file was modified."
-           done  
-      - name: Get changed files
-        run: git diff-tree --no-commit-id --name-only -r ${{github.sha}}
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+           fetch-depth: 0
+      - name: Get changes
+        run: git diff --name-only ${{ github.event.before }} ${{ github.event.after }}
       - name: Filter result files
         run: |
           changed_files=$(git diff-tree --no-commit-id --name-only -r ${{github.sha}})
