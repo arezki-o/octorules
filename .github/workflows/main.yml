@@ -12,23 +12,27 @@ jobs:
         with:
           ref: ${{ github.sha }}
           fetch-depth: 0  
+      - name: cd workspace
+        run: cd ${{ github.workspace }} && git init    
+      - name: Get modified files
+        id: get_modified_files
+        run: |
+          echo "Retrieving modified files..."
+          get_modified_files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
+          if [[ -z "$get_modified_files" ]]; then
+            echo "No modified files found."
+          else
+            echo "Modified files:"
+            echo "${get_modified_files}"
+          fi
+        shell: bash
+      - name: Set output
+        if: steps.get_modified_files.outputs.modified-files != ''
+        run: echo "::set-output name=modified_files::${{ steps.get_modified_files.outputs.modified-files }}" 
       - name: Print commit SHA
         run: echo "${{ github.sha }}"
       - name: echo pwd 
         run: pwd 
-      - name: cd workspace
-        run: cd ${{ github.workspace }} && git init
-      - name: Get modified files
-        id: get-modified-files
-        run: |
-          echo "Retrieving modified files..."
-          get-modified-files=$(git diff --name-only ${{ github.event.before }} ${{ github.event.after }})
-          echo "::set-output name=modified-files::${get-modified-files}"
-
-      - name: Print modified files
-        run: |
-          echo "Modified files:"
-          echo "${{ steps.get-modified-files.outputs.modified-files }}"   
       - name: Filter result files
         run: |
           get-modified-files=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .css$ | xargs)
