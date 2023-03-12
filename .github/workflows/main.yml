@@ -14,8 +14,10 @@ jobs:
           fetch-depth: 0  
       - name: Print commit SHA
         run: echo "${{ github.sha }}"
-      - name: echo pwd & init
-        run: pwd && git init
+      - name: echo pwd 
+        run: pwd 
+      - name: cd workspace
+        run: cd ${{ github.workspace }} && pwd
       - name: Filter result files
         run: |
           get-modified-files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
