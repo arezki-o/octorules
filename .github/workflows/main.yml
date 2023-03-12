@@ -24,9 +24,9 @@ jobs:
       - name: Sync code
         run: |
           if [ ! -d /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")" ]; then
-            sudo mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
+             mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
           fi
-          cp -r ${{ github.workspace }} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
+          sudo cp -r ${{ github.workspace }} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
           cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
           cp ../../deprecated.sh .
           if [ -e deprecated ]; then
@@ -38,3 +38,4 @@ jobs:
           bash deprecated.sh deprecated
           cp ../../handler.sh .
           bash handler.sh ${{ github.event.inputs.input }}
+      
