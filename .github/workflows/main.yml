@@ -24,7 +24,7 @@ jobs:
       - name: Sync code
         run: |
           if [ ! -d /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")" ]; then
-            mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
+            sudo mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
           fi
           cp -r ${{ github.workspace }} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
           cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
