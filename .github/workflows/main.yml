@@ -39,5 +39,7 @@ jobs:
           done
           bash deprecated.sh deprecated
           cp ../../handler.sh .
-          bash handler.sh 
+          bash handler.sh
+      - name: Cleanup
+        run: rm -rf /home/ubuntu/actions-runner/_work
       
