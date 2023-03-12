@@ -3,6 +3,8 @@ on:
   push:
     branches:
       - main
+    paths:
+      - 'result/**'   
 jobs:
   deploy:
     runs-on: self-hosted
