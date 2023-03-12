@@ -27,15 +27,15 @@ jobs:
              mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
           fi
           sudo cp -r ${{ github.workspace }} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
-          cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
-          cp ../../deprecated.sh .
+          sudo cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
+          sudo cp ../../deprecated.sh .
           if [ -e deprecated ]; then
             rm deprecated
           fi
           for rule in ./rules/_deprecated/*toml; do
             grep -m 1 "^name =" $rule | awk -F\" '{print $2}' >> deprecated
           done
-          bash deprecated.sh deprecated
-          cp ../../handler.sh .
-          bash handler.sh ${{ github.event.inputs.input }}
+          sudo bash deprecated.sh deprecated
+          sudo cp ../../handler.sh .
+          bash handler.sh 
       
