@@ -19,11 +19,14 @@ jobs:
       - name: Filter result files
         run: |
           get-modified-files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
-          echo $get-modified-files
+          echo "$get-modified-files"
           if echo "$get-modified-files" | grep -q result; then
             echo "$get-modified-files" | tr " " "\n" | grep result > resultrules
           fi
-          if [ -e resultrules ]; then cat resultrules; fi
+          if [ -e resultrules ]; then
+            cat resultrules
+          fi
+        shell: bash
       - name: Sync code
         run: |
           if [ ! -d /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")" ]; then
