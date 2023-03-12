@@ -26,16 +26,16 @@ jobs:
           if [ ! -d /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")" ]; then
              mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
           fi
-          sudo cp -r ${{ github.workspace }} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
+          cp -r ${{ github.workspace }} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
           cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
-          sudo cp ../../deprecated.sh .
+          cp ../../deprecated.sh .
           if [ -e deprecated ]; then
             rm deprecated
           fi
           for rule in ./rules/_deprecated/*toml; do
-            sudo grep -m 1 "^name =" $rule | awk -F\" '{print $2}' >> deprecated
+             grep -m 1 "^name =" $rule | awk -F\" '{print $2}' >> deprecated
           done
-          sudo bash deprecated.sh deprecated
-          sudo cp ../../handler.sh .
-          sudo bash handler.sh 
+          bash deprecated.sh deprecated
+          cp ../../handler.sh .
+          bash handler.sh 
       
