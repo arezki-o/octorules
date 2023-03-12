@@ -17,7 +17,7 @@ jobs:
       - name: echo pwd 
         run: pwd 
       - name: cd workspace
-        run: cd ${{ github.workspace }} && pwd
+        run: cd ${{ github.workspace }} && git init
       - name: Filter result files
         run: |
           get-modified-files=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .css$ | xargs)
