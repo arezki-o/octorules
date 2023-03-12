@@ -11,6 +11,8 @@ jobs:
         run: cat ${{ github.event.inputs.input }}
       - name: Print commit SHA
         run: echo "${{ github.sha }}"
+      - name: echo pwd
+        run: pwd
       - name: Get changed files
         run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
       - name: Filter result files
