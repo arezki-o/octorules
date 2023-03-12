@@ -27,7 +27,7 @@ jobs:
              mkdir /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
           fi
           sudo cp -r ${{ github.workspace }} /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"
-          sudo cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
+          cd /home/ubuntu/fromsync/"$(date +"%d-%m-%Y")"/octorules
           sudo cp ../../deprecated.sh .
           if [ -e deprecated ]; then
             rm deprecated
