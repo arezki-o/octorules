@@ -22,7 +22,7 @@ jobs:
         run: |
           get-modified-files=$(git diff-tree --no-commit-id --name-only -r ${{github.sha}})
           echo $get-modified-files
-          echo "::set-output name=modified_files::$modified_files"
+          echo "::set-output name=modified_files::$get-modified-files"
           if echo "$get-modified-files" | grep -q result; then
             echo "$get-modified-files" | tr " " "\n" | grep result > resultrules
           fi
