@@ -7,7 +7,7 @@ min_stack_version = "8.3.0"
 updated_date = "2022/12/14"
 
 [rule]
-author = [ "Arezki" ]
+author = [ "Arezkii" ]
 description = """
 MYDESC: A request to a web application returned a 405 response, which indicates the web application declined to process the
 request because the HTTP method is not allowed for the resource.
