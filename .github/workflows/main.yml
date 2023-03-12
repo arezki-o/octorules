@@ -11,18 +11,15 @@ jobs:
         uses: actions/checkout@v2
         with:
           ref: ${{ github.sha }}
-          fetch-depth: 0
-      - name: Print input
-        run: cat ${{ github.event.inputs.input }}
+          fetch-depth: 0  
       - name: Print commit SHA
-        run: echo "${{github.sha}}"
+        run: echo "${{ github.sha }}"
       - name: echo pwd & init
         run: pwd && git init
       - name: Filter result files
         run: |
-          get-modified-files=$(git diff-tree --no-commit-id --name-only -r ${{github.sha}})
+          get-modified-files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
           echo $get-modified-files
-          echo "::set-output name=modified_files::$get-modified-files"
           if echo "$get-modified-files" | grep -q result; then
             echo "$get-modified-files" | tr " " "\n" | grep result > resultrules
           fi
