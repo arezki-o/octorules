@@ -14,10 +14,10 @@ jobs:
       - name: echo pwd & init
         run: pwd && git init
       - name: Get changed files
-        run: git diff-tree --no-commit-id --name-only -r ${{ github.sha }}
+        run: git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
       - name: Filter result files
         run: |
-          changed_files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          changed_files=$(git diff-tree --no-commit-id --name-only -r $GITHUB_SHA)
           echo $changed_files
           if echo "$changed_files" | grep -q result; then
             echo "$changed_files" | tr " " "\n" | grep result > resultrules
