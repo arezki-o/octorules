@@ -1,15 +1,16 @@
 [metadata]
 creation_date = "2020/11/18"
+integration = [ "endpoint" ]
 maturity = "production"
-updated_date = "2022/08/24"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Detects changes to registry persistence keys that are not commonly used or modified by legitimate programs. This could be
-an indication of an adversary's attempt to persist in a stealthy manner.
+Detects changes to registry persistence keys that are not commonly used or modified by legitimate programs. This could
+be an indication of an adversary's attempt to persist in a stealthy manner.
 """
 from = "now-9m"
 index = [ "logs-endpoint.events.*" ]
@@ -29,6 +30,7 @@ tags = [
   "Threat Detection",
   "Persistence",
   "Elastic-Agent",
+  "Endpoint Security",
   "Endpoint Security"
 ]
 timeline_id = "3e47ef71-ebfc-4520-975c-cb27fc090799"
@@ -36,7 +38,7 @@ timeline_title = "Comprehensive Registry Timeline"
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-registry where
+registry where host.os.type == "windows" and
   /* uncomment once stable length(registry.data.strings) > 0 and */
  registry.path : (
       "HKLM\\\\SOFTWARE\\\\Microsoft\\\\Windows NT\\\\CurrentVersion\\\\Terminal Server\\\\Install\\\\SOFTWARE\\\\Microsoft\\\\Windows\\\\CurrentVersion\\\\Run\\\\*",

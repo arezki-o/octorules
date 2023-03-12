@@ -1,10 +1,10 @@
 [metadata]
 creation_date = "2021/06/24"
+integration = [ "azure" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "azure"
+updated_date = "2022/12/14"
 
 [rule]
 author = [ "Octodet" ]
@@ -13,7 +13,7 @@ Identifies the deletion of Azure Kubernetes Pods. Adversaries may delete a Kuber
 of the environment.
 """
 false_positives = [
-  "Pods may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname\nshould be making changes in your environment. Pods deletions by unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Pods may be deleted by a system administrator. Verify whether the user identity, user agent, and/or hostname should\nbe making changes in your environment. Pods deletions by unfamiliar users or hosts should be investigated. If known\nbehavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
 index = [ "filebeat-*", "logs-azure*" ]

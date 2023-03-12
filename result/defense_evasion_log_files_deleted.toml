@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/11/03"
+integration = [ "endpoint" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -12,7 +13,7 @@ Identifies the deletion of sensitive Linux system logs. This may indicate an att
 forensic evidence on a system.
 """
 from = "now-9m"
-index = [ "auditbeat-*", "logs-endpoint.events.*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*", "endgame-*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "System Log File Deletion"
@@ -33,14 +34,16 @@ tags = [
   "Linux",
   "Threat Detection",
   "Defense Evasion",
+  "Elastic Endgame",
   "AuditBeat",
   "Elastic-Agent",
+  "Endpoint Security",
   "Endpoint Security"
 ]
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-file where event.type == "deletion" and
+file where host.os.type == "linux" and event.type == "deletion" and
   file.path :
     (
     "/var/run/utmp",
@@ -51,7 +54,9 @@ file where event.type == "deletion" and
     "/var/log/syslog",
     "/var/log/messages",
     "/var/log/secure",
-    "/var/log/auth.log"
+    "/var/log/auth.log",
+    "/var/log/boot.log",
+    "/var/log/kern.log"
     ) and
     not process.name : ("gzip")
 """
@@ -61,8 +66,13 @@ file where event.type == "deletion" and
 
     [[rule.threat.technique]]
     id = "T1070"
-    name = "Indicator Removal on Host"
+    name = "Indicator Removal"
     reference = "https://attack.mitre.org/techniques/T1070/"
+
+      [[rule.threat.technique.subtechnique]]
+      id = "T1070.002"
+      name = "Clear Linux or Mac System Logs"
+      reference = "https://attack.mitre.org/techniques/T1070/002/"
 
     [rule.threat.tactic]
     id = "TA0005"

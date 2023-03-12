@@ -1,16 +1,16 @@
 [metadata]
 creation_date = "2021/07/19"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
 description = "Identifies when an ElastiCache security group has been modified or deleted."
 false_positives = [
-  "A ElastiCache security group deletion may be done by a system or network administrator. Verify whether the user identity,\nuser agent, and/or hostname should be making changes in your environment. Security Group deletions by unfamiliar\nusers or hosts should be investigated. If known behavior is causing false positives, it can be exempted from the\nrule.\n    "
+  "A ElastiCache security group deletion may be done by a system or network administrator. Verify whether the user\nidentity, user agent, and/or hostname should be making changes in your environment. Security Group deletions by\nunfamiliar users or hosts should be investigated. If known behavior is causing false positives, it can be exempted\nfrom the rule.\n    "
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]
@@ -32,6 +32,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Monitoring",
@@ -60,6 +61,6 @@ event.dataset:aws.cloudtrail and event.provider:elasticache.amazonaws.com and ev
       reference = "https://attack.mitre.org/techniques/T1562/007/"
 
     [rule.threat.tactic]
-    name = "Defense Evasion"
     id = "TA0005"
+    name = "Defense Evasion"
     reference = "https://attack.mitre.org/tactics/TA0005/"

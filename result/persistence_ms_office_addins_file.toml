@@ -1,15 +1,21 @@
 [metadata]
 creation_date = "2020/10/16"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
 description = "Detects attempts to establish persistence on an endpoint by abusing Microsoft Office add-ins."
 from = "now-9m"
-index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
+index = [
+  "logs-endpoint.events.*",
+  "winlogbeat-*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Persistence via Microsoft Office AddIns"
@@ -30,6 +36,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Persistence",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -37,7 +44,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-file where event.type != "deletion" and
+file where host.os.type == "windows" and event.type != "deletion" and
  file.extension : ("wll","xll","ppa","ppam","xla","xlam") and
  file.path :
     (

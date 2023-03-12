@@ -1,17 +1,21 @@
 [metadata]
 creation_date = "2022/07/22"
+integration = [ "endpoint" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Detects a file being made immutable using the chattr binary. Making a file immutable means it cannot be deleted or renamed, no link can be created to this file, most of the file's metadata can not be modified, and the file can not be opened in write mode. Threat actors will commonly utilize this to prevent tampering or modification of their malicious files or any system files they have modified for purposes of persistence (e.g .ssh, /etc/passwd, etc.).
+Detects a file being made immutable using the chattr binary. Making a file immutable means it cannot be deleted or
+renamed, no link can be created to this file, most of the file's metadata can not be modified, and the file can not be
+opened in write mode. Threat actors will commonly utilize this to prevent tampering or modification of their malicious
+files or any system files they have modified for purposes of persistence (e.g .ssh, /etc/passwd, etc.).
 """
 from = "now-9m"
-index = [ "auditbeat-*", "logs-endpoint.events.*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*", "endgame-*" ]
 language = "eql"
 license = "Elastic License v2"
 max_signals = 33
@@ -30,14 +34,18 @@ tags = [
   "Linux",
   "Threat Detection",
   "Defense Evasion",
+  "Elastic Endgame",
   "AuditBeat",
   "Elastic-Agent",
+  "Endpoint Security",
   "Endpoint Security"
 ]
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and user.name == "root" and process.executable : "/usr/bin/chattr" and process.args : ("-*i*", "+*i*") and not process.parent.executable: "/lib/systemd/systemd"
+process where host.os.type == "linux" and event.type == "start" and user.name == "root" and
+  process.executable : "/usr/bin/chattr" and process.args : ("-*i*", "+*i*") and
+  not process.parent.executable: "/lib/systemd/systemd"
 """
 
   [[rule.threat]]

@@ -1,10 +1,10 @@
 [metadata]
 creation_date = "2020/06/04"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -13,7 +13,7 @@ Identifies the creation of an AWS Elastic Compute Cloud (EC2) network access con
 ACL with a specified rule number.
 """
 false_positives = [
-  "Network ACL's may be created by a network administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. Network ACL creations by unfamiliar users or hosts should\nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Network ACL's may be created by a network administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. Network ACL creations by unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]
@@ -38,6 +38,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Network Security",

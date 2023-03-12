@@ -1,15 +1,21 @@
 [metadata]
 creation_date = "2020/02/18"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
 description = "Adversaries can add the 'hidden' attribute to files to hide them from the user in an attempt to evade detection."
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Adding Hidden File Attribute via Attrib"
@@ -27,6 +33,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -36,7 +43,7 @@ timeline_title = "Comprehensive Process Timeline"
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and
+process where host.os.type == "windows" and event.type == "start" and
   process.name : "attrib.exe" and process.args : "+h"
 """
 

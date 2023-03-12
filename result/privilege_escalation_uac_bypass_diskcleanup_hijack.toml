@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/08/18"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -12,7 +13,12 @@ Identifies User Account Control (UAC) bypass via hijacking DiskCleanup Scheduled
 stealthily execute code with elevated permissions.
 """
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "UAC Bypass via DiskCleanup Scheduled Task Hijack"
@@ -30,6 +36,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Privilege Escalation",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -37,7 +44,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and
+process where host.os.type == "windows" and event.type == "start" and
  process.args : "/autoclean" and process.args : "/d" and
  not process.executable : ("C:\\\\Windows\\\\System32\\\\cleanmgr.exe",
                            "C:\\\\Windows\\\\SysWOW64\\\\cleanmgr.exe",

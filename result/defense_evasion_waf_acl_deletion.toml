@@ -1,16 +1,16 @@
 [metadata]
 creation_date = "2020/05/21"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
 description = "Identifies the deletion of a specified AWS Web Application Firewall (WAF) access control list."
 false_positives = [
-  "Firewall ACL's may be deleted by a system or network administrator. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Web ACL deletions by unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Firewall ACL's may be deleted by a system or network administrator. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Web ACL deletions by unfamiliar users or hosts should\nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]
@@ -33,6 +33,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Network Security",

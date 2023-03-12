@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/10/28"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -13,7 +14,12 @@ shared modules to execute malicious payloads by instructing the Windows module l
 paths.
 """
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Execution via local SxS Shared Module"
@@ -38,6 +44,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Execution",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -45,7 +52,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-file where file.extension : "dll" and file.path : "C:\\\\*\\\\*.exe.local\\\\*.dll"
+file where host.os.type == "windows" and file.extension : "dll" and file.path : "C:\\\\*\\\\*.exe.local\\\\*.dll"
 """
 
   [[rule.threat]]

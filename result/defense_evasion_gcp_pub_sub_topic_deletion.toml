@@ -1,10 +1,10 @@
 [metadata]
 creation_date = "2020/09/18"
+integration = [ "gcp" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "gcp"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -14,7 +14,7 @@ Identifies the deletion of a topic in Google Cloud Platform (GCP). In GCP, the p
 application creates and sends messages to a topic. Deleting a topic can interrupt message flow in the Pub/Sub pipeline.
 """
 false_positives = [
-  "Topic deletions may be done by a system or network administrator. Verify whether the user email, resource name,\nand/or hostname should be making changes in your environment. Topic deletions by unfamiliar users or hosts should\nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Topic deletions may be done by a system or network administrator. Verify whether the user email, resource name,\nand/or hostname should be making changes in your environment. Topic deletions by unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 index = [ "filebeat-*", "logs-gcp*" ]
 language = "kuery"
@@ -32,6 +32,7 @@ tags = [
   "Elastic",
   "Cloud",
   "GCP",
+  "Google Cloud Platform",
   "Continuous Monitoring",
   "SecOps",
   "Log Auditing",

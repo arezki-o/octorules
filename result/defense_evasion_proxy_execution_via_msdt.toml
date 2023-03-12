@@ -1,18 +1,24 @@
 [metadata]
 creation_date = "2022/05/31"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies potential abuse of the Microsoft Diagnostics Troubleshooting Wizard (MSDT) to proxy malicious command or binary
-execution via malicious process arguments.
+Identifies potential abuse of the Microsoft Diagnostics Troubleshooting Wizard (MSDT) to proxy malicious command or
+binary execution via malicious process arguments.
 """
 from = "now-9m"
-index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
+index = [
+  "logs-endpoint.events.*",
+  "winlogbeat-*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious Microsoft Diagnostics Wizard Execution"
@@ -34,6 +40,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -41,7 +48,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and
+process where host.os.type == "windows" and event.type == "start" and
    (process.pe.original_file_name == "msdt.exe" or process.name : "msdt.exe") and
    (
     process.args : ("IT_RebrowseForFile=*", "ms-msdt:/id", "ms-msdt:-id", "*FromBase64*") or

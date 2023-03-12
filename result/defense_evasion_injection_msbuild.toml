@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/03/25"
+integration = [ "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -27,13 +28,14 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "Sysmon Only",
   "WinLogBeat",
   "Elastic-Agent"
 ]
 timestamp_override = "event.ingested"
 type = "query"
 query = """
-process.name:MSBuild.exe and event.action:"CreateRemoteThread detected (rule: CreateRemoteThread)"
+process.name:MSBuild.exe and host.os.type:windows and event.action:"CreateRemoteThread detected (rule: CreateRemoteThread)"
 """
 
   [[rule.threat]]

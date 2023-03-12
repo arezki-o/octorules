@@ -1,18 +1,19 @@
 [metadata]
 creation_date = "2021/03/22"
+integration = [ "endpoint" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies NullSessionPipe registry modifications that specify which pipes can be accessed anonymously. This could
-be indicative of adversary lateral movement preparation by making the added pipe available to everyone.
+Identifies NullSessionPipe registry modifications that specify which pipes can be accessed anonymously. This could be
+indicative of adversary lateral movement preparation by making the added pipe available to everyone.
 """
 from = "now-9m"
-index = [ "logs-endpoint.events.*" ]
+index = [ "logs-endpoint.events.*", "endgame-*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "NullSessionPipe Registry Modification"
@@ -29,15 +30,19 @@ tags = [
   "Windows",
   "Threat Detection",
   "Lateral Movement",
+  "Elastic Endgame",
   "Elastic-Agent",
+  "Endpoint Security",
   "Endpoint Security"
 ]
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-registry where
-registry.path : "HKLM\\\\SYSTEM\\\\*ControlSet*\\\\services\\\\LanmanServer\\\\Parameters\\\\NullSessionPipes" and
-registry.data.strings != null
+registry where host.os.type == "windows" and event.type in ("creation", "change") and
+registry.path : (
+    "HKLM\\\\SYSTEM\\\\*ControlSet*\\\\services\\\\LanmanServer\\\\Parameters\\\\NullSessionPipes",
+    "\\\\REGISTRY\\\\MACHINE\\\\SYSTEM\\\\*ControlSet*\\\\services\\\\LanmanServer\\\\Parameters\\\\NullSessionPipes"
+) and length(registry.data.strings) > 0
 """
 
   [[rule.threat]]

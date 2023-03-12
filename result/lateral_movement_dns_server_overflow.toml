@@ -98,3 +98,6 @@ event.category:(network or network_traffic) and destination.port:53 and
     id = "TA0008"
     name = "Lateral Movement"
     reference = "https://attack.mitre.org/tactics/TA0008/"
+8"
+    name = "Lateral Movement"
+    reference = "https://attack.mitre.org/tactics/TA0008/"

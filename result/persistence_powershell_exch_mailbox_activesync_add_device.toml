@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/12/15"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -13,7 +14,12 @@ Adversaries may target user email to collect sensitive information.
 """
 false_positives = [ "Legitimate exchange system administration activity." ]
 from = "now-9m"
-index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
+index = [
+  "logs-endpoint.events.*",
+  "winlogbeat-*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "New ActiveSyncAllowedDeviceID Added via PowerShell"
@@ -35,6 +41,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Persistence",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -42,7 +49,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and
+process where host.os.type == "windows" and event.type == "start" and
   process.name: ("powershell.exe", "pwsh.exe", "powershell_ise.exe") and process.args : "Set-CASMailbox*ActiveSyncAllowedDeviceIDs*"
 """
 

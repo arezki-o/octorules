@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/10/19"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -12,7 +13,12 @@ Identifies User Account Control (UAC) bypass attempts via the ICMLuaUtil Elevate
 to bypass UAC to stealthily execute code with elevated permissions.
 """
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "UAC Bypass via ICMLuaUtil Elevated COM Interface"
@@ -30,6 +36,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Privilege Escalation",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -37,7 +44,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and
+process where host.os.type == "windows" and event.type == "start" and
  process.parent.name == "dllhost.exe" and
  process.parent.args in ("/Processid:{3E5FC7F9-9A51-4367-9063-A120244FBEC7}", "/Processid:{D2E7041B-2927-42FB-8E9F-7CE93B6DC937}") and
  process.pe.original_file_name != "WerFault.exe"

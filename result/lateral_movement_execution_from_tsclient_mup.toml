@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/11/11"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -12,7 +13,12 @@ Identifies execution from the Remote Desktop Protocol (RDP) shared mountpoint ts
 indicate a lateral movement attempt.
 """
 from = "now-9m"
-index = [ "logs-endpoint.events.*", "winlogbeat-*", "logs-windows.*" ]
+index = [
+  "logs-endpoint.events.*",
+  "winlogbeat-*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Execution via TSClient Mountpoint"
@@ -33,6 +39,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Lateral Movement",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -40,7 +47,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and process.executable : "\\\\Device\\\\Mup\\\\tsclient\\\\*.exe"
+process where host.os.type == "windows" and event.type == "start" and process.executable : "\\\\Device\\\\Mup\\\\tsclient\\\\*.exe"
 """
 
   [[rule.threat]]

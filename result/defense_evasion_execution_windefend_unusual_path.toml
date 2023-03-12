@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2021/07/07"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet", "Dennis Perto" ]
@@ -16,7 +17,12 @@ false_positives = [
   "Microsoft Antimalware Service Executable installed on non default installation path."
 ]
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential DLL Side-Loading via Microsoft Antimalware Service Executable"
@@ -37,6 +43,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -44,7 +51,8 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and
+process where host.os.type == "windows" and event.type == "start" and
+(
   (process.pe.original_file_name == "MsMpEng.exe" and not process.name : "MsMpEng.exe") or
   (process.name : "MsMpEng.exe" and not
         process.executable : ("?:\\\\ProgramData\\\\Microsoft\\\\Windows Defender\\\\*.exe",
@@ -52,6 +60,7 @@ process where event.type == "start" and
                               "?:\\\\Program Files (x86)\\\\Windows Defender\\\\*.exe",
                               "?:\\\\Program Files\\\\Microsoft Security Client\\\\*.exe",
                               "?:\\\\Program Files (x86)\\\\Microsoft Security Client\\\\*.exe"))
+)
 """
 
   [[rule.threat]]

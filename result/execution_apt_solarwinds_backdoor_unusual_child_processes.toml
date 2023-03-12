@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/12/14"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -12,7 +13,12 @@ false_positives = [
   "Trusted SolarWinds child processes, verify process details such as network connections and file writes."
 ]
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious SolarWinds Child Process"
@@ -34,6 +40,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Execution",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -41,7 +48,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and
+process where host.os.type == "windows" and event.type == "start" and
  process.parent.name: ("SolarWinds.BusinessLayerHost.exe", "SolarWinds.BusinessLayerHostx64.exe") and
  not process.name : (
         "APMServiceControl*.exe",

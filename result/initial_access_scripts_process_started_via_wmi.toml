@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/11/27"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -12,7 +13,12 @@ Identifies use of the built-in Windows script interpreters (cscript.exe or wscri
 via Windows Management Instrumentation (WMI). This may be indicative of malicious activity.
 """
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Windows Script Interpreter Executing Process via WMI"
@@ -25,6 +31,8 @@ tags = [
   "Windows",
   "Threat Detection",
   "Initial Access",
+  "Execution",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -32,9 +40,10 @@ tags = [
 type = "eql"
 query = """
 sequence by host.id with maxspan = 5s
-    [any where (event.category == "library" or (event.category == "process" and event.action : "Image loaded*")) and
+    [any where host.os.type == "windows" and 
+     (event.category : ("library", "driver") or (event.category == "process" and event.action : "Image loaded*")) and
      (dll.name : "wmiutils.dll" or file.name : "wmiutils.dll") and process.name : ("wscript.exe", "cscript.exe")]
-    [process where event.type == "start" and
+    [process where host.os.type == "windows" and event.type == "start" and
      process.parent.name : "wmiprvse.exe" and
      user.domain != "NT AUTHORITY" and
      (process.pe.original_file_name :
@@ -78,3 +87,16 @@ sequence by host.id with maxspan = 5s
     id = "TA0001"
     name = "Initial Access"
     reference = "https://attack.mitre.org/tactics/TA0001/"
+
+  [[rule.threat]]
+  framework = "MITRE ATT&CK"
+
+    [[rule.threat.technique]]
+    id = "T1047"
+    name = "Windows Management Instrumentation"
+    reference = "https://attack.mitre.org/techniques/T1047/"
+
+    [rule.threat.tactic]
+    id = "TA0002"
+    name = "Execution"
+    reference = "https://attack.mitre.org/tactics/TA0002/"

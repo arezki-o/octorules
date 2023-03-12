@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/11/15"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -12,7 +13,12 @@ Identifies process execution with a single character process name. This is often
 executing temporary utilities.
 """
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious Execution - Short Program Name"
@@ -30,6 +36,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -37,8 +44,8 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and length(process.name) > 0 and
- length(process.name) == 5 and host.os.name == "Windows" and length(process.pe.original_file_name) > 5
+process where host.os.type == "windows" and event.type == "start" and length(process.name) > 0 and
+ length(process.name) == 5 and length(process.pe.original_file_name) > 5
 """
 
   [[rule.threat]]

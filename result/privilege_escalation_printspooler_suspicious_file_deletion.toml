@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2021/07/06"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -15,7 +16,12 @@ false_positives = [
   "Uninstall or manual deletion of a legitimate printing driver files. Verify the printer file metadata such as\nmanufacturer and signature information.\n"
 ]
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Suspicious Print Spooler File Deletion"
@@ -36,6 +42,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Privilege Escalation",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -43,7 +50,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-file where event.type : "deletion" and
+file where host.os.type == "windows" and event.type : "deletion" and
  not process.name : ("spoolsv.exe", "dllhost.exe", "explorer.exe") and
  file.path : "?:\\\\Windows\\\\System32\\\\spool\\\\drivers\\\\x64\\\\3\\\\*.dll"
 """

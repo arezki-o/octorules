@@ -1,16 +1,16 @@
 [metadata]
 creation_date = "2021/06/05"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet", "Austin Songer" ]
 description = "Identifies when an AWS Route Table has been created."
 false_positives = [
-  "Route Tables may be created by a system or network administrators. Verify whether the user identity, user\nagent, and/or hostname should be making changes in your environment. Route Table creation by unfamiliar users or\nhosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\nAutomated processes that use Terraform may lead to false positives.\n    "
+  "Route Tables may be created by a system or network administrators. Verify whether the user identity, user agent,\nand/or hostname should be making changes in your environment. Route Table creation by unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule. Automated\nprocesses that use Terraform may lead to false positives.\n    "
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]
@@ -34,6 +34,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Network Security",
@@ -52,6 +53,6 @@ event.outcome:success
   framework = "MITRE ATT&CK"
 
     [rule.threat.tactic]
-    reference = "https://attack.mitre.org/tactics/TA0003/"
-    name = "Persistence"
     id = "TA0003"
+    name = "Persistence"
+    reference = "https://attack.mitre.org/tactics/TA0003/"

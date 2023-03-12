@@ -1,10 +1,10 @@
 [metadata]
 creation_date = "2021/05/17"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -13,19 +13,19 @@ Identifies the use of AssumeRole. AssumeRole returns a set of temporary security
 AWS resources. An adversary could use those credentials to move laterally and escalate privileges.
 """
 false_positives = [
-  "Automated processes that use Terraform may lead to false positives.\n"
+  "Automated processes that use Terraform may lead to false positives."
 ]
 index = [ "filebeat-*", "logs-aws*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "AWS Security Token Service (STS) AssumeRole Usage"
-references = [
-  "https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html"
-]
 note = """
 ## Setup
 
 The AWS Fleet integration, Filebeat module, or similarly structured data is required to be compatible with this rule."""
+references = [
+  "https://docs.aws.amazon.com/STS/latest/APIReference/API_AssumeRole.html"
+]
 risk_score = 21
 rule_id = "93075852-b0f5-4b8b-89c3-a226efae5726"
 severity = "low"
@@ -33,6 +33,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Identity and Access",

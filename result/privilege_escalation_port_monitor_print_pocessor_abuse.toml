@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2021/01/21"
+integration = [ "endpoint" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -13,7 +14,7 @@ processors to run malicious DLLs during system boot that will be executed as SYS
 persistence, if permissions allow writing a fully-qualified pathname for that DLL.
 """
 from = "now-9m"
-index = [ "logs-endpoint.events.*" ]
+index = [ "logs-endpoint.events.*", "endgame-*" ]
 language = "eql"
 license = "Elastic License v2"
 name = "Potential Port Monitor or Print Processor Registration Abuse"
@@ -29,16 +30,21 @@ tags = [
   "Windows",
   "Threat Detection",
   "Privilege Escalation",
+  "Elastic Endgame",
   "Elastic-Agent",
+  "Endpoint Security",
   "Endpoint Security"
 ]
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-registry where event.type in ("creation", "change") and
-  registry.path : ("HKLM\\\\SYSTEM\\\\*ControlSet*\\\\Control\\\\Print\\\\Monitors\\\\*",
-    "HKLM\\\\SYSTEM\\\\*ControlSet*\\\\Control\\\\Print\\\\Environments\\\\Windows*\\\\Print Processors\\\\*") and
-  registry.data.strings : "*.dll" and
+registry where host.os.type == "windows" and event.type in ("creation", "change") and
+  registry.path : (
+      "HKLM\\\\SYSTEM\\\\*ControlSet*\\\\Control\\\\Print\\\\Monitors\\\\*",
+      "HKLM\\\\SYSTEM\\\\*ControlSet*\\\\Control\\\\Print\\\\Environments\\\\Windows*\\\\Print Processors\\\\*",
+      "\\\\REGISTRY\\\\MACHINE\\\\SYSTEM\\\\*ControlSet*\\\\Control\\\\Print\\\\Monitors\\\\*",
+      "\\\\REGISTRY\\\\MACHINE\\\\SYSTEM\\\\*ControlSet*\\\\Control\\\\Print\\\\Environments\\\\Windows*\\\\Print Processors\\\\*"
+  ) and registry.data.strings : "*.dll" and
   /* exclude SYSTEM SID - look for changes by non-SYSTEM user */
   not user.id : "S-1-5-18"
 """

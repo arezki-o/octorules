@@ -1,10 +1,10 @@
 [metadata]
 creation_date = "2020/09/21"
-integration = "gcp"
+integration = [ "gcp" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -35,6 +35,7 @@ tags = [
   "Elastic",
   "Cloud",
   "GCP",
+  "Google Cloud Platform",
   "Continuous Monitoring",
   "SecOps",
   "Configuration Audit",

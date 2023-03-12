@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/03/25"
+integration = [ "endpoint", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/15"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -15,7 +16,12 @@ false_positives = [
   "The Build Engine is commonly used by Windows developers but use by non-engineers is unusual."
 ]
 from = "now-9m"
-index = [ "winlogbeat-*", "logs-endpoint.events.*", "logs-windows.*" ]
+index = [
+  "winlogbeat-*",
+  "logs-endpoint.events.*",
+  "logs-windows.*",
+  "endgame-*"
+]
 language = "eql"
 license = "Elastic License v2"
 name = "Microsoft Build Engine Started by a System Process"
@@ -33,6 +39,7 @@ tags = [
   "Windows",
   "Threat Detection",
   "Defense Evasion",
+  "Elastic Endgame",
   "WinLogBeat",
   "Elastic-Agent",
   "Endpoint Security"
@@ -40,7 +47,7 @@ tags = [
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-process where event.type == "start" and
+process where host.os.type == "windows" and event.type == "start" and
   process.name : "MSBuild.exe" and
   process.parent.name : ("explorer.exe", "wmiprvse.exe")
 """

@@ -1,19 +1,19 @@
 [metadata]
 creation_date = "2020/08/12"
+integration = [ "azure" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "azure"
+updated_date = "2022/12/14"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when a virtual network device is modified or deleted. This can be a network virtual
-appliance, virtual hub, or virtual router.
+Identifies when a virtual network device is modified or deleted. This can be a network virtual appliance, virtual hub,
+or virtual router.
 """
 false_positives = [
-  "Virtual Network Device modification or deletion may be performed by a system administrator. Verify\nwhether the user identity, user agent, and/or hostname should be making changes in your environment.\nVirtual Network Device modification or deletion by unfamiliar users should be investigated. If known\nbehavior is causing false positives, it can be exempted from the rule.\n    "
+  "Virtual Network Device modification or deletion may be performed by a system administrator. Verify whether the user\nidentity, user agent, and/or hostname should be making changes in your environment. Virtual Network Device\nmodification or deletion by unfamiliar users should be investigated. If known behavior is causing false positives,\nit can be exempted from the rule.\n    "
 ]
 from = "now-25m"
 index = [ "filebeat-*", "logs-azure*" ]

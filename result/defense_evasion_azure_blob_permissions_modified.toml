@@ -1,20 +1,20 @@
 [metadata]
 creation_date = "2021/09/22"
+integration = [ "azure" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "azure"
+updated_date = "2022/12/14"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Identifies when the Azure role-based access control (Azure RBAC) permissions are modified for an Azure
-Blob. An adversary may modify the permissions on a blob to weaken their target's security controls
-or an administrator may inadvertently modify the permissions, which could lead to data exposure or loss.
+Identifies when the Azure role-based access control (Azure RBAC) permissions are modified for an Azure Blob. An
+adversary may modify the permissions on a blob to weaken their target's security controls or an administrator may
+inadvertently modify the permissions, which could lead to data exposure or loss.
 """
 false_positives = [
-  "Blob permissions may be modified by system administrators. Verify that the configuration change was\nexpected. Exceptions can be added to this rule to filter expected behavior.\n"
+  "Blob permissions may be modified by system administrators. Verify that the configuration change was expected.\nExceptions can be added to this rule to filter expected behavior.\n"
 ]
 index = [ "filebeat-*", "logs-azure*" ]
 language = "kuery"

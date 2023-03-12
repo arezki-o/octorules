@@ -1,18 +1,16 @@
 [metadata]
 creation_date = "2021/09/22"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
-description = """
-Identifies when SAML activity has occurred in AWS. An adversary could manipulate SAML to maintain access to the target.
-"""
+description = "Identifies when SAML activity has occurred in AWS. An adversary could manipulate SAML to maintain access to the target."
 false_positives = [
-  "SAML Provider could be updated by a system administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. SAML Provider updates by unfamiliar users should\nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "SAML Provider could be updated by a system administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. SAML Provider updates by unfamiliar users should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-25m"
 index = [ "filebeat-*", "logs-aws*" ]
@@ -34,6 +32,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Identity and Access",

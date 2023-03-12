@@ -1,10 +1,10 @@
 [metadata]
 creation_date = "2020/05/26"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -13,7 +13,7 @@ Identifies the deletion of an Amazon Elastic Compute Cloud (EC2) network access 
 ingress/egress entries.
 """
 false_positives = [
-  "Network ACL's may be deleted by a network administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. Network ACL deletions by unfamiliar users or hosts should\nbe investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "Network ACL's may be deleted by a network administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. Network ACL deletions by unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]
@@ -38,6 +38,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Network Security",

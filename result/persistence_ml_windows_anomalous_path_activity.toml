@@ -1,7 +1,7 @@
 [metadata]
 creation_date = "2020/03/25"
 maturity = "production"
-updated_date = "2022/08/24"
+updated_date = "2023/03/06"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
 
@@ -34,7 +34,9 @@ tags = [
   "Windows",
   "Threat Detection",
   "ML",
-  "Persistence"
+  "Machine Learning",
+  "Persistence",
+  "Execution"
 ]
 type = "machine_learning"
 
@@ -55,3 +57,21 @@ type = "machine_learning"
     id = "TA0003"
     name = "Persistence"
     reference = "https://attack.mitre.org/tactics/TA0003/"
+
+  [[rule.threat]]
+  framework = "MITRE ATT&CK"
+
+    [[rule.threat.technique]]
+    id = "T1204"
+    name = "User Execution"
+    reference = "https://attack.mitre.org/techniques/T1204/"
+
+      [[rule.threat.technique.subtechnique]]
+      id = "T1204.002"
+      name = "Malicious File"
+      reference = "https://attack.mitre.org/techniques/T1204/002/"
+
+    [rule.threat.tactic]
+    id = "TA0002"
+    name = "Execution"
+    reference = "https://attack.mitre.org/tactics/TA0002/"

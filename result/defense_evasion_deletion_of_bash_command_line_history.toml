@@ -1,9 +1,7 @@
 [metadata]
 creation_date = "2020/05/04"
 maturity = "production"
-min_stack_comments = "New fields added: required_fields, related_integrations, setup"
-min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2022/03/31"
 
 [rule]
 author = [ "Octodet" ]
@@ -17,7 +15,7 @@ language = "eql"
 license = "Elastic License v2"
 name = "Tampering of Bash Command-Line History"
 note = """
-## Setup
+## Config
 
 If enabling an EQL rule on a non-elastic-agent index (such as beats) for versions <8.2, events will not define `event.ingested` and default fallback for EQL rules was not added until 8.2, so you will need to add a custom pipeline to populate `event.ingested` to @timestamp for this rule to work.
 """
@@ -28,7 +26,6 @@ tags = [
   "Elastic",
   "Host",
   "Linux",
-  "macOS",
   "Threat Detection",
   "Defense Evasion",
   "AuditBeat",
@@ -40,11 +37,7 @@ type = "eql"
 query = """
 process where event.type in ("start", "process_started") and
  (
-  ((process.args : ("rm", "echo") or
-    (process.args : "ln" and process.args : "-sf" and process.args : "/dev/null") or
-    (process.args : "truncate" and process.args : "-s0"))
-    and process.args : (".bash_history", "/root/.bash_history", "/home/*/.bash_history","/Users/.bash_history", "/Users/*/.bash_history",
-                        ".zsh_history", "/root/.zsh_history", "/home/*/.zsh_history", "/Users/.zsh_history", "/Users/*/.zsh_history")) or
+  (process.args : ("rm", "echo") and process.args : (".bash_history", "/root/.bash_history", "/home/*/.bash_history")) or
   (process.name : "history" and process.args : "-c") or
   (process.args : "export" and process.args : ("HISTFILE=/dev/null", "HISTFILESIZE=0")) or
   (process.args : "unset" and process.args : "HISTFILE") or
@@ -58,6 +51,27 @@ process where event.type in ("start", "process_started") and
     [[rule.threat.technique]]
     id = "T1070"
     name = "Indicator Removal on Host"
+    reference = "https://attack.mitre.org/techniques/T1070/"
+
+      [[rule.threat.technique.subtechnique]]
+      id = "T1070.003"
+      name = "Clear Command History"
+      reference = "https://attack.mitre.org/techniques/T1070/003/"
+
+    [rule.threat.tactic]
+    id = "TA0005"
+    name = "Defense Evasion"
+    reference = "https://attack.mitre.org/tactics/TA0005/"
+)
+ )
+"""
+
+  [[rule.threat]]
+  framework = "MITRE ATT&CK"
+
+    [[rule.threat.technique]]
+    id = "T1070"
+    name = "Indicator Removal"
     reference = "https://attack.mitre.org/techniques/T1070/"
 
       [[rule.threat.technique.subtechnique]]

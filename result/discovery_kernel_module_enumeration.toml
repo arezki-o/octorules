@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/04/23"
+integration = [ "endpoint" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -16,7 +17,7 @@ false_positives = [
   "Security tools and device drivers may run these programs in order to enumerate kernel modules. Use of these programs\nby ordinary users is uncommon. These can be exempted by process name or username.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*", "logs-endpoint.events.*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*", "endgame-*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Enumeration of Kernel Modules"
@@ -29,14 +30,16 @@ tags = [
   "Linux",
   "Threat Detection",
   "Discovery",
+  "Elastic Endgame",
   "AuditBeat",
   "Elastic-Agent",
+  "Endpoint Security",
   "Endpoint Security"
 ]
 timestamp_override = "event.ingested"
 type = "query"
 query = """
-event.category:process and event.type:(start or process_started) and
+event.category:process and host.os.type:linux and event.type:(start or process_started) and
   process.args:(kmod and list and sudo or sudo and (depmod or lsmod or modinfo))
 """
 

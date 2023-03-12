@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2020/04/24"
+integration = [ "endpoint" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -16,7 +17,7 @@ false_positives = [
   "There is usually no reason to remove modules, but some buggy modules require it. These can be exempted by username.\nNote that some Linux distributions are not built to support the removal of modules at all.\n"
 ]
 from = "now-9m"
-index = [ "auditbeat-*", "logs-endpoint.events.*" ]
+index = [ "auditbeat-*", "logs-endpoint.events.*", "endgame-*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Kernel Module Removal"
@@ -30,14 +31,16 @@ tags = [
   "Linux",
   "Threat Detection",
   "Defense Evasion",
+  "Elastic Endgame",
   "AuditBeat",
   "Elastic-Agent",
+  "Endpoint Security",
   "Endpoint Security"
 ]
 timestamp_override = "event.ingested"
 type = "query"
 query = """
-event.category:process and event.type:(start or process_started) and
+event.category:process and host.os.type:linux and event.type:(start or process_started) and
   process.args:((rmmod and sudo) or (modprobe and sudo and ("--remove" or "-r")))
 """
 

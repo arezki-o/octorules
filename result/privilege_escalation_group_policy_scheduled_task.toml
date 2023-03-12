@@ -1,16 +1,18 @@
 [metadata]
 creation_date = "2021/11/08"
+integration = [ "system", "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/09/13"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
 description = """
-Detects the modification of Group Policy Object attributes to execute a scheduled task in the objects controlled by the GPO.
+Detects the modification of Group Policy Object attributes to execute a scheduled task in the objects controlled by the
+GPO.
 """
-index = [ "winlogbeat-*", "logs-system.*" ]
+index = [ "winlogbeat-*", "logs-system.*", "logs-windows.*" ]
 language = "kuery"
 license = "Elastic License v2"
 name = "Scheduled Task Execution at Scale via GPO"
@@ -19,16 +21,12 @@ note = """
 
 ### Investigating Scheduled Task Execution at Scale via GPO
 
-Group Policy Objects (GPOs) can be used by attackers to execute scheduled tasks at scale to compromise objects controlled
-by a given GPO. This is done by changing the contents of the `<GPOPath>\\Machine\\Preferences\\ScheduledTasks\\ScheduledTasks.xml`
-file.
+Group Policy Objects (GPOs) can be used by attackers to execute scheduled tasks at scale to compromise objects controlled by a given GPO. This is done by changing the contents of the `<GPOPath>\\Machine\\Preferences\\ScheduledTasks\\ScheduledTasks.xml` file.
 
 #### Possible investigation steps
 
-- This attack abuses a legitimate mechanism of Active Directory, so it is important to determine whether the activity
-is legitimate and the administrator is authorized to perform this operation.
-- Retrieve the contents of the `ScheduledTasks.xml` file, and check the `<Command>` and `<Arguments>` XML tags for any
-potentially malicious commands or binaries.
+- This attack abuses a legitimate mechanism of Active Directory, so it is important to determine whether the activity is legitimate and the administrator is authorized to perform this operation.
+- Retrieve the contents of the `ScheduledTasks.xml` file, and check the `<Command>` and `<Arguments>` XML tags for any potentially malicious commands or binaries.
 - Investigate other alerts associated with the user/host during the past 48 hours.
 - Scope which objects may be compromised by retrieving information about which objects are controlled by the GPO.
 
@@ -48,8 +46,7 @@ potentially malicious commands or binaries.
 - Remove the script from the GPO.
 - Check if other GPOs have suspicious scheduled tasks attached.
 - Determine the initial vector abused by the attacker and take action to prevent reinfection through the same vector.
-- Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the
-mean time to respond (MTTR).
+- Using the incident response data, update logging and audit policies to improve the mean time to detect (MTTD) and the mean time to respond (MTTR).
 
 ## Setup
 
@@ -98,13 +95,14 @@ tags = [
   "Threat Detection",
   "Privilege Escalation",
   "Active Directory",
-  "has_guide",
+  "Investigation Guide",
   "WinLogBeat",
   "Elastic-Agent"
 ]
 timestamp_override = "event.ingested"
 type = "query"
 query = """
+host.os.type:windows and
 (event.code: "5136" and winlog.event_data.AttributeLDAPDisplayName:("gPCMachineExtensionNames" or "gPCUserExtensionNames") and
    winlog.event_data.AttributeValue:(*CAB54552-DEEA-4691-817E-ED4A4D1AFC72* and *AADCED64-746C-4633-A97C-D61349046527*))
 or
@@ -116,26 +114,26 @@ or
   framework = "MITRE ATT&CK"
 
     [[rule.threat.technique]]
-    reference = "https://attack.mitre.org/techniques/T1053/"
     id = "T1053"
     name = "Scheduled Task/Job"
+    reference = "https://attack.mitre.org/techniques/T1053/"
 
       [[rule.threat.technique.subtechnique]]
-      reference = "https://attack.mitre.org/techniques/T1053/005/"
       id = "T1053.005"
       name = "Scheduled Task"
+      reference = "https://attack.mitre.org/techniques/T1053/005/"
 
     [[rule.threat.technique]]
-    reference = "https://attack.mitre.org/techniques/T1484/"
     id = "T1484"
     name = "Domain Policy Modification"
+    reference = "https://attack.mitre.org/techniques/T1484/"
 
       [[rule.threat.technique.subtechnique]]
-      reference = "https://attack.mitre.org/techniques/T1484/001/"
       id = "T1484.001"
       name = "Group Policy Modification"
+      reference = "https://attack.mitre.org/techniques/T1484/001/"
 
     [rule.threat.tactic]
-    reference = "https://attack.mitre.org/tactics/TA0004/"
     id = "TA0004"
     name = "Privilege Escalation"
+    reference = "https://attack.mitre.org/tactics/TA0004/"

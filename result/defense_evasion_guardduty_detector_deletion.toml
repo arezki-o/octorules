@@ -1,10 +1,10 @@
 [metadata]
 creation_date = "2020/05/28"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet" ]
@@ -13,7 +13,7 @@ Identifies the deletion of an Amazon GuardDuty detector. Upon deletion, GuardDut
 all existing findings are lost.
 """
 false_positives = [
-  "The GuardDuty detector may be deleted by a system or network administrator. Verify whether the user identity, user\nagent, and/or hostname should be making changes in your environment. Detector deletions by unfamiliar users or\nhosts should be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
+  "The GuardDuty detector may be deleted by a system or network administrator. Verify whether the user identity, user\nagent, and/or hostname should be making changes in your environment. Detector deletions by unfamiliar users or hosts\nshould be investigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
 ]
 from = "now-60m"
 index = [ "filebeat-*", "logs-aws*" ]
@@ -36,6 +36,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Monitoring",

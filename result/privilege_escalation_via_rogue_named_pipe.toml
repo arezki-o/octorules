@@ -1,9 +1,10 @@
 [metadata]
 creation_date = "2021/10/13"
+integration = [ "windows" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
+updated_date = "2023/02/22"
 
 [rule]
 author = [ "Octodet" ]
@@ -39,13 +40,14 @@ tags = [
   "Windows",
   "Threat Detection",
   "Privilege Escalation",
+  "Sysmon Only",
   "WinLogBeat",
   "Elastic-Agent"
 ]
 timestamp_override = "event.ingested"
 type = "eql"
 query = """
-file where event.action : "Pipe Created*" and
+file where host.os.type == "windows" and event.action : "Pipe Created*" and
  /* normal sysmon named pipe creation events truncate the pipe keyword */
   file.name : "\\\\*\\\\Pipe\\\\*"
 """
@@ -55,10 +57,10 @@ file where event.action : "Pipe Created*" and
 
     [[rule.threat.technique]]
     id = "T1134"
-    reference = "https://attack.mitre.org/techniques/T1134/"
     name = "Access Token Manipulation"
+    reference = "https://attack.mitre.org/techniques/T1134/"
 
     [rule.threat.tactic]
     id = "TA0004"
-    reference = "https://attack.mitre.org/tactics/TA0004/"
     name = "Privilege Escalation"
+    reference = "https://attack.mitre.org/tactics/TA0004/"

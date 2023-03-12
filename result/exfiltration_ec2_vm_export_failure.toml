@@ -1,15 +1,16 @@
 [metadata]
 creation_date = "2021/04/22"
+integration = [ "aws" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.3.0"
-updated_date = "2022/08/24"
-integration = "aws"
+updated_date = "2023/03/06"
 
 [rule]
 author = [ "Octodet", "Austin Songer" ]
 description = """
-Identifies an attempt to export an AWS EC2 instance. A virtual machine (VM) export may indicate an attempt to extract or exfiltrate information.
+Identifies an attempt to export an AWS EC2 instance. A virtual machine (VM) export may indicate an attempt to extract or
+exfiltrate information.
 """
 false_positives = [
   "VM exports may be done by a system or network administrator. Verify whether the user identity, user agent, and/or\nhostname should be making changes in your environment. VM exports from unfamiliar users or hosts should be\ninvestigated. If known behavior is causing false positives, it can be exempted from the rule.\n"
@@ -34,6 +35,7 @@ tags = [
   "Elastic",
   "Cloud",
   "AWS",
+  "Amazon Web Services",
   "Continuous Monitoring",
   "SecOps",
   "Asset Visibility",
@@ -50,24 +52,24 @@ event.dataset:aws.cloudtrail and event.provider:ec2.amazonaws.com and event.acti
   framework = "MITRE ATT&CK"
 
     [[rule.threat.technique]]
-    reference = "https://attack.mitre.org/techniques/T1537/"
     id = "T1537"
     name = "Transfer Data to Cloud Account"
+    reference = "https://attack.mitre.org/techniques/T1537/"
 
     [rule.threat.tactic]
-    reference = "https://attack.mitre.org/tactics/TA0010/"
     id = "TA0010"
     name = "Exfiltration"
+    reference = "https://attack.mitre.org/tactics/TA0010/"
 
   [[rule.threat]]
   framework = "MITRE ATT&CK"
 
     [[rule.threat.technique]]
-    reference = "https://attack.mitre.org/techniques/T1005/"
     id = "T1005"
     name = "Data from Local System"
+    reference = "https://attack.mitre.org/techniques/T1005/"
 
     [rule.threat.tactic]
-    reference = "https://attack.mitre.org/tactics/TA0009/"
     id = "TA0009"
     name = "Collection"
+    reference = "https://attack.mitre.org/tactics/TA0009/"
