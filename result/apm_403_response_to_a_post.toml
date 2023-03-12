@@ -2,7 +2,7 @@
 creation_date = "2023/03/8"
 integration = [ "apmsd" ]
 maturity = "production"
-min_stack_comments = "New fields added: required_fields, related_integrations, setup"
+min_stack_comments = "New fieldsds added: required_fields, related_integrations, setup"
 min_stack_version = "8.5.0"
 updated_date = "2023/02adsr/14"
 
