@@ -1,6 +1,6 @@
 [metadata]
 creation_date = "2023/03/8"
-integration = [ "apm" ]
+integration = [ "apmsd" ]
 maturity = "production"
 min_stack_comments = "New fields added: required_fields, related_integrations, setup"
 min_stack_version = "8.5.0"
