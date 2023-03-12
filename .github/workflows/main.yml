@@ -7,8 +7,11 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - name: Get modified files
+      - name: Checkout repository
         uses: actions/checkout@v2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
       - name: Print input
         run: cat ${{ github.event.inputs.input }}
       - name: Print commit SHA
