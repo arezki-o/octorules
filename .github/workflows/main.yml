@@ -33,9 +33,9 @@ jobs:
             rm deprecated
           fi
           for rule in ./rules/_deprecated/*toml; do
-            grep -m 1 "^name =" $rule | awk -F\" '{print $2}' >> deprecated
+            sudo grep -m 1 "^name =" $rule | awk -F\" '{print $2}' >> deprecated
           done
           sudo bash deprecated.sh deprecated
           sudo cp ../../handler.sh .
-          bash handler.sh 
+          sudo bash handler.sh 
       
