@@ -7,6 +7,12 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
+      - name: Get modified files
+        id: get-modified-files
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.sha }}
+          fetch-depth: 0
       - name: Print input
         run: cat ${{ github.event.inputs.input }}
       - name: Print commit SHA
@@ -19,6 +25,7 @@ jobs:
         run: |
           changed_files=$(git diff-tree --no-commit-id --name-only -r ${{github.sha}})
           echo $changed_files
+          echo "::set-output name=modified_files::$modified_files"
           if echo "$changed_files" | grep -q result; then
             echo "$changed_files" | tr " " "\n" | grep result > resultrules
           fi
