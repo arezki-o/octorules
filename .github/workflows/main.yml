@@ -20,7 +20,7 @@ jobs:
         run: cd ${{ github.workspace }} && pwd
       - name: Filter result files
         run: |
-          get-modified-files=$(git diff-tree --no-commit-id --name-only -r ${{ github.sha }})
+          get-modified-files=$(git diff --name-only --diff-filter=ACMRT ${{ github.event.pull_request.base.sha }} ${{ github.sha }} | grep .css$ | xargs)
           echo "$get-modified-files"
           if echo "$get-modified-files" | grep -q result; then
             echo "$get-modified-files" | tr " " "\n" | grep result > resultrules
