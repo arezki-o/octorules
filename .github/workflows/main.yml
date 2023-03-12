@@ -10,14 +10,14 @@ jobs:
       - name: Print input
         run: cat ${{ github.event.inputs.input }}
       - name: Print commit SHA
-        run: echo "${{ github.sha }}"
+        run: echo "${{github.sha}}"
       - name: echo pwd & init
         run: pwd && git init
       - name: Get changed files
-        run: git diff-tree --no-commit-id --name-only -r $GITHUB_SHA
+        run: git diff-tree --no-commit-id --name-only -r ${{github.sha}}
       - name: Filter result files
         run: |
-          changed_files=$(git diff-tree --no-commit-id --name-only -r $GITHUB_SHA)
+          changed_files=$(git diff-tree --no-commit-id --name-only -r ${{github.sha}})
           echo $changed_files
           if echo "$changed_files" | grep -q result; then
             echo "$changed_files" | tr " " "\n" | grep result > resultrules
