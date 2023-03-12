@@ -40,4 +40,9 @@ jobs:
           bash deprecated.sh deprecated
           cp ../../handler.sh .
           bash handler.sh
-      
+  post-check:
+    runs-on: self-hosted
+    needs: deploy
+    steps:
+      - name: clean up
+        run:  rm -rf /home/ubuntu/actions-runner/_work
