@@ -7,8 +7,6 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Print input
         run: cat ${{ github.event.inputs.input }}
       - name: Print commit SHA
