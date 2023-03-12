@@ -19,15 +19,13 @@ jobs:
         run: echo "${{github.sha}}"
       - name: echo pwd & init
         run: pwd && git init
-      - name: Get changed files
-        run: git diff-tree --no-commit-id --name-only -r ${{github.sha}}
       - name: Filter result files
         run: |
-          changed_files=$(git diff-tree --no-commit-id --name-only -r ${{github.sha}})
+          get-modified-files=$(git diff-tree --no-commit-id --name-only -r ${{github.sha}})
           echo $changed_files
           echo "::set-output name=modified_files::$modified_files"
-          if echo "$changed_files" | grep -q result; then
-            echo "$changed_files" | tr " " "\n" | grep result > resultrules
+          if echo "$get-modified-files" | grep -q result; then
+            echo "$get-modified-files" | tr " " "\n" | grep result > resultrules
           fi
           if [ -e resultrules ]; then cat resultrules; fi
       - name: Sync code
