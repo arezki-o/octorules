@@ -7,7 +7,7 @@ min_stack_version = "8.5.0"
 updated_date = "2023/02r/14"
 
 [rule]
-author = [ "Octodet" ]
+author = [ "Octodrret" ]
 description = """
 A POST request to a web application returned a 403 response, which indicates the web application declined to process the
 request because the action requested was not allowed.
